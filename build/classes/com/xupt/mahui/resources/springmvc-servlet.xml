@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc" 
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd    
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd ">
+    <mvc:annotation-driven />
+    <!-- ①：对web包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 -->
+    <context:component-scan base-package="com.xupt.mahui" />
+
+    <!-- 这两个类用来启动基于Spring MVC的注解功能，将控制器与方法映射加入到容器中 -->
+    <beans:bean
+        class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+    <beans:bean
+        class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+
+    <!-- 这个类用于Spring MVC视图解析 -->
+    <!-- <beans:bean id="viewResolver"
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <beans:property name="prefix" value="/WEB-INF/view/" />
+        <beans:property name="suffix" value=".jsp" />
+    </beans:bean>  -->
+    
+    
+    <!-- freemarker的配置 -->  
+    <beans:bean id="freemarkerConfigurer"  
+        class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">  
+        <beans:property name="templateLoaderPath" value="/WEB-INF/view/" />  
+        <beans:property name="defaultEncoding" value="utf-8" />  
+        <beans:property name="freemarkerSettings">  
+            <beans:props>  
+                <beans:prop key="template_update_delay">10</beans:prop>  
+                <beans:prop key="locale">zh_CN</beans:prop>  
+                <beans:prop key="datetime_format">yyyy-MM-dd HH:mm:ss</beans:prop>  
+                <beans:prop key="date_format">yyyy-MM-dd</beans:prop>  
+                <beans:prop key="number_format">#.##</beans:prop>  
+            </beans:props>  
+        </beans:property>  
+    </beans:bean>  
+    <!-- FreeMarker视图解析 如返回userinfo。。在这里配置后缀名ftl和视图解析器。。 -->  
+    <beans:bean id="viewResolver"  
+        class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">  
+        <beans:property name="viewClass"  
+            value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />  
+        <beans:property name="suffix" value=".ftl" />  
+        <beans:property name="contentType" value="text/html;charset=utf-8" />  
+        <beans:property name="exposeRequestAttributes" value="true" />  
+        <beans:property name="exposeSessionAttributes" value="true" />  
+        <beans:property name="exposeSpringMacroHelpers" value="true" />  
+    </beans:bean>  
+    
+     <!--配置拦截器, 多个拦截器,顺序执行 -->
+    <mvc:interceptors>  
+        <mvc:interceptor>  
+        <!-- 匹配的是url路径， 如果不配置或/**,将拦截所有的Controller -->
+            <mvc:mapping path="/" />
+            <beans:bean class="com.xupt.mahui.interceptor.LoginInterceptor"/>  
+        </mvc:interceptor>
+        <!-- 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法 -->
+    </mvc:interceptors>
+
+</beans:beans>

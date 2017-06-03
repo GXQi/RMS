@@ -1,0 +1,1 @@
+本项目采用springmVC和myBatis实现建立管理系统

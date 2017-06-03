@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xupt.mahui.dao.ResumeDao">
+	<!-- 添加简历基本信息 -->
+	<insert id="insertResume" parameterType="com.xupt.mahui.entity.ResumeBasic" >
+		insert into resume(phonenumber,name,sex,skill,email,work_time) values (#{phonenumber},#{name},#{sex},#{skill},#{email},#{workTime});
+	</insert>
+	<!-- 添加教育信息 -->
+	<insert id="insertEductionExperience" parameterType="com.xupt.mahui.entity.EductionExperience">
+		insert into eductionexperience(phonenumber,school,degree,major,graduation_time) values (#{phonenumber},#{school},#{degree},#{major},#{graduationTime});
+	</insert>
+	<!-- 添加工作经历 -->
+	<insert id="insertWorkExperience" parameterType="com.xupt.mahui.entity.WorkExperience">
+		insert into workexperience (phonenumber,company,position,incumbency,work_content) values(#{phonenumber},#{company},#{position},#{incumbency},#{workContent});
+	</insert>
+	<!-- 添加项目经历 -->
+	<insert id="insertProjectExperience" parameterType="com.xupt.mahui.entity.ProjectExperience">
+		insert into projectexperience(phonenumber,project_name,project_role,project_time,work_content) values(#{phonenumber},#{projectName},#{projectRole},#{projectTime},#{workContent});
+	</insert>
+	<!-- 删除简历基本信息 -->
+	<delete id="deleteResume" parameterType="String">
+		delete from resume where phonenumber=#{phonenumber}; 
+		
+	</delete>
+	<!-- 删除工作经历 -->
+	<delete id="deleteWorkExperience" parameterType="String">
+		delete from workexperience where phonenumber=#{phonenumber};
+		
+	</delete>
+	<!-- 删除项目经历 -->
+	<delete id="deleteProjectExperience" parameterType="String">
+		delete from projectexperience where phonenumber=#{phonenumber};
+		
+	</delete>
+	<!-- 删除教育经历 -->
+	<delete id="deleteEductionExperience" parameterType="String">
+		delete from eductionexperience where phonenumber=#{phonenumber};	
+	</delete>
+	<!-- 查询简历基本信息 -->
+	<select id="selectResume" resultType="com.xupt.mahui.entity.ResumeBasic">
+		select * from resume where phonenumber=#{phonenumber};
+	</select>
+	<!-- 查询工作经历 -->
+	<resultMap type="com.xupt.mahui.entity.WorkExperience" id="workexperiencelist">
+		<result column="phonenumber" property="phonenumber"/>
+		<result column="company" property="company"/>
+		<result column="position" property="position"/>
+		<result column="incumbency " property="incumbency "/>
+		<result column="work_content" property="workContent"/>
+	</resultMap>
+	<select id="selectWorkExperience" resultMap="workexperiencelist">
+		select * from workexperience where phonenumber=#{phonenumber};
+	</select>
+	
+	<!-- 查询项目经历 -->
+	<resultMap type="com.xupt.mahui.entity.ProjectExperience" id="projectexperiencelist">
+		<result column="phonenumber" property="phonenumber"/>
+		<result column="project_name" property="projectName"/>
+		<result column="project_role" property="projectRole"/>
+		<result column="project_time " property="projectTime "/>
+		<result column="work_content" property="workContent"/>
+	</resultMap>
+	<select id="selectProjectExperience" resultMap="projectexperiencelist">
+		select * from projectexperience where phonenumber=#{phonenumber};
+	</select>
+	
+	
+	<!-- 查询教育经历 -->
+	<resultMap type="com.xupt.mahui.entity.EductionExperience" id="eductionexperiencelist">
+		<result column="phonenumber" property="phonenumber"/>
+		<result column="school" property="school"/>
+		<result column="degree" property="degree"/>
+		<result column="major " property="major "/>
+		<result column="graduation_time" property="graduationTime"/>
+	</resultMap>
+	<select id="selectEductionExperience" resultMap="eductionexperiencelist">
+		select * from eductionexperience where phonenumber=#{phonenumber};
+	</select>
+	
+	
+	
+</mapper>
