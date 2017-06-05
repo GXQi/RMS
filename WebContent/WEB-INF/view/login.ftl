@@ -2,13 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
-    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="./js/jquery-3.1.0.min.js"></script>
-    <link rel="stylesheet" href="./css/login.css.css" type="text/css">
-    <script type="text/javascript" src="login.js"></script>
+    <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="./css/login.css" rel="stylesheet" type="text/css">
     <title>login</title>
 </head>
+<script>
+    function input() {
+        var loginPhone = document.getElementById("loginPhone").value;
+        var loginPassword = document.getElementById("loginPassword").value;
+        if (loginPhone === '' || loginPassword === '') {
+            document.getElementById('warning').innerHTML = '帐号或密码有误';
+        }
+    }
+</script>
 <body>
 
 <div class="loginTiele">简历管理平台</div>
@@ -22,7 +28,7 @@
     </div>
     <div class="form-group">
         <div class="col-sm-4">
-            <input type="password" class="form-control" id="longinPassword"
+            <input type="password" class="form-control" id="loginPassword"
                    placeholder="密码">
         </div>
     </div>
@@ -30,7 +36,7 @@
 
 <span class="loginFind">找回密码</span>
 
-<div class="loginSure">
+<div class="loginSure" onclick="input()">
     <span class="loginSpan">登录</span>
 </div>
 <div class="loginAsk">还没有帐号？<span class="loginSign">注册</span></div>

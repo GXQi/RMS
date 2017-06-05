@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
 /**
  * 简历管理相关的Controller
  * @author mahui
@@ -13,6 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class ResumeManageController {
+	@RequestMapping("/index")
+	public String index(){
+		return "type-in";
+	}
 	/**
 	 * search resumes by skill or phonenuber or name from  database
 	 * @return ModelView
@@ -41,9 +44,9 @@ public class ResumeManageController {
 		return view;
 	}
 	
-	@RequestMapping("/")
+	@RequestMapping("/type-in")
 	public String test(){
-		return "index";
+		return "type-in";
 	}
 	@RequestMapping("/string")
 	@ResponseBody

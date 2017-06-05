@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -8,6 +7,25 @@
     <script type="text/javascript" src="./js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/jquery-3.1.0.min.js"></script>
     <title>Title</title>
+    <style>
+        .white_content {
+            display: none;
+            position: fixed;
+            top: 35%;
+            left: 25%;
+            width: 550px;
+            height: 150px;
+            text-align: center;
+            font-weight: 400;
+            padding: 40px;
+            border: 12px solid #D6E9F1;
+            background-color: white;
+            font-size: larger;
+            z-index: 1002;
+            overflow: auto;
+        }
+        
+    </style>
     <script>
         function appendWork() {
             const table =
@@ -53,7 +71,7 @@
             $("#edu").append(table);
         }
 
-        function submit() {
+        function submit(tag) {
             var data = {}, nodes = document.querySelectorAll("input");//可能所有文本框都是有用的
             var textNodes = document.querySelectorAll("textarea");//可能所有文本框都是有用的
             for (let i = 0, l = nodes.length; i < l; i++) {
@@ -65,16 +83,21 @@
                 data[index++] = textNodes[i].value;//如果有不符合条件的文本框 这里也可以过滤掉
             }
 
+
+
             var json = JSON.stringify(data);
             $.ajax({
                 type: "POST",
-                url: "RequestData.ashx",
+                url: " ",
                 contentType: "application/json; charset=utf-8",
                 data: json,
                 dataType: "json",
                 success: function (message) {
                     if (message > 0) {
-                        alert("提交成功！");
+                        var light = document.getElementById(tag);
+                        var fade = document.getElementById('fade');
+                        light.style.display = 'block';
+                        fade.style.display = 'block';
                     }
                 },
                 error: function (message) {
@@ -93,7 +116,7 @@
         简历库
     </div>
     <div class="username">
-        UserName
+        UserName | <a>Log Out</a>
     </div>
 </div>
 <div class="content">
@@ -227,10 +250,18 @@
         </div>
     </div>
     <div class="footer">
-        <button class="btn btn-default" onclick="submit()">确定</button>
+        <button class="btn btn-default" onclick="submit('light')">确定</button>
         <button class="btn btn-default">取消</button>
+    </div>
+
+    <div id="light" class="white_content">
+        <div id="close">
+            <button>关闭</button>
+        </div>
+        <div class="con">
+            提交成功！
+        </div>
     </div>
 </div>
 </body>
-
 </html>
