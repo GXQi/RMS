@@ -1,0 +1,88 @@
+.loginTiele{
+    font-size: 30px;
+    font-style: inherit;
+    margin-top: 10%;
+    text-align: center;
+}
+#warn{
+    visibility: hidden;
+}
+#warning{
+    color: red;
+    font-weight: 200;
+    text-align: center;
+}
+.form-horizontal{
+    margin-left: 41%;
+
+}
+.loginFind{
+    margin-left: 54%;
+    color: #2aabd2;
+    font-size: 15px;
+}
+.loginSure{
+    margin-left: 41%;
+    background-color: #2aabd2;
+    width: 18%;
+    height: 35px;
+    margin-top: 20px;
+}
+.loginSpan{
+    margin-left: 45%;
+    color: #fcf8e3;
+    font-size: 20px;
+    line-height: 35px;
+}
+.loginAsk{
+    font-size: 15px;
+    margin-top: 20px;
+    margin-left: 45%;
+}
+.loginSign{
+    color: #2aabd2;
+}
+.findPasswordTiele{
+    font-size: 20px;
+    margin-left: 41%;
+    margin-top: 20px;
+}
+.test{
+    width: 200px;
+}
+.findPasswordget{
+    margin-left: 18%;
+    background-color: #f0ad4e;
+    width: 13%;
+    height: 32px;
+}
+.findPasswordgetfont{
+    margin-left: 10%;
+    color: #fcf8e3;
+    font-size: 15px;
+    line-height: 40px;
+}
+.findPasswordInput{
+    width: 150px;
+}
+.findPasswordReturn{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.signAsk{
+    font-size: 15px;
+    margin-top: 20px;
+    margin-left: 45%;
+}
+.findpasswordspan{
+    margin-left: 40%;
+    color: #fcf8e3;
+    font-size: 20px;
+    line-height: 35px;
+}
+.success{
+    font-size: 20px;
+    text-align: center;
+    margin-top: 60px;
+}
