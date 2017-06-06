@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 /**
  * 简历管理相关的Controller
  * @author mahui
@@ -14,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ResumeManageController {
 	@RequestMapping("/index")
 	public String index(){
-		return "type-in";
+		return "edit";
 	}
 	/**
 	 * search resumes by skill or phonenuber or name from  database
