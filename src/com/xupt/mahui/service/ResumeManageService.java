@@ -24,7 +24,7 @@ public class ResumeManageService {
 	/**
 	 * 通过电话查询基本信息
 	 * @param phonenumber
-	 * @return
+	 * @return 基本信息
 	 */
 	public static ResumeBasic getResumeBasic(String phonenumber){
 		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
@@ -35,7 +35,7 @@ public class ResumeManageService {
 	/**
 	 * 通过phonenumber查询工作经历
 	 * @param phonenumber
-	 * @return
+	 * @return 工作经历集合
 	 */
 	public static List<WorkExperience> getWorkExperiences(String phonenumber){
 		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
@@ -46,7 +46,7 @@ public class ResumeManageService {
 	/**
 	 * 通过phonenumber查询项目经历
 	 * @param phonenumber
-	 * @return
+	 * @return 项目经历集合
 	 */
 	public static List<ProjectExperience> getWProjectExperiences(String phonenumber){
 		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
@@ -57,7 +57,7 @@ public class ResumeManageService {
 	/**
 	 * 通过phonenumber查询教育经历经历
 	 * @param phonenumber
-	 * @return
+	 * @return 教育经历集合
 	 */
 	public static List<EductionExperience> getEductionExperiences(String phonenumber){
 		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
@@ -68,7 +68,7 @@ public class ResumeManageService {
 	/**
 	 * 向数据库添加简历信息
 	 * @param data
-	 * @return
+	 * @return 是否添加成功
 	 */
 	public static boolean insert(String data){
 		JSONObject jsonObject=JSONObject.fromObject(data);
@@ -155,5 +155,9 @@ public class ResumeManageService {
 			System.out.println("异常信息是"+e.getMessage());
 		}
 		return false;
+	}
+	
+	public static void getResume(String degree,String workTime){
+		
 	}
 }

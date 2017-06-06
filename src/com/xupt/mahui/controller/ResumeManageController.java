@@ -1,6 +1,5 @@
 package com.xupt.mahui.controller;
 
-import java.io.PrintWriter;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,32 +17,44 @@ import com.xupt.mahui.service.ResumeManageService;
  */
 @Controller
 public class ResumeManageController {
-	@RequestMapping("/index")
-	public String index(){
-		return "edit";
-	}
-	
 	@RequestMapping("/resumemanage/search")
 	public ModelAndView serch(){
 		ModelAndView view=new ModelAndView();
 		return view;
 	}
-	
+	/**
+	 * 查询简历 通过学历和工作年限
+	 * @param json {"degree"："0"，"workTime","0"}
+	 * 对于degree -1到5分别代表不限，应届毕业生，1年以下，1-3年，3-5年，5-10年，10年以上
+	 * 同理对于对于workTime -1到4分别代表不限，大专以上，本科及以上，硕士及以上，博士及以上
+	 * @return
+	 */
 	@RequestMapping("/resumemanage/select")
-	public ModelAndView select(){
+	public ModelAndView select(@RequestBody String json){
 		ModelAndView view=new ModelAndView();
 		return view;
 	}
-	
+	/**
+	 * 录入简历信息
+	 * @param json {"basic":{},"work":{},"edu":{},"project":{}}
+	 * @return
+	 */
 	@RequestMapping(value="/resumemanage/insert" ,method = RequestMethod.POST)
-	public ModelAndView insert(@RequestBody String json,PrintWriter out){	
-		if(ResumeManageService.insert(json)){
-			out.print("succeed");
-		}else{
-			out.println("error");
-		}
+	public ModelAndView insert(@RequestBody String json){
+		/**
+		 * 录入成功跳到详情页面
+		 * 录入失败
+		 */
 		ModelAndView view=new ModelAndView();
-		view.setViewName("login");
+		if(ResumeManageService.insert(json)){
+			//详情界面
+			view.setViewName("");
+		}else{
+			//错误信息
+			view.setViewName("login");
+		}
+		
+		
 		return view;
 	}
 	/**
@@ -64,13 +75,11 @@ public class ResumeManageController {
 		view.addObject("workExperienceList", ResumeManageService.getWorkExperiences(phonenumber));
 		view.addObject("projectExperienceList", ResumeManageService.getWProjectExperiences(phonenumber));
 		view.addObject("eductionExperienceList", ResumeManageService.getEductionExperiences(phonenumber));
+		//返回到编辑详情
 		return view;
 	}
 	
 	
-	@RequestMapping("/type-in")
-	public String test(){
-		return "type-in";
-	}
+
 	
 }
