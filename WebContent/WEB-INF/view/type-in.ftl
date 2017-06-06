@@ -7,10 +7,33 @@
     <script type="text/javascript" src="./js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/jquery-3.1.0.min.js"></script>
     <title>Title</title>
+    <style>
+        .white_content {
+            display: none;
+            position: fixed;
+            top: 35%;
+            left: 25%;
+            width: 550px;
+            height: 150px;
+            text-align: center;
+            font-weight: 400;
+            padding: 40px;
+            border: 12px solid #D6E9F1;
+            background-color: white;
+            font-size: larger;
+            z-index: 1002;
+            overflow: auto;
+        }
+
+        .delete {
+            float: right;
+        }
+
+    </style>
     <script>
         function appendWork() {
             const table =
-                    '<div><hr/><button class="delete btn btn-default">X</button>' +
+                    '<div><hr/><button class="delete btn btn-default" value="x">X</button>' +
                     '<div class="basic"> ' +
                     '<table width="650" height="250">' +
                     '<tr>' +
@@ -31,7 +54,6 @@
                     '</table></div class="basic"></div>';
 
             $("#content").append(table);
-
             document.body.addEventListener("click", function (event) {
                 var target = event.target;
                 if (target.nodeName === "BUTTON") {
@@ -41,7 +63,7 @@
         }
 
         function appendProject() {
-            const table = '<div><hr/><button class="delete btn btn-default">X</button><div class="basic"><table width="650" height="250"> <tr>' +
+            const table = '<div><hr/><button class="delete btn btn-default" value ="x1">X</button><div class="basic"><table width="650" height="250"> <tr>' +
                     '<td class="td-left">项目名称</td> <td><input type="text" class="text1" required style="width: 300px"/></td>' +
                     '</tr><tr> <td class="td-left">项目角色</td><td><input type="text" required class="text1"/>' +
                     '</tr><tr><td class="td-left">项目时间</td><td><input type="date" class="text1"/>至<input type="date" class="text1"/></td>' +
@@ -56,7 +78,7 @@
             }, false);
         }
         function appendEdu() {
-            const table = '<div><hr/><button class="delete btn btn-default">X</button><div class="basic"><table width="700" height="100" ><tr><td class="td-fourth">学校名称</td>' +
+            const table = '<div><hr/><button class="delete btn btn-default" value="x2">X</button><div class="basic"><table width="700" height="100" ><tr><td class="td-fourth">学校名称</td>' +
                     '<td><input type="text" required class="text2"/></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td class="td-fourth">所学专业</td>' +
                     '<td><input type="text" required class="text2"/></td> </tr><tr><td class="td-fourth">学位</td>' +
                     '<td><input type="text" required class="text2"/></td><td class="td-fourth">毕业年份</td><td><input type="date" class="text2"/></td>' +
@@ -103,6 +125,10 @@
                     if (message > 0) {
                         var light = document.getElementById(tag);
                         light.style.display = 'block';
+                        document.getElementById("myBtn").addEventListener("click", function () {
+                            var light = document.getElementById('light');
+                            light.style.display = 'none';
+                        });
                     }
                 },
                 error: function (message) {
@@ -110,12 +136,6 @@
                 }
             });
         }
-        
-        function close(tag) {
-            var light = document.getElementById(tag);
-            light.style.display = 'none';
-        }
-
     </script>
 </head>
 <body>
@@ -135,7 +155,7 @@
         录入新简历
     </div>
     <hr/>
-    <form id="info1">
+    <div>
         <div class="label">
             基本信息
         </div>
@@ -167,107 +187,104 @@
                 </tr>
             </table>
         </div>
-    </form>
-    <hr/>
-    <div id="info2">
-        <div class="label">
-            工作经历
-            <div><span><img src="./images/add.png" width="20px" height="20px" onclick="appendWork()"></span>添加更多工作经历
+        </form>
+        <hr/>
+        <div id="info2">
+            <div class="label">
+                工作经历
+                <div><span><img src="./images/add.png" width="20px" height="20px" onclick="appendWork()"></span>添加更多工作经历
+                </div>
             </div>
-        </div>
-        <div id="content">
-            <div class="basic">
-                <table width="700" height="250">
-                    <tr>
-                        <td class="td-left">公司名称 &nbsp;&nbsp;</td>
-                        <td><input type="text" required style="width: 300px" class="text"/></td>
-                    </tr>
-                    <tr>
-                        <td class="td-left">职位</td>
-                        <td><input type="text" required class="text"/></td>
-                    </tr>
-                    <tr>
-                        <td class="td-left">在职时间</td>
-                        <td><input type="date" class="text"/>至<input type="date" class="text"/></td>
-                        <td></td>
+            <div id="content">
+                <div class="basic">
+                    <table width="700" height="250">
+                        <tr>
+                            <td class="td-left">公司名称 &nbsp;&nbsp;</td>
+                            <td><input type="text" required style="width: 300px" class="text"/></td>
+                        </tr>
+                        <tr>
+                            <td class="td-left">职位</td>
+                            <td><input type="text" required class="text"/></td>
+                        </tr>
+                        <tr>
+                            <td class="td-left">在职时间</td>
+                            <td><input type="date" class="text"/>至<input type="date" class="text"/></td>
+                            <td></td>
 
-                    </tr>
-                    <tr>
-                        <td style="vertical-align: top" class="td-left">工作内容</td>
-                        <td><textarea rows="5" cols="60" class="text"></textarea></td>
-                    </tr>
-                </table>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: top" class="td-left">工作内容</td>
+                            <td><textarea rows="5" cols="60" class="text"></textarea></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-    <hr/>
-    <div id="info3">
-        <div class="label">
-            项目经验
-            <div><span><img src="./images/add.png" width="20px" height="20px" onclick="appendProject()"></span>添加更多项目经验
+        <hr/>
+        <div id="info3">
+            <div class="label">
+                项目经验
+                <div><span><img src="./images/add.png" width="20px" height="20px" onclick="appendProject()"></span>添加更多项目经验
+                </div>
             </div>
-        </div>
-        <div id="project">
-            <div class="basic">
-                <table width="700" height="250">
-                    <tr>
-                        <td class="td-left">项目名称</td>
-                        <td><input type="text" required style="width: 300px" class="text1"/></td>
-                    </tr>
-                    <tr>
-                        <td class="td-left">项目角色</td>
-                        <td><input type="text" required class="text1"/>
-                    </tr>
-                    <tr>
-                        <td class="td-left">项目时间</td>
-                        <td><input type="date" class="text1"/>至<input type="date" class="text1"/></td>
-                        <td></td>
+            <div id="project">
+                <div class="basic">
+                    <table width="700" height="250">
+                        <tr>
+                            <td class="td-left">项目名称</td>
+                            <td><input type="text" required style="width: 300px" class="text1"/></td>
+                        </tr>
+                        <tr>
+                            <td class="td-left">项目角色</td>
+                            <td><input type="text" required class="text1"/>
+                        </tr>
+                        <tr>
+                            <td class="td-left">项目时间</td>
+                            <td><input type="date" class="text1"/>至<input type="date" class="text1"/></td>
+                            <td></td>
 
-                    </tr>
-                    <tr>
-                        <td style="vertical-align: top" class="td-left">项目描述</td>
-                        <td><textarea rows="5" cols="60" class="text1"></textarea></td>
-                    </tr>
-                </table>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: top" class="td-left">项目描述</td>
+                            <td><textarea rows="5" cols="60" class="text1"></textarea></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-    <hr/>
-    <div id="info4">
-        <div class="label">
-            教育经历
-            <div><span><img src="./images/add.png" width="20px" height="20px" onclick="appendEdu()"></span>添加更多教育经历
+        <hr/>
+        <div id="info4">
+            <div class="label">
+                教育经历
+                <div><span><img src="./images/add.png" width="20px" height="20px" onclick="appendEdu()"></span>添加更多教育经历
+                </div>
+            </div>
+            <div id="edu">
+                <div class="basic">
+                    <table width="700" height="100">
+                        <tr>
+                            <td class="td-fourth">学校名称</td>
+                            <td><input type="text" required class="text2"/></td>
+                            <td class="td-fourth">所学专业</td>
+                            <td><input type="text" required class="text2"/></td>
+                        </tr>
+                        <tr>
+                            <td class="td-fourth">学位</td>
+                            <td><input type="text" required class="text2"/></td>
+                            <td class="td-fourth">毕业年份</td>
+                            <td><input type="date" class="text2"/></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
-        <div id="edu">
-            <div class="basic">
-                <table width="700" height="100">
-                    <tr>
-                        <td class="td-fourth">学校名称</td>
-                        <td><input type="text" required class="text2"/></td>
-                        <td class="td-fourth">所学专业</td>
-                        <td><input type="text" required class="text2"/></td>
-                    </tr>
-                    <tr>
-                        <td class="td-fourth">学位</td>
-                        <td><input type="text" required class="text2"/></td>
-                        <td class="td-fourth">毕业年份</td>
-                        <td><input type="date" class="text2"/></td>
-                    </tr>
-                </table>
+        <div class="footer">
+            <button class="btn btn-default" onclick="submit('light')">提交</button>
+        </div>
+        <div id="light" class="white_content">
+            <div class="con">
+                提交成功！<button class="btn btn-default" id="myBtn">关闭</button>
             </div>
-        </div>
-    </div>
-    <div class="footer">
-        <button class="btn btn-default" onclick="submit('light')">确定</button>
-        <button class="btn btn-default">取消</button>
-    </div>
-    <div id="light" class="white_content">
-        <div id="close">
-            <button class="btn btn-default" onclick="close('light')">关闭</button>
-        </div>
-        <div class="con">
-            提交成功！
         </div>
     </div>
 </div>
