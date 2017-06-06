@@ -32,7 +32,10 @@ public class ResumeManageController {
 		ModelAndView view=new ModelAndView();
 		return view;
 	}
-	
+	public ModelAndView show(){
+		ModelAndView view=new ModelAndView();
+		return view;
+	}
 	@RequestMapping("/type-in")
 	public String test(){
 		return "type-in";
