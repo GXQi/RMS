@@ -115,9 +115,10 @@
             }
 
             var json = JSON.stringify(data);
+            alert(json)
             $.ajax({
                 type: "POST",
-                url: "/rms/resumemanage/insert",
+                url: "/RMS/resumemanage/insert",
                 contentType: "application/json; charset=utf-8",
                 data: json,
                 dataType: "json",

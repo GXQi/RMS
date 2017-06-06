@@ -1,11 +1,16 @@
 package com.xupt.mahui.controller;
 
+import java.io.PrintWriter;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.xupt.mahui.service.ResumeManageService;
+
 /**
  * 简历管理相关的Controller
  * @author mahui
@@ -30,9 +35,15 @@ public class ResumeManageController {
 		return view;
 	}
 	
-	@RequestMapping("/resumemanage/insert")
-	public ModelAndView insert(){
+	@RequestMapping(value="/resumemanage/insert" ,method = RequestMethod.POST)
+	public ModelAndView insert(@RequestBody String json,PrintWriter out){	
+		if(ResumeManageService.insert(json)){
+			out.print("succeed");
+		}else{
+			out.println("error");
+		}
 		ModelAndView view=new ModelAndView();
+		view.setViewName("login");
 		return view;
 	}
 	/**
