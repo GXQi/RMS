@@ -1,11 +1,13 @@
 package com.xupt.mahui.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * 页面映射
  * @author mahui
  *
  */
+@Controller
 public class PageMapping {
 	/**
 	 * 编辑简历界面
