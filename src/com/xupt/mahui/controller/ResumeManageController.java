@@ -17,7 +17,6 @@ import com.xupt.mahui.entity.Message;
 import com.xupt.mahui.entity.Resume;
 import com.xupt.mahui.service.ResumeManageService;
 
-import jdk.nashorn.api.scripting.JSObject;
 import net.sf.json.JSONObject;
 
 /**

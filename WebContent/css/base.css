@@ -1,0 +1,50 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+a{
+    color: #4C9ED9;
+}
+
+li{
+    list-style: none;
+}
+
+hr{
+    border: none;
+    background-color: #9E9E9E;
+    height: 1px;
+}
+
+.dis-block{
+    display: block;
+}
+
+.mar-auto{
+    margin: 0 auto;
+}
+
+.float-l{
+    float: left;
+}
+
+.float-r{
+    float: right;
+}
+
+.clear-float:after{
+    display: block;
+    clear: both;
+    content: "";
+    visibility: hidden;
+    height: 0;
+}
+
+.font-size-16{
+    font-size: 16px;
+}
+
+.font-size-14{
+    font-size: 14px;
+}

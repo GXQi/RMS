@@ -1,0 +1,55 @@
+.details-nav{
+    background-color: #222222;
+}
+
+.nav-size{
+    width: 1000px;
+    border: 0;
+}
+
+.details-look{
+    width: 1000px;
+    padding: 20px 30px;
+}
+
+.span-style{
+    color: #9E9E9E;
+}
+
+/*基本信息*/
+.info-base{
+    text-align: center;
+}
+
+.base-name{
+    font-size: 24px;
+    text-align: center;
+}
+
+.info-base ul{
+    display: table;
+    margin: 0 auto;
+}
+
+.info-base li{
+    padding: 5px 10px;
+}
+
+/*工作经历*/
+.work-content{
+    width: 500px;
+    /*margin: 0 auto;*/
+    margin-left: 150px;
+}
+
+/*项目经验*/
+.project-content{
+    width: 500px;
+    margin-left: 150px;
+}
+
+/*教育经历*/
+.education-content{
+    width: 500px;
+    margin-left: 150px;
+}
