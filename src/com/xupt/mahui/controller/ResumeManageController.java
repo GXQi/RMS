@@ -84,7 +84,7 @@ public class ResumeManageController {
 		 */
 		view.addObject("resumeBasic", ResumeManageService.getResumeBasic(phonenumber));
 		view.addObject("workExperienceList", ResumeManageService.getWorkExperiences(phonenumber));
-		view.addObject("projectExperienceList", ResumeManageService.getWProjectExperiences(phonenumber));
+		view.addObject("projectExperienceList", ResumeManageService.getProjectExperiences(phonenumber));
 		view.addObject("eductionExperienceList", ResumeManageService.getEductionExperiences(phonenumber));
 		//返回到编辑详情
 		return view;
@@ -102,6 +102,7 @@ public class ResumeManageController {
 		EditJson editJson=new EditJson();
 		editJson.setResumeBasic(ResumeManageService.getResumeBasic(phonenumber));
 		editJson.setEducList(ResumeManageService.getEductionExperiences(phonenumber));
+		editJson.setProList(ResumeManageService.getProjectExperiences(phonenumber));
 		editJson.setWorkList(ResumeManageService.getWorkExperiences(phonenumber));
 		editJson.setEducList(ResumeManageService.getEductionExperiences(phonenumber));
 		return new Gson().toJson(editJson);

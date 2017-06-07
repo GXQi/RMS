@@ -49,7 +49,7 @@ public class ResumeManageService {
 	 * @param phonenumber
 	 * @return 项目经历集合
 	 */
-	public static List<ProjectExperience> getWProjectExperiences(String phonenumber){
+	public static List<ProjectExperience> getProjectExperiences(String phonenumber){
 		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
 		SqlSession session=sessionFactory.openSession();
 		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
