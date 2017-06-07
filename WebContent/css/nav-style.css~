@@ -96,25 +96,4 @@ textarea {
     justify-content: space-between;
 }
 
-.white_content {
-    display: none;
-    position: fixed;
-    top: 35%;
-    left: 25%;
-    width: 550px;
-    height: 150px;
-    text-align: center;
-    font-weight: 400;
-    padding: 40px;
-    border: 12px solid #D6E9F1;
-    background-color: white;
-    font-size: larger;
-    z-index: 1002;
-    overflow: auto;
-}
-
-.delete {
-    float: right;
-}
-
 

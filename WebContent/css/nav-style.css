@@ -96,4 +96,8 @@ textarea {
     justify-content: space-between;
 }
 
+#tip1,#tip2 {
+    float: right;
+    color: red;
+}
 
