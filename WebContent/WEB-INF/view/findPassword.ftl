@@ -2,9 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-   <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="./css/login.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="login.css" type="text/css">
     <title>findPassword</title>
+    <script>
+        function next() {
+            var loginPhone=document.getElementById('loginPhone').value;
+            var getfont=document.getElementById('findPasswordgetfont').value;
+
+            var reg = /^1[3|4|5|8][0-9]\d{4,8}$/;
+            if (!reg.test(loginPhone)) {
+                document.getElementById('warning').innerHTML = '请先输入您的正确手机号！';
+                document.getElementById('loginPhone').focus();
+            }else if(getfont===undefined){
+                document.getElementById('warning').innerHTML = '请输入验证码！';
+                document.getElementById('findPasswordgetfont').focus()
+            }else {
+
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -24,10 +41,10 @@
             <input type="password" class="form-control" id="longinPassword"
                    placeholder="验证码">
         </div>
-        <div  class="findPasswordget"><span class="findPasswordgetfont">获取验证码</span></div>
+        <div  class="findPasswordget"><span class="findPasswordgetfont" id="findPasswordgetfont">获取验证码</span></div>
     </div>
 </form>
-<div class="loginSure">
+<div class="loginSure" onclick="next()">
     <span class="findpasswordspan">下一步</span>
 </div>
 </body>
