@@ -100,7 +100,7 @@
 
             const name = document.getElementById("name").value;
             const phone = document.getElementById("phone").value;
-            const email = document.getElementById("email").value;
+            const email = document.getElementById("mail").value;
             const kill = document.getElementById("key-kill").value;
             const work = document.getElementById("workExperience").value;
 
@@ -169,18 +169,26 @@
                 }
             }
         }
+
+        function toMain() {
+            window.location = "http://localhost:8888/list";
+        }
+
+        function logout() {
+            window.location = "http://localhost:8888/login"
+        }
     </script>
 </head>
 <body>
 <div class="header">
     <div class="title">
-        简历管理平台
+        <a onclick="toMain()">简历管理平台</a>
     </div>
     <div class="title repo">
         简历库
     </div>
     <div class="username">
-        UserName | <a>Log Out</a>
+        UserName | <a onclick="logout()">退出</a>
     </div>
 </div>
 <div class="content">
