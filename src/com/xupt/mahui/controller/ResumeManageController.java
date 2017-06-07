@@ -6,8 +6,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.xupt.mahui.entity.Message;
 import com.xupt.mahui.service.ResumeManageService;
 
 /**
@@ -32,6 +35,7 @@ public class ResumeManageController {
 	@RequestMapping("/resumemanage/select")
 	public ModelAndView select(@RequestBody String json){
 		ModelAndView view=new ModelAndView();
+		//返回查看所有简历的界面
 		return view;
 	}
 	/**
@@ -40,22 +44,20 @@ public class ResumeManageController {
 	 * @return
 	 */
 	@RequestMapping(value="/resumemanage/insert" ,method = RequestMethod.POST)
-	public ModelAndView insert(@RequestBody String json){
+	@ResponseBody
+	public String insert(@RequestBody String json){
 		/**
-		 * 录入成功跳到详情页面
-		 * 录入失败
+		 * 录入成功返回{"message":"success"}
+		 * 录入失败返回{"message":"error"}
 		 */
-		ModelAndView view=new ModelAndView();
+		Gson gson=new Gson();
+		Message message=new Message();
 		if(ResumeManageService.insert(json)){
-			//详情界面
-			view.setViewName("");
+			message.setMessage("success");
 		}else{
-			//错误信息
-			view.setViewName("login");
+			message.setMessage("error");
 		}
-		
-		
-		return view;
+		return gson.toJson(message);
 	}
 	/**
 	 * 通过电话查询简历的具体信息（即点击编辑的的接口）

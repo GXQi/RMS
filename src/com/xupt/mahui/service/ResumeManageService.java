@@ -83,9 +83,9 @@ public class ResumeManageService {
 		resumeBasic.setName(basic.getString("0"));
 		resumeBasic.setPhonenumber(basic.getString("1"));
 		resumeBasic.setSex(basic.getString("2"));
-		resumeBasic.setEmail(basic.getString("4"));
-		resumeBasic.setSkill(basic.getString("5"));
-		resumeBasic.setWorkTime(basic.getString("6"));
+		resumeBasic.setEmail(basic.getString("3"));
+		resumeBasic.setSkill(basic.getString("4"));
+		resumeBasic.setWorkTime(basic.getString("5"));
 		/**
 		 * 解析工作经历并封装成list对象
 		 */
@@ -156,8 +156,34 @@ public class ResumeManageService {
 		}
 		return false;
 	}
-	
+	/**
+	 * 根据工作年限和教育经历获取简历信息
+	 * @param degree
+	 * @param workTime
+	 */
 	public static void getResume(String degree,String workTime){
+		/**
+		 * 1.先通过工作年限获得满足条件的人
+		 * 2.在满足条件中的人获得满足学历要求的人
+		 * 3.封装数据
+		 */
+		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
+		SqlSession session=sessionFactory.openSession();
+		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
+		List<ResumeBasic> list=resumeDao.selectResumeBasicByWorkTimeAndDegree(Integer.parseInt(workTime), Integer.parseInt(degree));
+		List<String> degrees=resumeDao.selectDegree("18629034550");
 		
+		
+		
+	}
+	
+	
+	/**
+	 * 将字符串012转换为对应的学历信息
+	 * @param string
+	 * @return
+	 */
+	public static String changeDegree(String string){
+		return "";
 	}
 }
