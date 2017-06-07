@@ -172,7 +172,37 @@ public class ResumeManageService {
 		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
 		SqlSession session=sessionFactory.openSession();
 		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
-		List<ResumeBasic> list=resumeDao.selectResumeBasicByWorkTimeAndDegree(Integer.parseInt(workTime), Integer.parseInt(degree));
+		List<ResumeBasic> list=new ArrayList<>();
+		switch(Integer.parseInt(workTime)){
+			case -1:
+				//不限
+				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(0, Integer.MAX_VALUE,Integer.parseInt(degree));
+				break;
+			case 0:
+				//应届
+				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(0,0,Integer.parseInt(degree));
+				break;
+			case 1:
+				//一年以下
+				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(0,1,Integer.parseInt(degree));
+				break;
+			case 2:
+				//1到3年
+				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(1,3,Integer.parseInt(degree));
+				break;
+			case 3:
+				//3到5年
+				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(3,5,Integer.parseInt(degree));
+				break;
+			case 4:
+				//5到10年
+				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(5,10,Integer.parseInt(degree));
+				break;
+			case 5:
+				//10年以上
+				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(10,Integer.MAX_VALUE,Integer.parseInt(degree));
+				break;
+		}
 		System.out.println(""+list.size());
 		List<Resume> resumeList=new ArrayList<>();
 		for(int i=0;i<list.size();i++){
