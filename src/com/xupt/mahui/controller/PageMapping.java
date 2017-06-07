@@ -25,4 +25,21 @@ public class PageMapping {
 	public String test(){
 		return "type-in";
 	}
+	
+	/**
+	 * 登录界面
+	 * @return
+	 */
+	@RequestMapping("/login")
+	public String login(){
+		return "login";
+	}
+	/**
+	 * 登录界面
+	 * @return
+	 */
+	@RequestMapping("/register")
+	public String register(){
+		return "sign";
+	}
 }

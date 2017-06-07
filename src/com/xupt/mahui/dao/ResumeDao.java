@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.xupt.mahui.entity.EductionExperience;
 import com.xupt.mahui.entity.ProjectExperience;
-import com.xupt.mahui.entity.Resume;
 import com.xupt.mahui.entity.ResumeBasic;
 import com.xupt.mahui.entity.WorkExperience;
 
@@ -90,8 +89,19 @@ public interface ResumeDao {
 	 * @return
 	 */
 	public List<ResumeBasic> selectResumeBasicByWorkTimeAndDegree(int workTime,int degree);
-	
+	/**
+	 * 通过电话获得学历信息
+	 * @param phonenumber
+	 * @return
+	 */
 	public List<String> selectDegree(String phonenumber);
+	
+	/**
+	 * 根据电话获取公司信息
+	 * @param phonenumber
+	 * @return
+	 */
+	public List<String> selectCompany(String phonenumber);
 	
 	
 }

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.xupt.mahui.dao.ResumeDao;
 import com.xupt.mahui.entity.EductionExperience;
 import com.xupt.mahui.entity.ProjectExperience;
+import com.xupt.mahui.entity.Resume;
 import com.xupt.mahui.entity.ResumeBasic;
 import com.xupt.mahui.entity.WorkExperience;
 import com.xupt.mahui.util.SqlSessionFactoryUtil;
@@ -160,8 +161,9 @@ public class ResumeManageService {
 	 * 根据工作年限和教育经历获取简历信息
 	 * @param degree
 	 * @param workTime
+	 * @return
 	 */
-	public static void getResume(String degree,String workTime){
+	public static List<Resume> getResume(String workTime,String degree){
 		/**
 		 * 1.先通过工作年限获得满足条件的人
 		 * 2.在满足条件中的人获得满足学历要求的人
@@ -171,10 +173,24 @@ public class ResumeManageService {
 		SqlSession session=sessionFactory.openSession();
 		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
 		List<ResumeBasic> list=resumeDao.selectResumeBasicByWorkTimeAndDegree(Integer.parseInt(workTime), Integer.parseInt(degree));
-		List<String> degrees=resumeDao.selectDegree("18629034550");
+		System.out.println(""+list.size());
+		List<Resume> resumeList=new ArrayList<>();
+		for(int i=0;i<list.size();i++){
+			System.out.println("执行了");
+			List<String> degrees=resumeDao.selectDegree(list.get(i).getPhonenumber());
+			List<String> companys=resumeDao.selectCompany(list.get(i).getPhonenumber());
+			Resume resume=new Resume();
+			resume.setName(list.get(i).getName());
+			resume.setPhonenumber(list.get(i).getPhonenumber());
+			resume.setSex(list.get(i).getSex());
+			resume.setSkill(list.get(i).getSkill());
+			resume.setWorkTime(list.get(i).getWorkTime());
+			resume.setCompany(companys.get(0));
+			resume.setDegree(getHighDegree(degrees));
+			resumeList.add(resume);
+		}
 		
-		
-		
+		return resumeList;	
 	}
 	
 	
@@ -184,6 +200,22 @@ public class ResumeManageService {
 	 * @return
 	 */
 	public static String changeDegree(String string){
+		String[] degrees={"大专","本科","硕士","博士"};
+		return degrees[Integer.parseInt(string)];
+	}
+	
+	public static String getHighDegree(List<String> list){
+		if(list.size()>0){
+			int max=Integer.parseInt(list.get(0));
+			for(int i=1;i<list.size();i++){
+				if(max<Integer.parseInt(list.get(i))){
+					max=Integer.parseInt(list.get(i));
+				}
+			}
+			String[] degrees={"大专","本科","硕士","博士"};
+			return degrees[max];
+		}
+		
 		return "";
 	}
 }

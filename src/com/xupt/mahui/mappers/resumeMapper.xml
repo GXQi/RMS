@@ -95,5 +95,10 @@
 	 	select distinct degree from eductionexperience where phonenumber = #{0} 
 	 </select>
 	 
+	 <!-- 通过phonenumber 获得公司 -->
+	 <select id="selectCompany" resultType="String">
+	 	select distinct company from workexperience where phonenumber = #{0} 
+	 </select>
+	 
 	
 </mapper>

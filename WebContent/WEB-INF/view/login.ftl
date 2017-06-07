@@ -39,7 +39,7 @@
 <div class="loginSure" onclick="input()">
     <span class="loginSpan">登录</span>
 </div>
-<div class="loginAsk">还没有帐号？<span class="loginSign">注册</span></div>
+<div class="loginAsk">还没有帐号？<span class="loginSign"><a href="/RMS/register">注册</a></span></div>
 
 </body>
 </html>

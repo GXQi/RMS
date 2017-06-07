@@ -1,6 +1,10 @@
 package com.xupt.mahui.entity;
 
-
+/**
+ * 查看简历界面传回的对象
+ * @author mahui
+ *
+ */
 public class Resume {
 	private String name;
 	private String skill;

@@ -65,6 +65,6 @@ public class ResumeTest {
 //		System.out.println(new Gson().toJson(list2));
 		List<ResumeBasic> list=new ArrayList<>();
 		list=resumeDao.selectResumeBasicByWorkTimeAndDegree(Integer.parseInt("0"), Integer.parseInt("1"));
-		System.out.println(resumeDao.selectDegree("18629034550"));
+		System.out.println(resumeDao.selectCompany("18629034550"));
 	}
 }
