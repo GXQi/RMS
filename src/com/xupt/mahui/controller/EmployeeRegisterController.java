@@ -25,7 +25,7 @@ public class EmployeeRegisterController {
 	public String dealRegister(Employee employee) {
 		if(EmployeeManageService.registerAnEmployee(employee) == false)//检测注册是否成功
 			return "user exist";//注册失败，说明用户已存在，返回该字符串提示前端
-		return "signSuccess";//注册成功，返回该字符串提示前端进行页面跳转
+		return "registerSuccess";//注册成功，返回该字符串提示前端进行页面跳转
 	}
 	@RequestMapping("/submitUser/login")//在“注册成功”视图中，点击登录，直接跳转至“查询视图”
 	public String goToIndex() {

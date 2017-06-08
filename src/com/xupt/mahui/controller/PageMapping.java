@@ -40,6 +40,6 @@ public class PageMapping {
 	 */
 	@RequestMapping("/register")
 	public String register(){
-		return "sign";
+		return "register";
 	}
 }
