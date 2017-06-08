@@ -5,4 +5,9 @@
         resultType="com.xupt.mahui.entity.Employee">
         select * from employee where phonenumber=#{phonenumber}
     </select>
+    
+    <!-- 添加用户信息 -->
+	<insert id="insertAnEmployee" parameterType="com.xupt.mahui.entity.Employee">
+		insert into employee(phonenumber,password,nickname) values (#{employee.phoneNumber},#{employee.passWord},#{employee.nickName});
+	</insert>
 </mapper>
