@@ -79,13 +79,15 @@
 	
 	
 	 
-	 <!-- 通过工作年限和学位获得简历信息 -->
+	
+	 
+	  <!-- 通过工作年限和学位获得简历信息 -->
 	 <select id="selectResumeBasicByWorkTimeAndDegree" resultType="com.xupt.mahui.entity.ResumeBasic">
 	 	select  * from resume 
 	 	where 
-	 	work_time >= #{0}
+	 	work_time between #{0} and #{1}
 	 	and resume.phonenumber in 
-	 	(select distinct phonenumber from eductionExperience where degree >= #{1});
+	 	(select distinct phonenumber from eductionExperience where degree >= #{2});
 	 	
 	 </select>
 	 

@@ -83,12 +83,14 @@ public interface ResumeDao {
 	public List<ProjectExperience> selectProjectExperience(String phonenumber);
 	
 	/**
-	 * 通过工作年限和学历获得简历的基本信息
-	 * @param workTime
+	 * 通过工作年限和学历获得简历的基本信息(例如3到5年)
+	 * @param workTime1
+	 * @param workTime2
 	 * @param degree
 	 * @return
 	 */
-	public List<ResumeBasic> selectResumeBasicByWorkTimeAndDegree(int workTime,int degree);
+	public List<ResumeBasic> selectResumeBasicByWorkTimeAndDegree(int workTime1,int workTime2,int degree);
+	
 	/**
 	 * 通过电话获得学历信息
 	 * @param phonenumber

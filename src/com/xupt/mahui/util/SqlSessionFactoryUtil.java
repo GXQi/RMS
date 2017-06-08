@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -23,5 +24,9 @@ public class SqlSessionFactoryUtil {
             }
         }
         return sqlSessionFactory;
+    }
+    /*直接获取与数据库连接的会话*/
+    public static SqlSession getSqlSession() {
+    	return SqlSessionFactoryUtil.getSqlSessionFactory().openSession();
     }
 }

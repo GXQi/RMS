@@ -34,7 +34,7 @@ public class ResumeManageController {
 	/**
 	 * 查询简历 通过学历和工作年限
 	 * @param json {"degree"："0"，"workTime","0"}
-	 * 对于degree -1到5分别代表不限，应届毕业生，1年以下，1-3年，3-5年，5-10年，10年以上
+	 * 对于degree -1到6分别代表不限，应届毕业生，1年以下，1-3年，3-5年，5-10年，10年以上
 	 * 同理对于对于workTime -1到3分别代表不限，大专以上，本科及以上，硕士及以上，博士及以上
 	 * @return
 	 */
@@ -44,6 +44,7 @@ public class ResumeManageController {
 		JSONObject jsonObject=JSONObject.fromObject(json);
 		List<Resume> list=ResumeManageService.getResume(jsonObject.getString("workTime"), jsonObject.getString("degree"));
 		view.addObject("resumeList", list);
+		view.addObject("total", list.size());
 		view.setViewName("");
 		return view;
 	}
@@ -84,7 +85,7 @@ public class ResumeManageController {
 		 */
 		view.addObject("resumeBasic", ResumeManageService.getResumeBasic(phonenumber));
 		view.addObject("workExperienceList", ResumeManageService.getWorkExperiences(phonenumber));
-		view.addObject("projectExperienceList", ResumeManageService.getWProjectExperiences(phonenumber));
+		view.addObject("projectExperienceList", ResumeManageService.getProjectExperiences(phonenumber));
 		view.addObject("eductionExperienceList", ResumeManageService.getEductionExperiences(phonenumber));
 		//返回到编辑详情
 		return view;
@@ -102,6 +103,7 @@ public class ResumeManageController {
 		EditJson editJson=new EditJson();
 		editJson.setResumeBasic(ResumeManageService.getResumeBasic(phonenumber));
 		editJson.setEducList(ResumeManageService.getEductionExperiences(phonenumber));
+		editJson.setProList(ResumeManageService.getProjectExperiences(phonenumber));
 		editJson.setWorkList(ResumeManageService.getWorkExperiences(phonenumber));
 		editJson.setEducList(ResumeManageService.getEductionExperiences(phonenumber));
 		return new Gson().toJson(editJson);
