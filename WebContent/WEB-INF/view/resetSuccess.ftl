@@ -12,7 +12,7 @@
 <div class="loginTiele">简历管理平台</div>
 <div class="success">您的密码已重置，请重新登录</div>
 <div class="loginSure">
-    <span class="loginSpan"><a href="/RMS/login">登录</span>
+    <span class="loginSpan"><a href="/RMS/login">登录</a></span>
 </div>
 </body>
 </html>

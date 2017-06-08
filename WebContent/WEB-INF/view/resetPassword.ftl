@@ -2,32 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="login.css" type="text/css">
+    <link href="/RMS/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/RMS/css/login.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="/RMS/js/login.js"></script>
     <title>resetPassword</title>
-    <script>
-
-        function checkNewPassword() {
-            var newpassword = document.getElementById('newpassword').value;
-            if (newpassword === '') {
-                document.getElementById('warning').innerHTML = '请输入密码！';
-                document.getElementById('newpassword').focus()
-            }
-        }
-
-        function checkFirmPassword() {
-            var newpassword = document.getElementById('newpassword').value;
-            var confirmPassword = document.getElementById('confirmPassword').value;
-            if (confirmPassword === '') {
-                document.getElementById('warning').innerHTML = '请输入确认密码！';
-                document.getElementById('confirmPassword').focus()
-            } else if (newpassword != confirmPassword) {
-                document.getElementById('warning').innerHTML = '两次输入不同！';
-                document.getElementById('newpassword').focus()
-            }
-        }
-
-    </script>
 </head>
 <body>
 

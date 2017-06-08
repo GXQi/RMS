@@ -6,27 +6,9 @@
     <link href="/RMS/css/login.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="/RMS/js/login.js"></script>
     <title>login</title>
 </head>
-<script>
-   function checkPhone() {
-        var loginPhone = document.getElementById("phoneNumber").value;
-        var reg = /^1[3|4|5|8][0-9]\d{4,8}$/;
-        if (!reg.test(loginPhone)) {
-            document.getElementById('warning').innerHTML = '请先输入您的正确手机号！';
-            document.getElementById('phoneNumber').focus();
-        }
-    }
-    
-     function checkPassword() {
-        var loginPassword = document.getElementById("loginPassword").value;
-        if(loginPassword === ''){
-            document.getElementById('warning').innerHTML = '请先输入您的正确密码！';
-            document.getElementById('loginPassword').focus();
-        }
-    }
-    
-</script>
 <body>
 
 <div class="loginTiele">简历管理平台</div>

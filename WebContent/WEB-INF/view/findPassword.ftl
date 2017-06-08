@@ -5,30 +5,8 @@
    <link href="/RMS/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="/RMS/css/login.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="/RMS/js/login.js"></script>
     <title>findPassword</title>
-     <script>
-
-        function checkLoginPhone() {
-
-            var loginPhone=document.getElementById('loginPhone').value;
-            var reg = /^1[3|4|5|8][0-9]\d{4,8}$/;
-            
-            if (!reg.test(loginPhone)) {
-                document.getElementById('warning').innerHTML = '请先输入您的正确手机号！';
-                document.getElementById('loginPhone').focus();
-            }
-        }
-
-        function checkFont() {
-            
-            var getfont=document.getElementById('findPasswordgetfont').value;
-
-            if(getfont===undefined){
-                document.getElementById('warning').innerHTML = '请输入验证码！';
-                document.getElementById('findPasswordgetfont').focus()
-            }
-        }
-    </script>
 </head>
 <body>
 
