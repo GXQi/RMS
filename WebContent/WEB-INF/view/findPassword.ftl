@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="login.css" type="text/css">
+   <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="./css/login.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="./js/jquery-3.1.0.min.js"></script>
     <title>findPassword</title>
     <script>
         function next() {

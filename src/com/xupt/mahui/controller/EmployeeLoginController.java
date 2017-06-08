@@ -3,6 +3,7 @@ package com.xupt.mahui.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xupt.mahui.entity.Employee;
@@ -25,7 +26,10 @@ public class EmployeeLoginController {
 	}
 	
 	@RequestMapping("/login/submitLogin")//点击“登录”进行登录处理
-	public String submitLogin(Employee employee, HttpServletRequest request){
+	
+	public String submitLogin(@ModelAttribute("Employee")Employee employee, HttpServletRequest request){
+		System.out.print(employee.getPhoneNumber());
+		System.out.print("aaaaahhhahahah");
 		if (EmployeeManageService.canAnEmployeeLogin(employee) == true) {//判断是否为合法用户 
 			/*添加拦截器时，松开以下注释*/
 			//HttpSession session = request.getSession();//获取http会话

@@ -113,6 +113,6 @@
 <div class="loginSure" onclick="sign()">
     <span class="loginSpan">注册</span>
 </div>
-<div class="signAsk">已有帐号？<span class="loginSign">登录</span></div>
+<div class="signAsk">已有帐号？<span class="loginSign"><a href="/RMS/login">登录</a></span></div>
 </body>
 </html>
