@@ -76,7 +76,7 @@
     </script>
 
 </head>
-<body>
+<body class="signBody">
 <div class="loginTiele">简历管理平台</div>
 <div id="warning"><span id="warn">提示</span></div>
 <form class="form-horizontal" role="form">

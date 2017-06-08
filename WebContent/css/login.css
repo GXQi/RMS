@@ -86,3 +86,11 @@
     text-align: center;
     margin-top: 60px;
 }
+
+
+.signBody{
+    background-image: url("../images/2.jpg");
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
