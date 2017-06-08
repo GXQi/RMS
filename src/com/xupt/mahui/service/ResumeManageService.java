@@ -233,7 +233,11 @@ public class ResumeManageService {
 		String[] degrees={"大专","本科","硕士","博士"};
 		return degrees[Integer.parseInt(string)];
 	}
-	
+	/**
+	 * 获得最高学位
+	 * @param list
+	 * @return
+	 */
 	public static String getHighDegree(List<String> list){
 		if(list.size()>0){
 			int max=Integer.parseInt(list.get(0));
