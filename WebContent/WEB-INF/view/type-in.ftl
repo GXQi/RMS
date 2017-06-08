@@ -109,7 +109,7 @@
             data.basic[2] = $("input[name='sex']:checked").val();
             data.basic[3] = email;
             data.basic[4] = kill;
-            data.basic[3] = work;
+            data.basic[5] = work;
 
             for (let i = 0, l = nodes2.length; i < l; i++) {
                 data.work[i] = nodes2[i].value;
@@ -126,7 +126,7 @@
             var json = JSON.stringify(data);
             $.ajax({
                 type: "POST",
-                url: " ",
+                url: "/RMS/resumemanage/insert",
                 contentType: "application/json; charset=utf-8",
                 data: json,
                 dataType: "json",

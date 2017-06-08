@@ -21,7 +21,11 @@ public class ProjectExperience {
 	/**
 	 * 项目时间
 	 */
-	private String projectTime;
+	private String projectTimeStart;
+	/**
+	 * 项目时间
+	 */
+	private String projectTimeEnd;
 	/**
 	 * 工作内容
 	 */
@@ -44,18 +48,26 @@ public class ProjectExperience {
 	public void setProjectRole(String projectRole) {
 		this.projectRole = projectRole;
 	}
-	public String getProjectTime() {
-		return projectTime;
-	}
-	public void setProjectTime(String projectTime) {
-		this.projectTime = projectTime;
-	}
 	public String getWorkContent() {
 		return workContent;
 	}
 	public void setWorkContent(String workContent) {
 		this.workContent = workContent;
 	}
+	public String getProjectTimeStart() {
+		return projectTimeStart;
+	}
+	public void setProjectTimeStart(String projectTimeStart) {
+		this.projectTimeStart = projectTimeStart;
+	}
+	public String getProjectTimeEnd() {
+		return projectTimeEnd;
+	}
+	public void setProjectTimeEnd(String projectTimeEnd) {
+		this.projectTimeEnd = projectTimeEnd;
+	}
+	
+	
 	
 
 }

@@ -11,11 +11,11 @@
 	</insert>
 	<!-- 添加工作经历 -->
 	<insert id="insertWorkExperience" parameterType="com.xupt.mahui.entity.WorkExperience">
-		insert into workexperience (phonenumber,company,position,incumbency,work_content) values(#{phonenumber},#{company},#{position},#{incumbency},#{workContent});
+		insert into workexperience (phonenumber,company,position,work_time_start,work_time_end,work_content) values(#{phonenumber},#{company},#{position},#{workTimeStart},#{workTimeEnd},#{workContent});
 	</insert>
 	<!-- 添加项目经历 -->
 	<insert id="insertProjectExperience" parameterType="com.xupt.mahui.entity.ProjectExperience">
-		insert into projectexperience(phonenumber,project_name,project_role,project_time,work_content) values(#{phonenumber},#{projectName},#{projectRole},#{projectTime},#{workContent});
+		insert into projectexperience(phonenumber,project_name,project_role,project_time_start,project_time_end,work_content) values(#{phonenumber},#{projectName},#{projectRole},#{projectTimeStart},#{projectTimeEnd},#{workContent});
 	</insert>
 	<!-- 删除简历基本信息 -->
 	<delete id="deleteResume" parameterType="String">
@@ -52,8 +52,9 @@
 		<result column="phonenumber" property="phonenumber"/>
 		<result column="company" property="company"/>
 		<result column="position" property="position"/>
-		<result column="incumbency " property="incumbency "/>
+		<result column="work_time_start " property="workTimeStart "/>
 		<result column="work_content" property="workContent"/>
+		<result column="work_time_end " property="workTimeEnd "/>
 	</resultMap>
 	<select id="selectWorkExperience" resultMap="workexperiencelist">
 		select * from workexperience where phonenumber=#{phonenumber};
@@ -64,8 +65,9 @@
 		<result column="phonenumber" property="phonenumber"/>
 		<result column="project_name" property="projectName"/>
 		<result column="project_role" property="projectRole"/>
-		<result column="project_time " property="projectTime "/>
+		<result column="project_time_start " property="projectTimeStart "/>
 		<result column="work_content" property="workContent"/>
+		<result column="project_time_end " property="projectTimeEnd "/>
 	</resultMap>
 	<select id="selectProjectExperience" resultMap="projectexperiencelist">
 		select * from projectexperience where phonenumber=#{phonenumber};

@@ -100,7 +100,6 @@ public class ResumeManageController {
 	@RequestMapping(value="/resumemanage/edit",produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String edit(@RequestParam String phonenumber){
-		System.out.println(ResumeManageService.getResumeBasic(phonenumber).getWorkTime());
 		EditJson editJson=new EditJson();
 		editJson.setResumeBasic(ResumeManageService.getResumeBasic(phonenumber));
 		editJson.setEducList(ResumeManageService.getEductionExperiences(phonenumber));

@@ -72,6 +72,7 @@ public class ResumeManageService {
 	 * @return 是否添加成功
 	 */
 	public static boolean insert(String data){
+		System.out.println(data);
 		JSONObject jsonObject=JSONObject.fromObject(data);
 		JSONObject basic=jsonObject.getJSONObject("basic");
 		JSONObject work=jsonObject.getJSONObject("work");
@@ -97,7 +98,8 @@ public class ResumeManageService {
 			WorkExperience workExperience=new WorkExperience();
 			workExperience.setCompany(work.getString(workKey.next()));
 			workExperience.setPosition(work.getString(workKey.next()));
-			workExperience.setIncumbency(work.getString(workKey.next())+"至"+work.getString(workKey.next()));
+			workExperience.setWorkTimeStart(work.getString(workKey.next()));
+			workExperience.setWorkTimeEnd(work.getString(workKey.next()));
 			workExperience.setWorkContent(work.getString(workKey.next()));
 			workExperience.setPhonenumber(resumeBasic.getPhonenumber());
 			workList.add(workExperience);
@@ -112,7 +114,8 @@ public class ResumeManageService {
 			ProjectExperience projectExperience=new ProjectExperience();
 			projectExperience.setProjectName(project.getString(projectKey.next()));
 			projectExperience.setProjectRole(project.getString(projectKey.next()));
-			projectExperience.setProjectTime(project.getString(projectKey.next())+"至"+project.getString(projectKey.next()));
+			projectExperience.setProjectTimeStart(project.getString(projectKey.next()));
+			projectExperience.setProjectTimeEnd(project.getString(projectKey.next()));
 			projectExperience.setWorkContent(project.getString(projectKey.next()));
 			projectExperience.setPhonenumber(resumeBasic.getPhonenumber());
 			projectList.add(projectExperience);

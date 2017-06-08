@@ -21,7 +21,11 @@ public class WorkExperience {
 	/**
 	 * 在职时间
 	 */
-	private String incumbency;
+	private String workTimeStart;
+	/**
+	 * 在职时间
+	 */
+	private String workTimeEnd;
 	/**
 	 * 工作内容
 	 */
@@ -44,12 +48,17 @@ public class WorkExperience {
 	public void setPosition(String position) {
 		this.position = position;
 	}
-	
-	public String getIncumbency() {
-		return incumbency;
+	public String getWorkTimeStart() {
+		return workTimeStart;
 	}
-	public void setIncumbency(String incumbency) {
-		this.incumbency = incumbency;
+	public void setWorkTimeStart(String workTimeStart) {
+		this.workTimeStart = workTimeStart;
+	}
+	public String getWorkTimeEnd() {
+		return workTimeEnd;
+	}
+	public void setWorkTimeEnd(String workTimeEnd) {
+		this.workTimeEnd = workTimeEnd;
 	}
 	public String getWorkContent() {
 		return workContent;
