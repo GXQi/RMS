@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="./css/login.css" rel="stylesheet" type="text/css">
+    <link href="/RMS/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="/RMS/css/login.css" rel="stylesheet" type="text/css">
     <title>signSuccess</title>
 </head>
 <body>

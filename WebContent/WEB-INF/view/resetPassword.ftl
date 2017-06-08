@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="login.css" type="text/css">
+  <link href="/RMS/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/RMS/css/login.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
     <title>resetPassword</title>
     <script>
         function finishd() {

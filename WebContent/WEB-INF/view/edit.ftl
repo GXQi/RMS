@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="./css/nav-style.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="./js/jquery-3.1.0.min.js"></script>
+    <link href="/RMS/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/RMS/css/nav-style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
     <script>
     	function loadInfo(){
     	console.log("get");

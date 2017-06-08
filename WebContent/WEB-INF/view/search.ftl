@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <title>简历查找</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/search.css">
-    <link rel="stylesheet" type="text/css" href="css/base.css">
-    <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/select.js"></script>
+    <link rel="stylesheet" type="text/css" href="/RMS/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/RMS/css/search.css">
+    <link rel="stylesheet" type="text/css" href="/RMS/css/base.css">
+    <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/RMS/js/select.js"></script>
 </head>
 <body>
 <!-- 导航栏 -->
