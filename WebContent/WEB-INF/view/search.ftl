@@ -81,7 +81,7 @@
 
     <div class="hr-up clear-float">
         <div class="total-resume float-l font-size-16">共？份简历</div>
-        <div class="new-resume float-r font-size-16"><a href="#">录入新简历</a></div>
+        <div class="new-resume float-r font-size-16"><a href="/RMS/type-in">录入新简历</a></div>
     </div>
     <hr/>
     <!-- 显示信息列表 -->

@@ -37,7 +37,14 @@
 		delete from eductionexperience where phonenumber=#{phonenumber};	
 	</delete>
 	<!-- 查询简历基本信息 -->
-	<select id="selectResume" resultType="com.xupt.mahui.entity.ResumeBasic">
+	<resultMap type="com.xupt.mahui.entity.ResumeBasic" id="ResumeBasic">
+		<result column="phonenumber" property="phonenumber"/>
+		<result column="name" property="name"/>
+		<result column="sex" property="sex"/>
+		<result column="skill " property="skill "/>
+		<result column="work_time" property="workTime"/>
+	</resultMap>
+	<select id="selectResume" resultMap="ResumeBasic">
 		select * from resume where phonenumber=#{phonenumber};
 	</select>
 	<!-- 查询工作经历 -->

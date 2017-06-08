@@ -65,13 +65,6 @@ public class ResumeBasic {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	
-	
-	
-	
-	
-
-
 
 	
 }
