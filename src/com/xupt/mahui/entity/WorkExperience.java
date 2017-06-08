@@ -19,11 +19,11 @@ public class WorkExperience {
 	 */
 	private String position;
 	/**
-	 * 在职时间
+	 * 开始时间
 	 */
 	private String workTimeStart;
 	/**
-	 * 在职时间
+	 * 结束时间
 	 */
 	private String workTimeEnd;
 	/**

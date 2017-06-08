@@ -52,9 +52,9 @@
 		<result column="phonenumber" property="phonenumber"/>
 		<result column="company" property="company"/>
 		<result column="position" property="position"/>
-		<result column="work_time_start " property="workTimeStart "/>
+		<result column="work_time_start" property="workTimeStart"/>
 		<result column="work_content" property="workContent"/>
-		<result column="work_time_end " property="workTimeEnd "/>
+		<result column="work_time_end" property="workTimeEnd"/>
 	</resultMap>
 	<select id="selectWorkExperience" resultMap="workexperiencelist">
 		select * from workexperience where phonenumber=#{phonenumber};
@@ -65,9 +65,9 @@
 		<result column="phonenumber" property="phonenumber"/>
 		<result column="project_name" property="projectName"/>
 		<result column="project_role" property="projectRole"/>
-		<result column="project_time_start " property="projectTimeStart "/>
+		<result column="project_time_start" property="projectTimeStart"/>
 		<result column="work_content" property="workContent"/>
-		<result column="project_time_end " property="projectTimeEnd "/>
+		<result column="project_time_end" property="projectTimeEnd"/>
 	</resultMap>
 	<select id="selectProjectExperience" resultMap="projectexperiencelist">
 		select * from projectexperience where phonenumber=#{phonenumber};

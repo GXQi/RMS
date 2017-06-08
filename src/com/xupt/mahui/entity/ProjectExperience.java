@@ -19,11 +19,11 @@ public class ProjectExperience {
 	 */
 	private String projectRole;
 	/**
-	 * 项目时间
+	 * 项目开始时间
 	 */
 	private String projectTimeStart;
 	/**
-	 * 项目时间
+	 * 项目结束时间
 	 */
 	private String projectTimeEnd;
 	/**
