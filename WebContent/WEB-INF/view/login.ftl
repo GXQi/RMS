@@ -25,9 +25,11 @@
             <input type="password" class="form-control" id="loginPassword"name="passWord" placeholder="密码" onBlur="checkPassword()">
         </div>
     </div>
-    <input type="submit" value="登录">
+    
 </form>
-
+<div class="loginSure">
+    <span class="loginSpan" onclick="loginSumbit()">登录</span>
+</div>
 <span class="loginFind"><a href="/RMS/login/findPassword">找回密码</a></span>
 
 <div class="loginAsk">还没有帐号？<span class="loginSign"><a href="/RMS/register">注册</a></span></div>
