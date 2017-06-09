@@ -1,5 +1,7 @@
 package com.xupt.mahui.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -7,7 +9,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.xupt.mahui.entity.Employee;
+import com.xupt.mahui.entity.Resume;
 import com.xupt.mahui.service.EmployeeManageService;
+import com.xupt.mahui.service.ResumeManageService;
 
 /**
  * 简历管理相关的Controller
@@ -28,7 +32,7 @@ public class EmployeeRegisterController {
 	}
 	
 	@RequestMapping("/submitUser") //点击“注册”，进行注册操作
-	public ModelAndView dealRegister(Employee employee, @RequestParam("idCode") String idCode) {
+	public ModelAndView dealRegister(Employee employee) {
 		/*检测验证码是否正确*/
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("signSuccess");
@@ -41,7 +45,12 @@ public class EmployeeRegisterController {
 	}
 	
 	@RequestMapping("/submitUser/login")//在“注册成功”视图中，点击登录，直接跳转至“查询视图”
-	public String goToIndex() {
-		return "search";
+	public ModelAndView goToIndex() {
+		ModelAndView mav = new ModelAndView();
+		List<Resume> list=ResumeManageService.getResume("-1","0");
+		mav.addObject("resumeList", list);
+		mav.addObject("total", list.size());
+		mav.setViewName("search");
+		return mav;
 	}
 }

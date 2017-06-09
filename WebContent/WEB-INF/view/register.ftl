@@ -15,7 +15,7 @@
 <#if warnEmployee?exists>
 <div>dsjafhdjs</div>
 </#if>
-<form class="form-horizontal" role="form">
+<form class="form-horizontal" role="form" method="POST" action="/RMS/submitUser">
     <div class="form-group ">
         <div class="col-sm-4">
             <input type="text" class="form-control" id="registerPhone" name="phoneNumber" placeholder="手机号" onblur="checkRegisterPhone()">
