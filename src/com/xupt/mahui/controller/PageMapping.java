@@ -14,8 +14,8 @@ public class PageMapping {
 	 * 编辑简历界面
 	 * @return
 	 */
-	@RequestMapping("/index")
-	public String index(@RequestParam String phonenumber){
+	@RequestMapping("/edit")
+	public String edit(@RequestParam String phonenumber){
 		return "edit";
 	}
 	/**
@@ -23,7 +23,7 @@ public class PageMapping {
 	 * @return
 	 */
 	@RequestMapping("/type-in")
-	public String test(){
+	public String typeIn(){
 		return "type-in";
 	}
 	
@@ -36,11 +36,20 @@ public class PageMapping {
 		return "login";
 	}
 	/**
-	 * 登录界面
+	 * 注册界面
 	 * @return
 	 */
 	@RequestMapping("/register")
 	public String register(){
 		return "register";
+	}
+	
+	/**
+	 * 主界面
+	 * @return
+	 */
+	@RequestMapping("/main")
+	public String main(){
+		return "search";
 	}
 }

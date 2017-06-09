@@ -86,7 +86,7 @@
     <hr/>
     <!-- 显示信息列表 -->
 
-    <div class="no-resume font-size-16 mar-auto">简历库中还没有简历哦<br/><a href="">开始录入新简历</a></div>
+    <div class="no-resume font-size-16 mar-auto">简历库中还没有简历哦<br/><a href="/RMS/type-in">开始录入新简历</a></div>
 </div>
 </body>
 </html>
