@@ -153,6 +153,20 @@
     <div class="footer">
         <button class="btn btn-default" onclick="submit()">确定</button>
     </div>
+    <div id="light" class="white_content">
+        <div class="con">
+            确定要删除这一模块？
+            <button class="btn btn-default" id="close">关闭</button>
+            <button class="btn btn-default" id="myBtn">确定</button>
+        </div>
+    </div>
+
+    <div id="light1" class="white_content" >
+        <div class="con">
+            删除成功！
+            <button class="btn btn-default" id="close1">关闭</button>
+        </div>
+    </div>
 </div>
 </body>
 </html>
