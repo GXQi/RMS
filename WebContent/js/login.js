@@ -1,7 +1,7 @@
 function checkLoginPhone() {
 
             var loginPhone=document.getElementById('loginPhone').value;
-            var reg = /^1[3|4|5|8][0-9]\d{4,8}$/;
+            var reg = /^1[3|4|5|7|8][0-9]\d{4,8}$/;
             
             if (!reg.test(loginPhone)) {
                 document.getElementById('warning').innerHTML = '请先输入您的正确手机号！';
@@ -21,7 +21,7 @@ function checkFont() {
 
 function checkPhone() {
     var loginPhone = document.getElementById("phoneNumber").value;
-    var reg = /^1[3|4|5|8][0-9]\d{4,8}$/;
+    var reg = /^1[3|4|5|7|8][0-9]\d{4,8}$/;
     if (!reg.test(loginPhone)) {
         document.getElementById('warning').innerHTML = '请先输入您的正确手机号！';
         document.getElementById('phoneNumber').focus();
@@ -38,7 +38,7 @@ function checkPhone() {
 
  function checkRegisterPhone() {
      var Phone = document.getElementById('registerPhone').value;
-     var reg = /^1[3|4|5|8][0-9]\d{4,8}$/;
+     var reg = /^1[3|4|5|7|8][0-9]\d{4,8}$/;
      if (!reg.test(Phone)) {
          document.getElementById('warning').innerHTML = '请先输入您的正确手机号！';
          document.getElementById('registerPhone').focus();

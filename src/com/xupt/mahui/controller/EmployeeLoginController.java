@@ -18,7 +18,7 @@ import com.xupt.mahui.service.EmployeeManageService;
 public class EmployeeLoginController {
 	@RequestMapping("/login/register") //点击“注册”进入注册视图
 	public String goToRegister(){
-		return "sign";
+		return "register";
 	}
 	@RequestMapping("/login/findPassword")//点击“找回密码”进入找回密码视图
 	public String goToFindPassword() {
