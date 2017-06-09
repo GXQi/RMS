@@ -1,6 +1,6 @@
   function appendWork() {
             const table =
-                    '<div><hr/><button class="delete btn btn-default" value="x">X</button>' +
+                    '<div><hr/><button class="delete btn btn-default" value="X">x</button>' +
                     '<div class="basic"> ' +
                     '<table width="650" height="250">' +
                     '<tr>' +

@@ -18,9 +18,9 @@
     <div class="title repo">
         简历库
     </div>
-    <div class="username">
-        UserName | <a>Log Out</a>
-    </div>
+    <nav class="username">
+        UserName | <a onclick = "logout()">Log Out</a>
+    </nav>
 </div>
 <div class="content">
     <div class="putin">
