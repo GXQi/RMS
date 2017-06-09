@@ -80,13 +80,52 @@
     </div>
 
     <div class="hr-up clear-float">
-        <div class="total-resume float-l font-size-16">共？份简历</div>
+        <div class="total-resume float-l font-size-16">共${total}份简历</div>
         <div class="new-resume float-r font-size-16"><a href="/RMS/type-in">录入新简历</a></div>
     </div>
     <hr/>
     <!-- 显示信息列表 -->
-
-    <div class="no-resume font-size-16 mar-auto">简历库中还没有简历哦<br/><a href="/RMS/type-in">开始录入新简历</a></div>
+	<#if (resumeList?size <= 0)>
+		 <div class="no-resume font-size-16 mar-auto">简历库中还没有简历哦<br/><a href="/RMS/type-in">开始录入新简历</a></div>
+	</#if>
+    
+    
+    <#if (resumeList?size >0)>
+    	<div>
+    	<table class="table table-striped">
+    	<thead>
+    		<tr>
+        		<th>姓名</th>
+        		<th>关键技能</th>
+        		<th>学历</th>
+        		<th>性别</th>
+        		<th>工作年限</th>       	
+        		<th>公司</th>
+        		<th>邮箱</th>
+        		<th>手机号</th>
+        		<th>操作</th>
+    		</tr>
+    	<thead>
+   		<tbody>
+   			<#list resumeList as resume>
+    		<tr>
+        		<th>${resume.name}</th>
+        		<th>${resume.skill}</th>
+        		<th>${resume.degree}</th>
+        		<th>${resume.sex}</th>
+        		<th>${resume.workTime}</th>
+        		<th>${resume.company}</th>
+        		<th>${resume.email}</th>
+        		<th>${resume.phonenumber}</th>
+        		<th>编辑</th>
+    		</tr>
+    	</#list>	
+   		</tbody>
+    	
+    </table>
+    </div>
+    </#if>
+    
 </div>
 </body>
 </html>

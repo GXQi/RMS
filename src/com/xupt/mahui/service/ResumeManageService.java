@@ -206,10 +206,8 @@ public class ResumeManageService {
 				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(10,Integer.MAX_VALUE,Integer.parseInt(degree));
 				break;
 		}
-		System.out.println(""+list.size());
 		List<Resume> resumeList=new ArrayList<>();
 		for(int i=0;i<list.size();i++){
-			System.out.println("执行了");
 			List<String> degrees=resumeDao.selectDegree(list.get(i).getPhonenumber());
 			List<String> companys=resumeDao.selectCompany(list.get(i).getPhonenumber());
 			Resume resume=new Resume();
@@ -219,6 +217,7 @@ public class ResumeManageService {
 			resume.setSkill(list.get(i).getSkill());
 			resume.setWorkTime(list.get(i).getWorkTime());
 			resume.setCompany(companys.get(0));
+			resume.setEmail(list.get(i).getEmail());
 			resume.setDegree(getHighDegree(degrees));
 			resumeList.add(resume);
 		}

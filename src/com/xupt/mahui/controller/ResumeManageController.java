@@ -45,7 +45,7 @@ public class ResumeManageController {
 		List<Resume> list=ResumeManageService.getResume(jsonObject.getString("workTime"), jsonObject.getString("degree"));
 		view.addObject("resumeList", list);
 		view.addObject("total", list.size());
-		view.setViewName("");
+		view.setViewName("search");
 		return view;
 	}
 	/**
@@ -109,8 +109,20 @@ public class ResumeManageController {
 		editJson.setEducList(ResumeManageService.getEductionExperiences(phonenumber));
 		return new Gson().toJson(editJson);
 	}
-	
-	
+	 /**
+	  * 返回主界面
+	  * 默认查询条件是不限
+	  * @return
+	  */
+	@RequestMapping(value="/main")
+	public ModelAndView main(){
+		ModelAndView view=new ModelAndView();
+		List<Resume> list=ResumeManageService.getResume("-1","0");
+		view.addObject("resumeList", list);
+		view.addObject("total", list.size());
+		view.setViewName("search");
+		return view;
+	}
 	
 
 	

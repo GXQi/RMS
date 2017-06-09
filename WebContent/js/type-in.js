@@ -137,7 +137,7 @@
         }
 
         function toMain() {
-            window.location = "http://localhost:8888/list";
+            window.location.href = "/RMS/test";
         }
 
         function logout() {

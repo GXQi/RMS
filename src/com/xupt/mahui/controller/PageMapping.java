@@ -44,12 +44,4 @@ public class PageMapping {
 		return "register";
 	}
 	
-	/**
-	 * 主界面
-	 * @return
-	 */
-	@RequestMapping("/main")
-	public String main(){
-		return "search";
-	}
 }
