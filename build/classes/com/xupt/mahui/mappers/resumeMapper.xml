@@ -97,7 +97,7 @@
 	 	where 
 	 	work_time between #{0} and #{1}
 	 	and resume.phonenumber in 
-	 	(select distinct phonenumber from eductionExperience where degree >= #{2});
+	 	(select distinct phonenumber from eductionexperience where degree >= #{2});
 	 	
 	 </select>
 	 
