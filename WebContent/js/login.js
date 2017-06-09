@@ -1,14 +1,14 @@
- function signSumbit() {
-            var Phone = document.getElementById('signPhone').value;
-            var name = document.getElementById('signName').value;
-            var password = document.getElementById('signPassword').value;
-            var data={"Phone":Phone,"name":name,"password":password};
-            $.ajax({
-                type:"POST",
-                url:"//RMS/register",
-                data:data,
-            })
-        }
+function signSumbit() {
+        var Phone = document.getElementById('signPhone').value;
+        var name = document.getElementById('signName').value;
+        var password = document.getElementById('signPassword').value;
+        var data = {"Phone": Phone, "name": name, "password": password};
+          $.ajax({
+              type: "POST",
+              url: "/RMS/register",
+              data: data,
+        })
+}
 
 function loginSumbit() {
     var loginPhone = document.getElementById('phoneNumber').value;
