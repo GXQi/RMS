@@ -92,32 +92,32 @@
     
     <#if (resumeList?size >0)>
     	<div>
-    	<table class="table table-striped">
+    	<table class="table table-striped" style="text-align:center;">
     	<thead>
     		<tr>
-        		<th>姓名</th>
-        		<th>关键技能</th>
-        		<th>学历</th>
-        		<th>性别</th>
-        		<th>工作年限</th>       	
-        		<th>公司</th>
-        		<th>邮箱</th>
-        		<th>手机号</th>
-        		<th>操作</th>
+        		<th style="text-align:center;">姓名</th>
+        		<th style="text-align:center;">关键技能</th>
+        		<th style="text-align:center;">学历</th>
+        		<th style="text-align:center;">性别</th>
+        		<th style="text-align:center;">工作年限</th>       	
+        		<th style="text-align:center;">公司</th>
+        		<th style="text-align:center;">邮箱</th>
+        		<th style="text-align:center;">手机号</th>
+        		<th style="text-align:center;">操作</th>
     		</tr>
     	<thead>
    		<tbody>
    			<#list resumeList as resume>
     		<tr>
-        		<th>${resume.name}</th>
-        		<th>${resume.skill}</th>
-        		<th>${resume.degree}</th>
-        		<th>${resume.sex}</th>
-        		<th>${resume.workTime}</th>
-        		<th>${resume.company}</th>
-        		<th>${resume.email}</th>
-        		<th>${resume.phonenumber}</th>
-        		<th>编辑</th>
+        		<th style="text-align:center;">${resume.name}</th>
+        		<th style="text-align:center;">${resume.skill}</th>
+        		<th style="text-align:center;">${resume.degree}</th>
+        		<th style="text-align:center;">${resume.sex}</th>
+        		<th style="text-align:center;">${resume.workTime}</th>
+        		<th style="text-align:center;">${resume.company}</th>
+        		<th style="text-align:center;">${resume.email}</th>
+        		<th style="text-align:center;">${resume.phonenumber}</th>
+        		<th style="text-align:center;">编辑</th>
     		</tr>
     	</#list>	
    		</tbody>
