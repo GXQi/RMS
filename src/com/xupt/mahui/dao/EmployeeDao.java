@@ -11,4 +11,5 @@ import com.xupt.mahui.entity.Employee;
 public interface EmployeeDao {
 	public Employee isLogin(String phonenumber);
 	public void insertAnEmployee(@Param("employee")Employee employee);
+	public void ResteAnEmployeePassword(@Param("employee")Employee employee);
 }
