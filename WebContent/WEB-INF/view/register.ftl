@@ -12,10 +12,13 @@
 <body class="signBody">
 <div class="loginTiele">简历管理平台</div>
 <div id="warning"><span id="warn">提示</span></div>
+<#if warnEmployee?exists>
+<div>dsjafhdjs</div>
+</#if>
 <form class="form-horizontal" role="form">
     <div class="form-group ">
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="registerPhone" placeholder="手机号" onblur="checkRegisterPhone()">
+            <input type="text" class="form-control" id="registerPhone" name="phoneNumber" placeholder="手机号" onblur="checkRegisterPhone()">
         </div>
     </div>
     <div class="form-group">
@@ -28,12 +31,12 @@
     </div>
     <div class="form-group ">
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="registerName" placeholder="昵称" onblur="checkRegisterName()">
+            <input type="text" class="form-control" id="registerName" name="nickName" placeholder="昵称" onblur="checkRegisterName()">
         </div>
     </div>
     <div class="form-group ">
         <div class="col-sm-4">
-            <input type="password" class="form-control" id="registerPassword" placeholder="密码" onblur="checkRegisterpassword()">
+            <input type="password" class="form-control" id="registerPassword" name="passWord" placeholder="密码" onblur="checkRegisterpassword()">
         </div>
     </div>
     <div class="form-group ">
@@ -43,11 +46,9 @@
         </div>
     </div>
   
+    <input type="submit" value="注册" onclick="signSumbit()">
 
 </form>
-<div class="loginSure" onclick="signSumbit()">
-<span class="loginSpan">注册</span>
-</div>
 <div class="signAsk">已有帐号？<span class="loginSign"><a href="/RMS/login">登录</a></span></div>
 </body>
 </html>
