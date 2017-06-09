@@ -40,12 +40,13 @@ public class ResumeManageController {
 	 */
 	@RequestMapping(value="/resumemanage/select",method=RequestMethod.POST ,produces = "application/json; charset=utf-8")
 	public ModelAndView select(@RequestBody String json){
+		System.out.println("这是"+json);
 		ModelAndView view=new ModelAndView();
 		JSONObject jsonObject=JSONObject.fromObject(json);
 		List<Resume> list=ResumeManageService.getResume(jsonObject.getString("workTime"), jsonObject.getString("degree"));
 		view.addObject("resumeList", list);
 		view.addObject("total", list.size());
-		view.setViewName("search");
+		view.setViewName("login");
 		return view;
 	}
 	/**

@@ -9,6 +9,72 @@
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/RMS/js/select.js"></script>
+    <script>
+    var a = -1;
+    var b = -1;
+
+    function a0() {
+        a = -1;
+        send();
+    }
+    function a1() {
+        a = 0;
+        send();
+    }
+    function a2() {
+        a = 1;
+        send();
+    }
+    function a3() {
+        a = 2;
+        send();
+    }
+    function a4() {
+        a = 3;
+        send();
+    }
+    function a5() {
+        a = 4;
+        send();
+    }
+    function a6() {
+        a = 5;
+        send();
+    }
+    function b0() {
+        b = -1;
+        send();
+    }
+    function b1() {
+        b = 0;
+        send();
+    }
+    function b2() {
+        b = 1;
+        send();
+    }
+    function b3() {
+        b = 2;
+        send();
+    }
+    function b4() {
+        b = 3;
+        send();
+    }
+
+    function send(){
+    	var data={"degree":b,"workTime":a};
+   		 $.ajax({
+        	type:"POST",
+        	contentType:"application/json;charset=utf-8",
+        	url:"/RMS/resumemanage/select",
+        	dataType:"json",
+        	data:JSON.stringify(data)
+        
+    	})
+    }
+
+</script>
 </head>
 <body>
 <!-- 导航栏 -->
@@ -51,23 +117,23 @@
             <li class="select-list">
                 <dl id="select1">
                     <dt>工作年限：</dt>
-                    <dd class="select-all selected"><a href="#">不限</a></dd>
-                    <dd><a href="#">应届毕业生</a></dd>
-                    <dd><a href="#">1年以下</a></dd>
-                    <dd><a href="#">1-3年</a></dd>
-                    <dd><a href="#">3-5年</a></dd>
-                    <dd><a href="#">5-10年</a></dd>
-                    <dd><a href="#">10年以上</a></dd>
+                    <dd class="select-all selected"><a  onclick="a0(this)">不限</a></dd>
+                    <dd><a  onclick="a1(this)">应届毕业生</a></dd>
+                    <dd><a  onclick="a2(this)">1年以下</a></dd>
+                    <dd><a  onclick="a3(this)">1-3年</a></dd>
+                    <dd><a  onclick="a4(this)">3-5年</a></dd>
+                    <dd><a  onclick="a5(this)">5-10年</a></dd>
+                    <dd><a  onclick="a6(this)">10年以上</a></dd>
                 </dl>
             </li>
             <li class="select-list">
                 <dl id="select2">
                     <dt>最高学历：</dt>
-                    <dd class="select-all selected"><a href="#">不限</a></dd>
-                    <dd><a href="#">大专及以上</a></dd>
-                    <dd><a href="#">本科及以上</a></dd>
-                    <dd><a href="#">硕士及以上</a></dd>
-                    <dd><a href="#">博士及以上</a></dd>
+                    <dd class="select-all selected"><a  onclick="b0(this)">不限</a></dd>
+                    <dd><a  onclick="b1(this)">大专及以上</a></dd>
+                    <dd><a  onclick="b2(this)">本科及以上</a></dd>
+                    <dd><a  onclick="b3(this)">硕士及以上</a></dd>
+                    <dd><a  onclick="b4(this)">博士及以上</a></dd>
                 </dl>
             </li>
             <li class="select-result">
@@ -109,7 +175,7 @@
    		<tbody>
    			<#list resumeList as resume>
     		<tr>
-        		<th style="text-align:center;">${resume.name}</th>
+        		<th style="text-align:center;"><a id=${resume.name}+${resume.phonenumber} onclick="details(this)">${resume.name}</a></th>
         		<th style="text-align:center;">${resume.skill}</th>
         		<th style="text-align:center;">${resume.degree}</th>
         		<th style="text-align:center;">${resume.sex}</th>
@@ -117,7 +183,7 @@
         		<th style="text-align:center;">${resume.company}</th>
         		<th style="text-align:center;">${resume.email}</th>
         		<th style="text-align:center;">${resume.phonenumber}</th>
-        		<th style="text-align:center;">编辑</th>
+        		<th style="text-align:center;"><a id=${resume.phonenumber} onclick="edit(this)">编辑</a></th>
     		</tr>
     	</#list>	
    		</tbody>

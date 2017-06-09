@@ -1,6 +1,10 @@
         function loadInfo() {
-        	
             const data = {"phonenumber": window.location.href.split('?')[1].split("=")[1]};
+            if(data.phonenumber!=""){
+     		   load(data);   
+     	   }
+        }
+        function load(data){
             $.ajax({
                 type: "GET",
                 url: "/RMS/resumemanage/edit",
@@ -100,7 +104,6 @@
                 }
             });
         }
-        
         function appendWorks() {
             const table =
                     '<div><hr/><a class="delete">x</a>' +

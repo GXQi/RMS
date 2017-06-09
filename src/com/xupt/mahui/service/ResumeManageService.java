@@ -130,7 +130,7 @@ public class ResumeManageService {
 			EductionExperience eductionExperience=new EductionExperience();
 			eductionExperience.setSchool(edu.getString(eduKey.next()));
 			eductionExperience.setMajor(edu.getString(eduKey.next()));
-			eductionExperience.setDegree(edu.getString(eduKey.next()));
+			eductionExperience.setDegree(""+changeDegreeToNumber(edu.getString(eduKey.next())));
 			eductionExperience.setGraduationTime(edu.getString(eduKey.next()));
 			eductionExperience.setPhonenumber(resumeBasic.getPhonenumber());
 			eduList.add(eductionExperience);
@@ -256,10 +256,10 @@ public class ResumeManageService {
 	 */
 	public static String getHighDegree(List<String> list){
 		if(list.size()>0){
-			int max=changeDegreeToNumber(list.get(0));
+			int max=Integer.parseInt(list.get(0));
 			for(int i=1;i<list.size();i++){
-				if(max<changeDegreeToNumber(list.get(i))){
-					max=changeDegreeToNumber(list.get(i));
+				if(max<Integer.parseInt(list.get(i))){
+					max=Integer.parseInt(list.get(i));
 				}
 			}
 			String[] degrees={"大专","本科","硕士","博士"};
