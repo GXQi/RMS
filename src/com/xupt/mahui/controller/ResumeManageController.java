@@ -17,7 +17,6 @@ import com.xupt.mahui.entity.Message;
 import com.xupt.mahui.entity.Resume;
 import com.xupt.mahui.service.ResumeManageService;
 
-import net.sf.json.JSONObject;
 
 /**
  * 简历管理相关的Controller
@@ -40,13 +39,17 @@ public class ResumeManageController {
 	 */
 	@RequestMapping(value="/resumemanage/select",method=RequestMethod.POST ,produces = "application/json; charset=utf-8")
 	public ModelAndView select(@RequestBody String json){
-		System.out.println("这是"+json);
+		String[] s=json.split("&");
+		String degree=s[0].split("=")[1];
+		String workTime=s[1].split("=")[1];
 		ModelAndView view=new ModelAndView();
-		JSONObject jsonObject=JSONObject.fromObject(json);
-		List<Resume> list=ResumeManageService.getResume(jsonObject.getString("workTime"), jsonObject.getString("degree"));
+		List<Resume> list=ResumeManageService.getResume(workTime, degree);
 		view.addObject("resumeList", list);
 		view.addObject("total", list.size());
-		view.setViewName("login");
+		view.addObject("workTime", workTime);
+		view.addObject("degree", degree);
+		view.setViewName("search");
+		
 		return view;
 	}
 	/**
@@ -121,6 +124,8 @@ public class ResumeManageController {
 		List<Resume> list=ResumeManageService.getResume("-1","0");
 		view.addObject("resumeList", list);
 		view.addObject("total", list.size());
+		view.addObject("degree","-1");
+		view.addObject("workTime","-1");
 		view.setViewName("search");
 		return view;
 	}

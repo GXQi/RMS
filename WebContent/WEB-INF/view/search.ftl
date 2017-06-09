@@ -9,10 +9,20 @@
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/RMS/js/select.js"></script>
-    <script>
-    var a = -1;
-    var b = -1;
+    <style>
+   .selected{
+    color:#ffffff;
+    background-color:/*#f60*/#CCC;
+}
 
+.selected1{
+    color:#ffffff;
+    background-color:/*#f60*/#CCC;
+}
+    </style>
+    <script>
+    var a = ${workTime};
+    var b = ${degree};
     function a0() {
         a = -1;
         send();
@@ -64,15 +74,66 @@
 
     function send(){
     	var data={"degree":b,"workTime":a};
-   		 $.ajax({
-        	type:"POST",
-        	contentType:"application/json;charset=utf-8",
-        	url:"/RMS/resumemanage/select",
-        	dataType:"json",
-        	data:JSON.stringify(data)
-        
-    	})
+   		var temp = document.createElement("form");
+  		temp.action = "/RMS/resumemanage/select";
+  		temp.method = "post";
+  		temp.style.display = "none";
+  		for (var x in data) {
+   			var opt = document.createElement("textarea");
+    		opt.name = x;
+    		opt.value = data[x];
+    		temp.appendChild(opt);
+  		}
+  		document.body.appendChild(temp);
+  		temp.submit();
+  		return temp;
     }
+    $(document).ready(function(){
+    	var degree=${degree};
+    	var workTime=${workTime};
+    	switch(degree){
+    		case -1:
+    		$("#b0").addClass("selected");
+    			break;
+    		case 0:
+    		$("#b1").addClass("selected");
+    			break;
+    		case 1:
+    		$("#b2").addClass("selected");
+    			break;
+    		case 2:
+    		$("#b3").addClass("selected");
+    			break;
+    		case 3:
+    		$("#b4").addClass("selected");
+    			break;	
+    	}
+    	switch(workTime){
+    		case -1:
+    		$("#a0").addClass("selected1");
+    			break;
+    		case 0:
+    		$("#a1").addClass("selected1");
+    			break;
+    		case 1:
+    		$("#a2").addClass("selected1");
+    			break;
+    		case 2:
+    		$("#a3").addClass("selected1");
+    			break;
+    		case 3:
+    		$("#a4").addClass("selected1");
+    			break;	
+    		case 4:
+    		$("#a5").addClass("selected1");
+    			break;	
+    		case 5:
+    		$("#a6").addClass("selected1");
+    			break;	
+    				
+    	}
+    });
+    
 
 </script>
 </head>
@@ -117,23 +178,23 @@
             <li class="select-list">
                 <dl id="select1">
                     <dt>工作年限：</dt>
-                    <dd class="select-all selected"><a  onclick="a0(this)">不限</a></dd>
-                    <dd><a  onclick="a1(this)">应届毕业生</a></dd>
-                    <dd><a  onclick="a2(this)">1年以下</a></dd>
-                    <dd><a  onclick="a3(this)">1-3年</a></dd>
-                    <dd><a  onclick="a4(this)">3-5年</a></dd>
-                    <dd><a  onclick="a5(this)">5-10年</a></dd>
-                    <dd><a  onclick="a6(this)">10年以上</a></dd>
+                    <dd id="a0"><a  onclick="a0(this)">不限</a></dd>
+                    <dd id="a1"><a  onclick="a1(this)">应届毕业生</a></dd>
+                    <dd id="a2"><a  onclick="a2(this)">1年以下</a></dd>
+                    <dd id="a3"><a  onclick="a3(this)">1-3年</a></dd>
+                    <dd id="a4"><a  onclick="a4(this)">3-5年</a></dd>
+                    <dd id="a5"><a  onclick="a5(this)">5-10年</a></dd>
+                    <dd id="a6"><a  onclick="a6(this)">10年以上</a></dd>
                 </dl>
             </li>
             <li class="select-list">
                 <dl id="select2">
                     <dt>最高学历：</dt>
-                    <dd class="select-all selected"><a  onclick="b0(this)">不限</a></dd>
-                    <dd><a  onclick="b1(this)">大专及以上</a></dd>
-                    <dd><a  onclick="b2(this)">本科及以上</a></dd>
-                    <dd><a  onclick="b3(this)">硕士及以上</a></dd>
-                    <dd><a  onclick="b4(this)">博士及以上</a></dd>
+                    <dd><a  onclick="b0(this)" id="b0">不限</a></dd>
+                    <dd><a  onclick="b1(this)" id="b1">大专及以上</a></dd>
+                    <dd><a  onclick="b2(this)" id="b2">本科及以上</a></dd>
+                    <dd><a  onclick="b3(this)" id="b3">硕士及以上</a></dd>
+                    <dd><a  onclick="b4(this)" id="b4">博士及以上</a></dd>
                 </dl>
             </li>
             <li class="select-result">
