@@ -2,6 +2,7 @@ package com.xupt.mahui.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 /**
  * 页面映射
  * @author mahui
@@ -14,7 +15,7 @@ public class PageMapping {
 	 * @return
 	 */
 	@RequestMapping("/index")
-	public String index(){
+	public String index(@RequestParam String phonenumber){
 		return "edit";
 	}
 	/**

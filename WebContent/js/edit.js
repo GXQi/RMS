@@ -1,5 +1,6 @@
         function loadInfo() {
-            const data = {"phonenumber": 17629034550};
+        	
+            const data = {"phonenumber": window.location.href.split('?')[1].split("=")[1]};
             $.ajax({
                 type: "GET",
                 url: "/RMS/resumemanage/edit",
@@ -7,7 +8,6 @@
                 data: data,
                 dataType: "json",
                 success: function (result) {
-                	console.log(result);
                     if (result) {
                         let basicInfo = [];
                         let workInfo = [];

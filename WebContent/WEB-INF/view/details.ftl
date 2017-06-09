@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/RMS/css/base.css">
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/RMS/js/details.js"></script>
 </head>
 <body>
 <!-- 导航栏 -->
@@ -39,7 +40,7 @@
 <div class="details-look mar-auto">
     <!-- 基本信息 -->
     <div class="info-base">
-        <p class="base-name">${resumeBasic.name}</p>
+        <p class="base-name">${resumeBasic.name}</p><div class="edit"><a onclick="post()">编辑</a></div>
         <ul class="clear-float">
         	<li class="float-l"><img src="/RMS/images/img_sex.png"> ${resumeBasic.sex}</li>
             <li class="float-l"><img src="/RMS/images/img_skill.png"> ${resumeBasic.skill}</li>
@@ -47,7 +48,7 @@
         </ul>
         <ul class="clear-float">
            
-         	<li class="float-l"><img src="/RMS/images/img_phonenumber.png"> ${resumeBasic.phonenumber}</li>
+         	<li class="float-l"><img src="/RMS/images/img_phonenumber.png"> <span id="phonenumber">${resumeBasic.phonenumber}</span></li>
             <li class="float-l"><img src="/RMS/images/img_workTime.png"> ${resumeBasic.workTime}年</li>
         
         </ul>
@@ -110,9 +111,5 @@
         </div>
     </div>
 </div>
-
-<#list  workExperienceList as workExperience>
-${workExperience.phonenumber}
-</#list>
 </body>
 </html>
