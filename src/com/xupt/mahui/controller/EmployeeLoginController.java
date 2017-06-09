@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.xupt.mahui.entity.Employee;
@@ -32,22 +31,6 @@ public class EmployeeLoginController {
 		return "findPassword";
 	}
 	
-	@RequestMapping("/login/resetPassword")//点击
-	public String resetPassword(@RequestParam("phonenumber") String phonenumber,
-			@RequestParam("password") String password,
-			@RequestParam("idCode") String idCode) {
-		/*验证验证码是否正确*/
-		Employee employee = new Employee();
-		employee.setPhoneNumber(phonenumber);
-		employee.setPassWord(password);
-		if(EmployeeManageService.resetAnEmployeePassword(employee) == true)	{
-			//提示修改成功
-		}else{
-			//提示修改失败
-		}
-		
-		return "login";
-	}
 	
 	@RequestMapping("/login/submitLogin")//点击“登录”进行登录处理
 	public ModelAndView submitLogin(@ModelAttribute("Employee")Employee employee, HttpServletRequest request){

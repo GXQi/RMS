@@ -9,6 +9,133 @@
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/RMS/js/select.js"></script>
+    <style>
+   .selected{
+    color:#ffffff;
+    background-color:/*#f60*/#CCC;
+}
+
+.selected1{
+    color:#ffffff;
+    background-color:/*#f60*/#CCC;
+}
+    </style>
+    <script>
+    var a = ${workTime};
+    var b = ${degree};
+    function a0() {
+        a = -1;
+        send();
+    }
+    function a1() {
+        a = 0;
+        send();
+    }
+    function a2() {
+        a = 1;
+        send();
+    }
+    function a3() {
+        a = 2;
+        send();
+    }
+    function a4() {
+        a = 3;
+        send();
+    }
+    function a5() {
+        a = 4;
+        send();
+    }
+    function a6() {
+        a = 5;
+        send();
+    }
+    function b0() {
+        b = -1;
+        send();
+    }
+    function b1() {
+        b = 0;
+        send();
+    }
+    function b2() {
+        b = 1;
+        send();
+    }
+    function b3() {
+        b = 2;
+        send();
+    }
+    function b4() {
+        b = 3;
+        send();
+    }
+
+    function send(){
+    	var data={"degree":b,"workTime":a};
+   		var temp = document.createElement("form");
+  		temp.action = "/RMS/resumemanage/select";
+  		temp.method = "post";
+  		temp.style.display = "none";
+  		for (var x in data) {
+   			var opt = document.createElement("textarea");
+    		opt.name = x;
+    		opt.value = data[x];
+    		temp.appendChild(opt);
+  		}
+  		document.body.appendChild(temp);
+  		temp.submit();
+  		return temp;
+    }
+    $(document).ready(function(){
+    	var degree=${degree};
+    	var workTime=${workTime};
+    	switch(degree){
+    		case -1:
+    		$("#b0").addClass("selected");
+    			break;
+    		case 0:
+    		$("#b1").addClass("selected");
+    			break;
+    		case 1:
+    		$("#b2").addClass("selected");
+    			break;
+    		case 2:
+    		$("#b3").addClass("selected");
+    			break;
+    		case 3:
+    		$("#b4").addClass("selected");
+    			break;	
+    	}
+    	switch(workTime){
+    		case -1:
+    		$("#a0").addClass("selected1");
+    			break;
+    		case 0:
+    		$("#a1").addClass("selected1");
+    			break;
+    		case 1:
+    		$("#a2").addClass("selected1");
+    			break;
+    		case 2:
+    		$("#a3").addClass("selected1");
+    			break;
+    		case 3:
+    		$("#a4").addClass("selected1");
+    			break;	
+    		case 4:
+    		$("#a5").addClass("selected1");
+    			break;	
+    		case 5:
+    		$("#a6").addClass("selected1");
+    			break;	
+    				
+    	}
+    });
+    
+
+</script>
 </head>
 <body>
 <!-- 导航栏 -->
@@ -51,23 +178,23 @@
             <li class="select-list">
                 <dl id="select1">
                     <dt>工作年限：</dt>
-                    <dd class="select-all selected"><a href="#">不限</a></dd>
-                    <dd><a href="#">应届毕业生</a></dd>
-                    <dd><a href="#">1年以下</a></dd>
-                    <dd><a href="#">1-3年</a></dd>
-                    <dd><a href="#">3-5年</a></dd>
-                    <dd><a href="#">5-10年</a></dd>
-                    <dd><a href="#">10年以上</a></dd>
+                    <dd id="a0"><a  onclick="a0(this)">不限</a></dd>
+                    <dd id="a1"><a  onclick="a1(this)">应届毕业生</a></dd>
+                    <dd id="a2"><a  onclick="a2(this)">1年以下</a></dd>
+                    <dd id="a3"><a  onclick="a3(this)">1-3年</a></dd>
+                    <dd id="a4"><a  onclick="a4(this)">3-5年</a></dd>
+                    <dd id="a5"><a  onclick="a5(this)">5-10年</a></dd>
+                    <dd id="a6"><a  onclick="a6(this)">10年以上</a></dd>
                 </dl>
             </li>
             <li class="select-list">
                 <dl id="select2">
                     <dt>最高学历：</dt>
-                    <dd class="select-all selected"><a href="#">不限</a></dd>
-                    <dd><a href="#">大专及以上</a></dd>
-                    <dd><a href="#">本科及以上</a></dd>
-                    <dd><a href="#">硕士及以上</a></dd>
-                    <dd><a href="#">博士及以上</a></dd>
+                    <dd><a  onclick="b0(this)" id="b0">不限</a></dd>
+                    <dd><a  onclick="b1(this)" id="b1">大专及以上</a></dd>
+                    <dd><a  onclick="b2(this)" id="b2">本科及以上</a></dd>
+                    <dd><a  onclick="b3(this)" id="b3">硕士及以上</a></dd>
+                    <dd><a  onclick="b4(this)" id="b4">博士及以上</a></dd>
                 </dl>
             </li>
             <li class="select-result">
@@ -109,7 +236,7 @@
    		<tbody>
    			<#list resumeList as resume>
     		<tr>
-        		<th style="text-align:center;">${resume.name}</th>
+        		<th style="text-align:center;"><a id=${resume.name}+${resume.phonenumber} onclick="details(this)">${resume.name}</a></th>
         		<th style="text-align:center;">${resume.skill}</th>
         		<th style="text-align:center;">${resume.degree}</th>
         		<th style="text-align:center;">${resume.sex}</th>
@@ -117,7 +244,7 @@
         		<th style="text-align:center;">${resume.company}</th>
         		<th style="text-align:center;">${resume.email}</th>
         		<th style="text-align:center;">${resume.phonenumber}</th>
-        		<th style="text-align:center;">编辑</th>
+        		<th style="text-align:center;"><a id=${resume.phonenumber} onclick="edit(this)">编辑</a></th>
     		</tr>
     	</#list>	
    		</tbody>

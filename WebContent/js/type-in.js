@@ -75,7 +75,7 @@
             data.basic[2] = $("input[name='sex']:checked").val();
             data.basic[3] = email;
             data.basic[4] = kill;
-            data.basic[3] = work;
+            data.basic[5] = work;
 
             for (let i = 0, l = nodes2.length; i < l; i++) {
                 data.work[i] = nodes2[i].value;
@@ -92,13 +92,13 @@
             var json = JSON.stringify(data);
             $.ajax({
                 type: "POST",
-                url: " ",
+                url: "/RMS//resumemanage/insert",
                 contentType: "application/json; charset=utf-8",
                 data: json,
                 dataType: "json",
                 success: function (result) {
                     if (result.message === "success") {
-                       window.location = "http://localhost:8888/RMS/list";
+                       window.location.href= "/RMS/main";
                     }
 
                     else if(result.message === "error"){
@@ -137,9 +137,9 @@
         }
 
         function toMain() {
-            window.location.href = "/RMS/test";
+            window.location.href = "/RMS/main";
         }
 
         function logout() {
-            window.location = "http://localhost:8888/login"
+            window.location.href= "/RMS/login"
         }
