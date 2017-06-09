@@ -15,7 +15,7 @@ public class ResumeTest {
 		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
 		SqlSession session=sessionFactory.openSession();
 		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
-		System.out.println(resumeDao.selectProjectExperience("17629034550").get(0).getProjectTimeEnd());
+		System.out.println(resumeDao.selectResumeBasicByWorkTimeAndDegree(5, 10, 0).size());
 	}
 
 }

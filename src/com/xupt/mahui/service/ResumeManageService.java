@@ -236,6 +236,20 @@ public class ResumeManageService {
 		String[] degrees={"大专","本科","硕士","博士"};
 		return degrees[Integer.parseInt(string)];
 	}
+	
+	/**
+	 * 将字符串对应的学历信息012
+	 * @param string
+	 * @return
+	 */
+	public static int changeDegreeToNumber(String string){
+		String[] degrees={"大专","本科","硕士","博士"};
+		for(int i=0;i<degrees.length;i++){
+			if(string.equals(degrees[i]))
+				return  i;
+		}
+		return 0;
+	}
 	/**
 	 * 获得最高学位
 	 * @param list
@@ -243,10 +257,10 @@ public class ResumeManageService {
 	 */
 	public static String getHighDegree(List<String> list){
 		if(list.size()>0){
-			int max=Integer.parseInt(list.get(0));
+			int max=changeDegreeToNumber(list.get(0));
 			for(int i=1;i<list.size();i++){
-				if(max<Integer.parseInt(list.get(i))){
-					max=Integer.parseInt(list.get(i));
+				if(max<changeDegreeToNumber(list.get(i))){
+					max=changeDegreeToNumber(list.get(i));
 				}
 			}
 			String[] degrees={"大专","本科","硕士","博士"};
