@@ -45,6 +45,8 @@ public class EmployeeLoginController {
 			List<Resume> list=ResumeManageService.getResume("-1","0");
 			mav.addObject("resumeList", list);
 			mav.addObject("total", list.size());
+			mav.addObject("workTime", "-1");
+			mav.addObject("degree", "-1");
 			mav.setViewName("search");
 			return mav;//登陆成功，返回查询视图
 			//return "search";
