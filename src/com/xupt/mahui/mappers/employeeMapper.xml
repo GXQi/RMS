@@ -10,4 +10,9 @@
 	<insert id="insertAnEmployee" parameterType="com.xupt.mahui.entity.Employee">
 		insert into employee(phonenumber,password,nickname) values (#{employee.phoneNumber},#{employee.passWord},#{employee.nickName});
 	</insert>
+	
+	<!-- 修改用户密码 -->
+	<update id="ResteAnEmployeePassword" parameterType="com.xupt.mahui.entity.Employee">
+		update employee password=#{employee.passWord} where phonenumber=#{employee.phoneNumber};
+	</update>
 </mapper>
