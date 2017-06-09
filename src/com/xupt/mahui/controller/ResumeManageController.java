@@ -87,6 +87,7 @@ public class ResumeManageController {
 		view.addObject("workExperienceList", ResumeManageService.getWorkExperiences(phonenumber));
 		view.addObject("projectExperienceList", ResumeManageService.getProjectExperiences(phonenumber));
 		view.addObject("eductionExperienceList", ResumeManageService.getEductionExperiences(phonenumber));
+		view.setViewName("details");
 		//返回到编辑详情
 		return view;
 	}

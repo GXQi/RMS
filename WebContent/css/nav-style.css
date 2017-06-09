@@ -89,15 +89,34 @@ textarea {
 }
 
 .footer {
-    padding-left: 40%;
-    padding-right: 40%;
-    padding-top: 5%;
+   padding-top: 5%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 #tip1,#tip2 {
     float: right;
     color: red;
+}
+
+ .white_content {
+     display: none;
+     position: fixed;
+     top: 35%;
+     left: 25%;
+     width: 550px;
+     height: 150px;
+     text-align: center;
+     font-weight: 400;
+     padding: 40px;
+     border: 12px solid #D6E9F1;
+     background-color: white;
+     font-size: larger;
+     z-index: 1002;
+     overflow: auto;
+}
+
+.delete {
+            float: right;
 }
 

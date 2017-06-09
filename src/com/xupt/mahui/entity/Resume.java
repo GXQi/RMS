@@ -13,6 +13,7 @@ public class Resume {
 	private String phonenumber;
 	private String company;
 	private String degree;
+	private String email;
 	public String getName() {
 		return name;
 	}
@@ -54,6 +55,12 @@ public class Resume {
 	}
 	public void setDegree(String degree) {
 		this.degree = degree;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }

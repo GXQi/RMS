@@ -42,6 +42,7 @@
 		<result column="name" property="name"/>
 		<result column="sex" property="sex"/>
 		<result column="skill " property="skill "/>
+		<result column="email " property="email "/>
 		<result column="work_time" property="workTime"/>
 	</resultMap>
 	<select id="selectResume" resultMap="ResumeBasic">
