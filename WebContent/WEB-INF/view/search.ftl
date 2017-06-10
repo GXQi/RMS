@@ -28,30 +28,37 @@
     var currentPage=${currentPage};
     function a0() {
         a = -1;
+        currentPage=1;
         send();
     }
     function a1() {
         a = 0;
+        currentPage=1;
         send();
     }
     function a2() {
         a = 1;
+        currentPage=1;
         send();
     }
     function a3() {
         a = 2;
+      	currentPage=1;     
         send();
     }
     function a4() {
         a = 3;
+        currentPage=1; 
         send();
     }
     function a5() {
         a = 4;
+        currentPage=1; 
         send();
     }
     function a6() {
         a = 5;
+        currentPage=1; 
         send();
     }
     function b0() {
@@ -60,18 +67,22 @@
     }
     function b1() {
         b = 0;
+        currentPage=1; 
         send();
     }
     function b2() {
         b = 1;
+        currentPage=1; 
         send();
     }
     function b3() {
         b = 2;
+        currentPage=1; 
         send();
     }
     function b4() {
         b = 3;
+        currentPage=1; 
         send();
     }
 	function paging(event){

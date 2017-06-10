@@ -16,6 +16,7 @@ import com.xupt.mahui.entity.EditJson;
 import com.xupt.mahui.entity.Message;
 import com.xupt.mahui.entity.Resume;
 import com.xupt.mahui.service.ResumeManageService;
+import com.xupt.mahui.util.SqlConfig;
 
 
 /**
@@ -25,7 +26,6 @@ import com.xupt.mahui.service.ResumeManageService;
  */
 @Controller
 public class ResumeManageController {
-	public static int pageSize=1;
 	@RequestMapping("/resumemanage/search")
 	public ModelAndView serch(){
 		ModelAndView view=new ModelAndView();
@@ -40,23 +40,15 @@ public class ResumeManageController {
 	 */
 	@RequestMapping(value="/resumemanage/select",method=RequestMethod.POST ,produces = "application/json; charset=utf-8")
 	public ModelAndView select(@RequestBody String json){
-		System.out.println(json);
 		String[] s=json.split("&");
 		String degree=s[0].split("=")[1];
 		String workTime=s[1].split("=")[1];
 		int start=Integer.parseInt(s[2].split("=")[1])-1;
 		ModelAndView view=new ModelAndView();
-		List<Resume> list=ResumeManageService.getResume(workTime, degree);
-		int end=0;
-		start=start*pageSize;
-		if(start+pageSize<list.size()){
-			end=start+pageSize;
-		}else{
-			end=list.size();
-		}
-		List<Resume> resumeList=list.subList(start,end);
-		view.addObject("resumeList", resumeList);
-		view.addObject("totalPage", (list.size()+pageSize-1)/pageSize);
+		List<Resume> list=ResumeManageService.getResume(workTime, degree,SqlConfig.pageSize*start,SqlConfig.pageSize);
+		int count=ResumeManageService.getResumeCount(workTime, degree);
+		view.addObject("resumeList", list);
+		view.addObject("totalPage", (count+SqlConfig.pageSize-1)/SqlConfig.pageSize);
 		view.addObject("total", list.size());
 		view.addObject("workTime", workTime);
 		view.addObject("degree", degree);
@@ -133,18 +125,11 @@ public class ResumeManageController {
 	@RequestMapping(value="/main")
 	public ModelAndView main(){
 		ModelAndView view=new ModelAndView();
-		List<Resume> list=ResumeManageService.getResume("-1","0");
-		int end=0;
-		int start=0;
-		if(start+pageSize<list.size()){
-			end=start+pageSize;
-		}else{
-			end=list.size();
-		}
-		List<Resume> resumeList=list.subList(start,end);
-		view.addObject("resumeList", resumeList);
-		view.addObject("totalPage", (list.size()+pageSize-1)/pageSize);
-		view.addObject("total", list.size());
+		List<Resume> list=ResumeManageService.getResume("-1","0",0,SqlConfig.pageSize);
+		int count=ResumeManageService.getResumeCount("-1", "0");
+		view.addObject("resumeList", list);
+		view.addObject("totalPage", (count+SqlConfig.pageSize-1)/SqlConfig.pageSize);
+		view.addObject("total", count);
 		view.addObject("degree","-1");
 		view.addObject("workTime","-1");
 		view.addObject("currentPage","1");

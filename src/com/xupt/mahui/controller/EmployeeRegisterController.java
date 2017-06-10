@@ -45,7 +45,7 @@ public class EmployeeRegisterController {
 	@RequestMapping("/submitUser/login")//在“注册成功”视图中，点击登录，直接跳转至“查询视图”
 	public ModelAndView goToIndex() {
 		ModelAndView mav = new ModelAndView();
-		List<Resume> list=ResumeManageService.getResume("-1","0");
+		List<Resume> list=ResumeManageService.getResume("-1","0",0,5);
 		mav.addObject("resumeList", list);
 		mav.addObject("total", list.size());
 		mav.setViewName("search");

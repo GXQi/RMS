@@ -162,11 +162,13 @@ public class ResumeManageService {
 	}
 	/**
 	 * 根据工作年限和教育经历获取简历信息
-	 * @param degree
 	 * @param workTime
+	 * @param degree
+	 * @param start
+	 * @param pageSize
 	 * @return
 	 */
-	public static List<Resume> getResume(String workTime,String degree){
+	public static List<Resume> getResume(String workTime,String degree,int start,int pageSize){
 		/**
 		 * 1.先通过工作年限获得满足条件的人
 		 * 2.在满足条件中的人获得满足学历要求的人
@@ -179,31 +181,31 @@ public class ResumeManageService {
 		switch(Integer.parseInt(workTime)){
 			case -1:
 				//不限
-				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(0, Integer.MAX_VALUE,Integer.parseInt(degree));
+				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(0, Integer.MAX_VALUE,Integer.parseInt(degree),start,pageSize);
 				break;
 			case 0:
 				//应届
-				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(0,0,Integer.parseInt(degree));
+				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(0,0,Integer.parseInt(degree),start,pageSize);
 				break;
 			case 1:
 				//一年以下
-				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(0,1,Integer.parseInt(degree));
+				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(0,1,Integer.parseInt(degree),start,pageSize);
 				break;
 			case 2:
 				//1到3年
-				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(1,3,Integer.parseInt(degree));
+				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(1,3,Integer.parseInt(degree),start,pageSize);
 				break;
 			case 3:
 				//3到5年
-				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(3,5,Integer.parseInt(degree));
+				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(3,5,Integer.parseInt(degree),start,pageSize);
 				break;
 			case 4:
 				//5到10年
-				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(5,10,Integer.parseInt(degree));
+				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(5,10,Integer.parseInt(degree),start,pageSize);
 				break;
 			case 5:
 				//10年以上
-				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(10,Integer.MAX_VALUE,Integer.parseInt(degree));
+				list=resumeDao.selectResumeBasicByWorkTimeAndDegree(10,Integer.MAX_VALUE,Integer.parseInt(degree),start,pageSize);
 				break;
 		}
 		List<Resume> resumeList=new ArrayList<>();
@@ -267,5 +269,48 @@ public class ResumeManageService {
 		}
 		
 		return "";
+	}
+	/**
+	 * 根据工作年限和教育经历获取简历信息总条数
+	 * @param workTime
+	 * @param degree
+	 * @return
+	 */
+	public static int getResumeCount(String workTime,String degree){
+		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
+		SqlSession session=sessionFactory.openSession();
+		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
+		int count=0;
+		switch(Integer.parseInt(workTime)){
+		case -1:
+			//不限
+			count=resumeDao.selectResumeBasicByWorkTimeAndDegreeCount(0, Integer.MAX_VALUE,Integer.parseInt(degree));
+			break;
+		case 0:
+			//应届
+			count=resumeDao.selectResumeBasicByWorkTimeAndDegreeCount(0,0,Integer.parseInt(degree));
+			break;
+		case 1:
+			//一年以下
+			count=resumeDao.selectResumeBasicByWorkTimeAndDegreeCount(0,1,Integer.parseInt(degree));
+			break;
+		case 2:
+			//1到3年
+			count=resumeDao.selectResumeBasicByWorkTimeAndDegreeCount(1,3,Integer.parseInt(degree));
+			break;
+		case 3:
+			//3到5年
+			count=resumeDao.selectResumeBasicByWorkTimeAndDegreeCount(3,5,Integer.parseInt(degree));
+			break;
+		case 4:
+			//5到10年
+			count=resumeDao.selectResumeBasicByWorkTimeAndDegreeCount(5,10,Integer.parseInt(degree));
+			break;
+		case 5:
+			//10年以上
+			count=resumeDao.selectResumeBasicByWorkTimeAndDegreeCount(10,Integer.MAX_VALUE,Integer.parseInt(degree));
+			break;
+		}
+		return count;
 	}
 }
