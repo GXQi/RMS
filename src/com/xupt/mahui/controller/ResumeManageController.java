@@ -49,7 +49,7 @@ public class ResumeManageController {
 		int count=ResumeManageService.getResumeCount(workTime, degree);
 		view.addObject("resumeList", list);
 		view.addObject("totalPage", (count+SqlConfig.pageSize-1)/SqlConfig.pageSize);
-		view.addObject("total", list.size());
+		view.addObject("total", count);
 		view.addObject("workTime", workTime);
 		view.addObject("degree", degree);
 		view.addObject("currentPage", Integer.parseInt(s[2].split("=")[1]));
