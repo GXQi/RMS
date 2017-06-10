@@ -23,7 +23,9 @@
     <script>
     var a = ${workTime};
     var b = ${degree};
-    var currentPage=1;
+    var total=${total};
+	var totalPage=${totalPage};
+    var currentPage=${currentPage};
     function a0() {
         a = -1;
         send();
@@ -74,8 +76,6 @@
     }
 	function paging(event){
 		var id=event.id;
-		var total=${total};
-		var totalPage=${totalPage};
 		if(id=="first"){
 			currentPage=1;
 		}else if(id=="pre"){
@@ -83,7 +83,6 @@
 				currentPage-=1;
 			}
 		}else if(id=="next"){
-			
 			if(currentPage<totalPage){
 				currentPage+=1;
 			}else{
@@ -193,7 +192,7 @@
     <!-- 搜索框 -->
     <div class="search-input mar-auto">
         <form>
-            <input type="text" name="search" placeholder="关键技能/姓名/手机/邮箱/公司等" />
+            <input type="text" name="search" placeholder="关键技能" />
             <button type="submit" value="">搜索</button>
         </form>
     </div>
@@ -223,12 +222,7 @@
                     <dd><a  onclick="b4(this)" id="b4">博士及以上</a></dd>
                 </dl>
             </li>
-            <li class="select-result">
-                <dl>
-                    <dt>已选条件：</dt>
-                    <dd class="select-no">暂时没有选择过滤条件</dd>
-                </dl>
-            </li>
+           
         </ul>
     </div>
 

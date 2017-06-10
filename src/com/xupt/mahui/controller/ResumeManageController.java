@@ -25,6 +25,7 @@ import com.xupt.mahui.service.ResumeManageService;
  */
 @Controller
 public class ResumeManageController {
+	public static int pageSize=1;
 	@RequestMapping("/resumemanage/search")
 	public ModelAndView serch(){
 		ModelAndView view=new ModelAndView();
@@ -39,6 +40,7 @@ public class ResumeManageController {
 	 */
 	@RequestMapping(value="/resumemanage/select",method=RequestMethod.POST ,produces = "application/json; charset=utf-8")
 	public ModelAndView select(@RequestBody String json){
+		System.out.println(json);
 		String[] s=json.split("&");
 		String degree=s[0].split("=")[1];
 		String workTime=s[1].split("=")[1];
@@ -46,18 +48,19 @@ public class ResumeManageController {
 		ModelAndView view=new ModelAndView();
 		List<Resume> list=ResumeManageService.getResume(workTime, degree);
 		int end=0;
-		start=start*5;
-		if(start+5<list.size()){
-			end=start+5;
+		start=start*pageSize;
+		if(start+pageSize<list.size()){
+			end=start+pageSize;
 		}else{
 			end=list.size();
 		}
 		List<Resume> resumeList=list.subList(start,end);
 		view.addObject("resumeList", resumeList);
-		view.addObject("totalPage", (list.size()+5-1)/5);
+		view.addObject("totalPage", (list.size()+pageSize-1)/pageSize);
 		view.addObject("total", list.size());
 		view.addObject("workTime", workTime);
 		view.addObject("degree", degree);
+		view.addObject("currentPage", Integer.parseInt(s[2].split("=")[1]));
 		view.setViewName("search");
 		return view;
 	}
@@ -133,17 +136,18 @@ public class ResumeManageController {
 		List<Resume> list=ResumeManageService.getResume("-1","0");
 		int end=0;
 		int start=0;
-		if(start+5<list.size()){
-			end=start+5;
+		if(start+pageSize<list.size()){
+			end=start+pageSize;
 		}else{
 			end=list.size();
 		}
 		List<Resume> resumeList=list.subList(start,end);
 		view.addObject("resumeList", resumeList);
-		view.addObject("totalPage", (list.size()+5-1)/5);
+		view.addObject("totalPage", (list.size()+pageSize-1)/pageSize);
 		view.addObject("total", list.size());
 		view.addObject("degree","-1");
 		view.addObject("workTime","-1");
+		view.addObject("currentPage","1");
 		view.setViewName("search");
 		return view;
 	}
