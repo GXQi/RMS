@@ -121,6 +121,12 @@
   		return temp;
     }
     $(document).ready(function(){
+    	$("#select1 dd").click(function () {
+			$(this).addClass("selected1").siblings().removeClass("selected1");
+		});
+		$("#select2 dd").click(function () {
+			$(this).addClass("selected").siblings().removeClass("selected");
+		});
     	var degree=${degree};
     	var workTime=${workTime};
     	switch(degree){
