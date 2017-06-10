@@ -43,7 +43,16 @@ public class EmployeeLoginController {
 			//session.setMaxInactiveInterval(60<<7);//默认会话时间为2小时8分钟
 			//session.setAttribute("login", true);//激活会话
 			List<Resume> list=ResumeManageService.getResume("-1","0");
-			mav.addObject("resumeList", list);
+			int end=0;
+			int start=0;
+			if(start+5<list.size()){
+				end=start+5;
+			}else{
+				end=list.size();
+			}
+			List<Resume> resumeList=list.subList(start,end);
+			mav.addObject("resumeList", resumeList);
+			mav.addObject("totalPage", (list.size()+5-1)/5);
 			mav.addObject("total", list.size());
 			mav.addObject("workTime", "-1");
 			mav.addObject("degree", "-1");

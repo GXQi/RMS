@@ -32,7 +32,7 @@ public class ResumeManageController {
 	}
 	/**
 	 * 查询简历 通过学历和工作年限
-	 * @param json {"degree"："0"，"workTime","0"}
+	 * @param json {"degree"："0"，"workTime":"0","currentPage":"1"}
 	 * 对于degree -1到6分别代表不限，应届毕业生，1年以下，1-3年，3-5年，5-10年，10年以上
 	 * 同理对于对于workTime -1到3分别代表不限，大专以上，本科及以上，硕士及以上，博士及以上
 	 * @return
@@ -42,14 +42,23 @@ public class ResumeManageController {
 		String[] s=json.split("&");
 		String degree=s[0].split("=")[1];
 		String workTime=s[1].split("=")[1];
+		int start=Integer.parseInt(s[2].split("=")[1])-1;
 		ModelAndView view=new ModelAndView();
 		List<Resume> list=ResumeManageService.getResume(workTime, degree);
-		view.addObject("resumeList", list);
+		int end=0;
+		start=start*5;
+		if(start+5<list.size()){
+			end=start+5;
+		}else{
+			end=list.size();
+		}
+		List<Resume> resumeList=list.subList(start,end);
+		view.addObject("resumeList", resumeList);
+		view.addObject("totalPage", (list.size()+5-1)/5);
 		view.addObject("total", list.size());
 		view.addObject("workTime", workTime);
 		view.addObject("degree", degree);
 		view.setViewName("search");
-		
 		return view;
 	}
 	/**
@@ -122,7 +131,16 @@ public class ResumeManageController {
 	public ModelAndView main(){
 		ModelAndView view=new ModelAndView();
 		List<Resume> list=ResumeManageService.getResume("-1","0");
-		view.addObject("resumeList", list);
+		int end=0;
+		int start=0;
+		if(start+5<list.size()){
+			end=start+5;
+		}else{
+			end=list.size();
+		}
+		List<Resume> resumeList=list.subList(start,end);
+		view.addObject("resumeList", resumeList);
+		view.addObject("totalPage", (list.size()+5-1)/5);
 		view.addObject("total", list.size());
 		view.addObject("degree","-1");
 		view.addObject("workTime","-1");

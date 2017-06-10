@@ -23,6 +23,7 @@
     <script>
     var a = ${workTime};
     var b = ${degree};
+    var currentPage=1;
     function a0() {
         a = -1;
         send();
@@ -71,9 +72,30 @@
         b = 3;
         send();
     }
-
+	function paging(event){
+		var id=event.id;
+		var total=${total};
+		var totalPage=${totalPage};
+		if(id=="first"){
+			currentPage=1;
+		}else if(id=="pre"){
+			if(currentPage>1){
+				currentPage-=1;
+			}
+		}else if(id=="next"){
+			
+			if(currentPage<totalPage){
+				currentPage+=1;
+			}else{
+				currentPage=totalPage;
+			}
+		}else{
+			currentPage=totalPage;
+		}
+		send();
+	}
     function send(){
-    	var data={"degree":b,"workTime":a};
+    	var data={"degree":b,"workTime":a,"currentPage":currentPage};
    		var temp = document.createElement("form");
   		temp.action = "/RMS/resumemanage/select";
   		temp.method = "post";
@@ -133,6 +155,10 @@
     				
     	}
     });
+    
+    
+    
+    
     
 
 </script>
@@ -219,7 +245,7 @@
     
     <#if (resumeList?size >0)>
     	<div>
-    	<table class="table table-striped" style="text-align:center;">
+    	<table class="table table-striped" style="text-align:center;" border="1" id="table">
     	<thead>
     		<tr>
         		<th style="text-align:center;">姓名</th>
@@ -233,7 +259,7 @@
         		<th style="text-align:center;">操作</th>
     		</tr>
     	<thead>
-   		<tbody>
+   		<tbody id="table">
    			<#list resumeList as resume>
     		<tr>
         		<th style="text-align:center;"><a id=${resume.name}+${resume.phonenumber} onclick="details(this)">${resume.name}</a></th>
@@ -253,6 +279,12 @@
     </div>
     </#if>
     
+</div>
+<div>
+	<#if (resumeList?size > 0)>
+		<center><a id="first" onclick="paging(this)">首页</a><a id="pre" onclick="paging(this)">上一页</a><a id="next" onclick="paging(this)">下一页</a><a onclick="paging(this)" id="end">末页</a></center>
+	</#if>
+	
 </div>
 </body>
 </html>
