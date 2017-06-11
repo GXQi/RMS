@@ -14,7 +14,7 @@
 <div class="loginTiele">简历管理平台</div>
 <div id="warning"><span id="warn">提示</span></div>
 <#if warnEmployee?exists>
-<div>dsjafhdjs</div>
+<div class="loginSubmit">帐号或密码错误</div>
 </#if>
 <form class="form-horizontal" role="form" method="POST" action="/RMS/login/submitLogin">
     <div class="form-group ">

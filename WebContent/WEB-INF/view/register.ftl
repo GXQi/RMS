@@ -13,7 +13,7 @@
 <div class="loginTiele">简历管理平台</div>
 <div id="warning"><span id="warn">提示</span></div>
 <#if warnEmployee?exists>
-<div>dsjafhdjs</div>
+   <div class="loginwarn">帐号已存在</div>
 </#if>
 <form class="form-horizontal" role="form" method="POST" action="/RMS/submitUser">
     <div class="form-group ">
