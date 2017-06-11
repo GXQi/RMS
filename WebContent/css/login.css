@@ -1,3 +1,16 @@
+
+#loginPasswarn{
+    color: red;
+    font-weight: 200;
+    text-align: center;
+}
+
+#loginNamewarn{
+    color: red;
+    font-weight: 200;
+    text-align: center;
+}
+
 .loginTiele{
     font-size: 30px;
     font-style: inherit;
