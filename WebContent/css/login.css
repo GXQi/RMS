@@ -1,27 +1,13 @@
-<<<<<<< HEAD
 .loginwarn{
-=======
-
-#loginPasswarn{
->>>>>>> 747060e6451f35faa7795112050751e62127efb3
     color: red;
     font-weight: 200;
     text-align: center;
 }
 
-<<<<<<< HEAD
 .loginSubmit{
     color: red;
     text-align: center;
 }
-=======
-#loginNamewarn{
-    color: red;
-    font-weight: 200;
-    text-align: center;
-}
-
->>>>>>> 747060e6451f35faa7795112050751e62127efb3
 .loginTiele{
     font-size: 30px;
     font-style: inherit;
@@ -46,9 +32,8 @@
     font-size: 15px;
 }
 .loginSure{
-    margin-left: 41%;
     background-color: #2aabd2;
-    width: 18%;
+    width: 31%;
     height: 35px;
     margin-top: 20px;
 }
