@@ -12,7 +12,7 @@
 <body>
 
 <div class="loginTiele">简历管理平台</div>
-<div id="warning"><span id="warn">提示</span></div>
+<br>
 <#if warnEmployee?exists>
 <div class="loginSubmit">帐号或密码错误</div>
 </#if>
