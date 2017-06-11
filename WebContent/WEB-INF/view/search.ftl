@@ -23,32 +23,42 @@
     <script>
     var a = ${workTime};
     var b = ${degree};
+    var total=${total};
+	var totalPage=${totalPage};
+    var currentPage=${currentPage};
     function a0() {
         a = -1;
+        currentPage=1;
         send();
     }
     function a1() {
         a = 0;
+        currentPage=1;
         send();
     }
     function a2() {
         a = 1;
+        currentPage=1;
         send();
     }
     function a3() {
         a = 2;
+      	currentPage=1;     
         send();
     }
     function a4() {
         a = 3;
+        currentPage=1; 
         send();
     }
     function a5() {
         a = 4;
+        currentPage=1; 
         send();
     }
     function a6() {
         a = 5;
+        currentPage=1; 
         send();
     }
     function b0() {
@@ -57,23 +67,45 @@
     }
     function b1() {
         b = 0;
+        currentPage=1; 
         send();
     }
     function b2() {
         b = 1;
+        currentPage=1; 
         send();
     }
     function b3() {
         b = 2;
+        currentPage=1; 
         send();
     }
     function b4() {
         b = 3;
+        currentPage=1; 
         send();
     }
-
+	function paging(event){
+		var id=event.id;
+		if(id=="first"){
+			currentPage=1;
+		}else if(id=="pre"){
+			if(currentPage>1){
+				currentPage-=1;
+			}
+		}else if(id=="next"){
+			if(currentPage<totalPage){
+				currentPage+=1;
+			}else{
+				currentPage=totalPage;
+			}
+		}else{
+			currentPage=totalPage;
+		}
+		send();
+	}
     function send(){
-    	var data={"degree":b,"workTime":a};
+    	var data={"degree":b,"workTime":a,"currentPage":currentPage};
    		var temp = document.createElement("form");
   		temp.action = "/RMS/resumemanage/select";
   		temp.method = "post";
@@ -89,6 +121,12 @@
   		return temp;
     }
     $(document).ready(function(){
+    	$("#select1 dd").click(function () {
+			$(this).addClass("selected1").siblings().removeClass("selected1");
+		});
+		$("#select2 dd").click(function () {
+			$(this).addClass("selected").siblings().removeClass("selected");
+		});
     	var degree=${degree};
     	var workTime=${workTime};
     	switch(degree){
@@ -134,6 +172,10 @@
     	}
     });
     
+    
+    
+    
+    
 
 </script>
 </head>
@@ -167,7 +209,7 @@
     <!-- 搜索框 -->
     <div class="search-input mar-auto">
         <form>
-            <input type="text" name="search" placeholder="关键技能/姓名/手机/邮箱/公司等" />
+            <input type="text" name="search" placeholder="关键技能" />
             <button type="submit" value="">搜索</button>
         </form>
     </div>
@@ -197,12 +239,7 @@
                     <dd><a  onclick="b4(this)" id="b4">博士及以上</a></dd>
                 </dl>
             </li>
-            <li class="select-result">
-                <dl>
-                    <dt>已选条件：</dt>
-                    <dd class="select-no">暂时没有选择过滤条件</dd>
-                </dl>
-            </li>
+           
         </ul>
     </div>
 
@@ -219,7 +256,7 @@
     
     <#if (resumeList?size >0)>
     	<div>
-    	<table class="table table-striped" style="text-align:center;">
+    	<table class="table table-striped" style="text-align:center;" border="1" id="table">
     	<thead>
     		<tr>
         		<th style="text-align:center;">姓名</th>
@@ -233,7 +270,7 @@
         		<th style="text-align:center;">操作</th>
     		</tr>
     	<thead>
-   		<tbody>
+   		<tbody id="table">
    			<#list resumeList as resume>
     		<tr>
         		<th style="text-align:center;"><a id=${resume.name}+${resume.phonenumber} onclick="details(this)">${resume.name}</a></th>
@@ -253,6 +290,12 @@
     </div>
     </#if>
     
+</div>
+<div>
+	<#if (resumeList?size > 0)>
+		<center><a id="first" onclick="paging(this)">首页</a><a id="pre" onclick="paging(this)">上一页</a><a id="next" onclick="paging(this)">下一页</a><a onclick="paging(this)" id="end">末页</a></center>
+	</#if>
+	
 </div>
 </body>
 </html>
