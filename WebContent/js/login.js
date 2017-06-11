@@ -1,18 +1,3 @@
-function loginSumbit() {
-    var loginPhone = document.getElementById('phoneNumber').value;
-    var loginPassword = document.getElementById('loginPassword').value;
-    document.getElementById('warning').innerHTML = '帐号或密码错误！';
-
-    var data={"loginPhone":loginPhone,"loginPassword":loginPassword};
-    $.ajax({
-        type:"POST",
-        url:"/RMS/login",
-        data:data,
-        dataType:"json",
-    })
-
-}
-
 function checkLoginPhone() {
 
             var loginPhone=document.getElementById('loginPhone').value;

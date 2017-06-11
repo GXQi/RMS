@@ -41,6 +41,21 @@
     width: 31%;
     height: 35px;
     margin-top: 20px;
+    
+}
+.successSpan{
+	 background-color: #2aabd2;
+    width: 19%;
+    height: 35px;
+    margin-top: 20px;
+    margin-left:41%;
+}
+.findSure{
+    background-color: #2aabd2;
+    width: 31%;
+    height: 35px;
+    margin-top: 20px;
+    margin-left:14px;
 }
 .loginSpan{
     margin-left: 45%;

@@ -30,7 +30,7 @@
         </div>
         <div >
             <span class="registerfont">获取验证码</span>
-            <label id="registerFonewarn" class="loginwarn"><span class="warn"><img src="img/error.png"></span></label>
+            <label id="registerFonewarn" class="loginwarn"><span class="warn"><img src="../images/error.png"></span></label>
         </div>
     </div>
      
@@ -47,14 +47,14 @@
             <input type="password" class="form-control" id="registerPassword" name="passWord" placeholder="密码"
                    onblur="checkRegisterpassword()">
         </div>
-        <label id="registerpasswarn" class="loginwarn"><span class="warn"><img src="img/error.png"></span></label>
+        <label id="registerpasswarn" class="loginwarn"><span class="warn"><img src="../images/error.png"></span></label>
     </div>
     <div class="form-group ">
         <div class="col-sm-4">
             <input type="password" class="form-control" id="registerPasswordAgain" placeholder="确认密码"
                    onblur="checkRegisterPasswordAgain()">
         </div>
-        <label id="registerpassAgainwarn" class="loginwarn"><span class="warn"><img src="img/error.png"></span></label>
+        <label id="registerpassAgainwarn" class="loginwarn"><span class="warn"><img src="../images/error.png"></span></label>
     </div>
 
   <button type="submit" class="loginSure">注册</button>
