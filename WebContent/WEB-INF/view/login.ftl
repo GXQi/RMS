@@ -33,7 +33,7 @@
         <label id="loginPasswarn"><span class="warn"><img src="../images/error.png"></span></label>
     </div>
 
-    <button type="submit" class="loginSure" onclick="loginSumbit()">登录</button>    
+    <button type="submit" class="loginSure">登录</button>    
     
 </form>
 <span class="loginFind"><a href="/RMS/login/findPassword">找回密码</a></span>
