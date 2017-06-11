@@ -11,8 +11,8 @@
 <body>
 <div class="loginTiele">简历管理平台</div>
 <div class="success">注册成功，请登录</div>
-<div class="loginSure">
-    <span class="successSpan"><a href="/RMS/login">登录</a></span>
+<div class="successSpan">
+    <span class="loginSpan"><a href="/RMS/login">登录</a></span>
 </div>
 </body>
 </html>
