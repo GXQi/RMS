@@ -13,6 +13,7 @@ import com.xupt.mahui.entity.Employee;
 import com.xupt.mahui.entity.Resume;
 import com.xupt.mahui.service.EmployeeManageService;
 import com.xupt.mahui.service.ResumeManageService;
+import com.xupt.mahui.util.SqlConfig;
 
 /**
  * 登录相关的Controller
@@ -42,9 +43,14 @@ public class EmployeeLoginController {
 			//HttpSession session = request.getSession();//获取http会话
 			//session.setMaxInactiveInterval(60<<7);//默认会话时间为2小时8分钟
 			//session.setAttribute("login", true);//激活会话
-			List<Resume> list=ResumeManageService.getResume("-1","0");
+			List<Resume> list=ResumeManageService.getResume("-1","0",0,SqlConfig.pageSize);
+			int count=ResumeManageService.getResumeCount("-1", "0");
 			mav.addObject("resumeList", list);
-			mav.addObject("total", list.size());
+			mav.addObject("totalPage", (count+SqlConfig.pageSize-1)/SqlConfig.pageSize);
+			mav.addObject("total", count);
+			mav.addObject("workTime", "-1");
+			mav.addObject("degree", "-1");
+			mav.addObject("currentPage", "1");
 			mav.setViewName("search");
 			return mav;//登陆成功，返回查询视图
 			//return "search";

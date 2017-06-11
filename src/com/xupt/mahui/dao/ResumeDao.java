@@ -87,9 +87,20 @@ public interface ResumeDao {
 	 * @param workTime1
 	 * @param workTime2
 	 * @param degree
+	 * @param start
+	 * @param pageSize
 	 * @return
 	 */
-	public List<ResumeBasic> selectResumeBasicByWorkTimeAndDegree(int workTime1,int workTime2,int degree);
+	public List<ResumeBasic> selectResumeBasicByWorkTimeAndDegree(int workTime1,int workTime2,int degree,int start,int pageSize);
+	
+	/**
+	 * 通过工作年限和学历获得简历的基本信息(例如3到5年)的总条数
+	 * @param workTime1
+	 * @param workTime2
+	 * @param degree
+	 * @return
+	 */
+	public int selectResumeBasicByWorkTimeAndDegreeCount(int workTime1,int workTime2,int degree);
 	
 	/**
 	 * 通过电话获得学历信息

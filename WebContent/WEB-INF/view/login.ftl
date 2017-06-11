@@ -17,19 +17,23 @@
 <div class="loginSubmit">帐号或密码错误</div>
 </#if>
 <form class="form-horizontal" role="form" method="POST" action="/RMS/login/submitLogin">
-    <div class="form-group ">
+     <div class="form-group ">
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="phoneNumber" placeholder="手机号" name="phoneNumber" onBlur="checkPhone()">
+            <input type="text" class="form-control" id="phoneNumber" placeholder="手机号" name="phoneNumber"
+                   onBlur="checkPhone()">
         </div>
+        <label id="loginNamewarn"><span class="warn"><img src="../../error.png"></span></label>
     </div>
+
     <div class="form-group">
         <div class="col-sm-4">
-            <input type="password" class="form-control" id="loginPassword"name="passWord" placeholder="密码" onBlur="checkPassword()">
+            <input type="password" class="form-control" id="loginPassword" name="passWord" placeholder="密码"
+                   onBlur="checkPassword()">
         </div>
+        <label id="loginPasswarn"><span class="warn"><img src="../../error.png"></span></label>
     </div>
-    
-        <input type="submit" value="登录" onclick="loginSumbit()">
-    
+
+    <button type="submit" class="loginSure" onclick="loginSumbit()">登录</button>    
     
 </form>
 <span class="loginFind"><a href="/RMS/login/findPassword">找回密码</a></span>

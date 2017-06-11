@@ -16,6 +16,7 @@ import com.xupt.mahui.entity.EditJson;
 import com.xupt.mahui.entity.Message;
 import com.xupt.mahui.entity.Resume;
 import com.xupt.mahui.service.ResumeManageService;
+import com.xupt.mahui.util.SqlConfig;
 
 
 /**
@@ -32,7 +33,7 @@ public class ResumeManageController {
 	}
 	/**
 	 * 查询简历 通过学历和工作年限
-	 * @param json {"degree"："0"，"workTime","0"}
+	 * @param json {"degree"："0"，"workTime":"0","currentPage":"1"}
 	 * 对于degree -1到6分别代表不限，应届毕业生，1年以下，1-3年，3-5年，5-10年，10年以上
 	 * 同理对于对于workTime -1到3分别代表不限，大专以上，本科及以上，硕士及以上，博士及以上
 	 * @return
@@ -42,14 +43,17 @@ public class ResumeManageController {
 		String[] s=json.split("&");
 		String degree=s[0].split("=")[1];
 		String workTime=s[1].split("=")[1];
+		int start=Integer.parseInt(s[2].split("=")[1])-1;
 		ModelAndView view=new ModelAndView();
-		List<Resume> list=ResumeManageService.getResume(workTime, degree);
+		List<Resume> list=ResumeManageService.getResume(workTime, degree,SqlConfig.pageSize*start,SqlConfig.pageSize);
+		int count=ResumeManageService.getResumeCount(workTime, degree);
 		view.addObject("resumeList", list);
-		view.addObject("total", list.size());
+		view.addObject("totalPage", (count+SqlConfig.pageSize-1)/SqlConfig.pageSize);
+		view.addObject("total", count);
 		view.addObject("workTime", workTime);
 		view.addObject("degree", degree);
+		view.addObject("currentPage", Integer.parseInt(s[2].split("=")[1]));
 		view.setViewName("search");
-		
 		return view;
 	}
 	/**
@@ -121,11 +125,14 @@ public class ResumeManageController {
 	@RequestMapping(value="/main")
 	public ModelAndView main(){
 		ModelAndView view=new ModelAndView();
-		List<Resume> list=ResumeManageService.getResume("-1","0");
+		List<Resume> list=ResumeManageService.getResume("-1","0",0,SqlConfig.pageSize);
+		int count=ResumeManageService.getResumeCount("-1", "0");
 		view.addObject("resumeList", list);
-		view.addObject("total", list.size());
+		view.addObject("totalPage", (count+SqlConfig.pageSize-1)/SqlConfig.pageSize);
+		view.addObject("total", count);
 		view.addObject("degree","-1");
 		view.addObject("workTime","-1");
+		view.addObject("currentPage","1");
 		view.setViewName("search");
 		return view;
 	}

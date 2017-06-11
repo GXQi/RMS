@@ -1,13 +1,27 @@
+<<<<<<< HEAD
 .loginwarn{
+=======
+
+#loginPasswarn{
+>>>>>>> 747060e6451f35faa7795112050751e62127efb3
     color: red;
     font-weight: 200;
     text-align: center;
 }
 
+<<<<<<< HEAD
 .loginSubmit{
     color: red;
     text-align: center;
 }
+=======
+#loginNamewarn{
+    color: red;
+    font-weight: 200;
+    text-align: center;
+}
+
+>>>>>>> 747060e6451f35faa7795112050751e62127efb3
 .loginTiele{
     font-size: 30px;
     font-style: inherit;
