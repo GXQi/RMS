@@ -170,9 +170,22 @@
     			break;	
     				
     	}
+    	
     });
     
-    
+    function skip(){
+    	if($("#find").val()==""){
+    		currentPage=1;
+    	}else{
+    		if($("#find").val()>totalPage){
+    			currentPage=1;;
+    		}else{
+    			currentPage=$("#find").val();
+    		}
+    	}
+    	send();
+    	
+    }
     
     
     
@@ -244,7 +257,7 @@
     </div>
 
     <div class="hr-up clear-float">
-        <div class="total-resume float-l font-size-16">共${total}份简历</div>
+        <div class="total-resume float-l font-size-16">共${total}份简历&nbsp;&nbsp;&nbsp;共${totalPage}页</div>
         <div class="new-resume float-r font-size-16"><a href="/RMS/type-in">录入新简历</a></div>
     </div>
     <hr/>
@@ -291,10 +304,16 @@
     </#if>
     
 </div>
-<div>
+<div id="paging">
 	<#if (resumeList?size > 0)>
-		<center><a id="first" onclick="paging(this)">首页</a><a id="pre" onclick="paging(this)">上一页</a><a id="next" onclick="paging(this)">下一页</a><a onclick="paging(this)" id="end">末页</a></center>
+		<center>
+			<a id="first" onclick="paging(this)">首页</a><a id="pre" onclick="paging(this)">上一页</a><a id="next" onclick="paging(this)">下一页</a><a onclick="paging(this)" id="end">末页</a>
+			<input type="text" id="find" placeholder="页码" />
+			<a onclick="skip()">跳转</a>
+		</center>
 	</#if>
+	
+	
 	
 </div>
 </body>

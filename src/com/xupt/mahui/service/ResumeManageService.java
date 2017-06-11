@@ -313,4 +313,45 @@ public class ResumeManageService {
 		}
 		return count;
 	}
+	
+	/**
+	 * 通过工作技能查询简历信息
+	 * @param skill
+	 * @param start
+	 * @param pageSize
+	 * @return
+	 */
+	public List<Resume> getResumeBySkill(String skill,int start,int pageSize){
+		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
+		SqlSession session=sessionFactory.openSession();
+		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
+		List<ResumeBasic> list=resumeDao.selectResumeBySkill("%"+skill+"%",start,pageSize);
+		List<Resume> resumeList=new ArrayList<>();
+		for(int i=0;i<list.size();i++){
+			List<String> degrees=resumeDao.selectDegree(list.get(i).getPhonenumber());
+			List<String> companys=resumeDao.selectCompany(list.get(i).getPhonenumber());
+			Resume resume=new Resume();
+			resume.setName(list.get(i).getName());
+			resume.setPhonenumber(list.get(i).getPhonenumber());
+			resume.setSex(list.get(i).getSex());
+			resume.setSkill(list.get(i).getSkill());
+			resume.setWorkTime(list.get(i).getWorkTime());
+			resume.setCompany(companys.get(0));
+			resume.setEmail(list.get(i).getEmail());
+			resume.setDegree(getHighDegree(degrees));
+			resumeList.add(resume);
+		}
+		return resumeList;
+	}
+	/**
+	 * 通过工作技能获得条数
+	 * @param skill
+	 * @return
+	 */
+	public int getResumeCountBySkill(String skill){
+		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
+		SqlSession session=sessionFactory.openSession();
+		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
+		return resumeDao.selectResumeCountBySkill(skill);
+	}
 }

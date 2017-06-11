@@ -116,5 +116,21 @@ public interface ResumeDao {
 	 */
 	public List<String> selectCompany(String phonenumber);
 	
+	/**
+	 * 通过工作技能简历信息
+	 * @param skill
+	 * @param start
+	 * @param pageSize
+	 * @return
+	 */
+	public List<ResumeBasic> selectResumeBySkill(String skill,int start,int pageSize) ;
+	
+	/**
+	 * 通过工作技能简历信息的条数
+	 * @param skill
+	 * @return
+	 */
+	public int selectResumeCountBySkill(String skill) ;
+	
 	
 }
