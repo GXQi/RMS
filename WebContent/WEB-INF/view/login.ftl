@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link href="/RMS/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/RMS/css/login.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
+
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/RMS/js/login.js"></script>
     <title>login</title>
@@ -22,7 +22,7 @@
             <input type="text" class="form-control" id="phoneNumber" placeholder="手机号" name="phoneNumber"
                    onBlur="checkPhone()">
         </div>
-        <label id="loginNamewarn"><span class="warn"><img src="../images/error.png"></span></label>
+        <label id="loginNamewarn"><span class="warn"><img src="/RMS/images/error.png"></span></label>
     </div>
 
     <div class="form-group">
@@ -30,7 +30,7 @@
             <input type="password" class="form-control" id="loginPassword" name="passWord" placeholder="密码"
                    onBlur="checkPassword()">
         </div>
-        <label id="loginPasswarn"><span class="warn"><img src="../images/error.png"></span></label>
+        <label id="loginPasswarn"><span class="warn"><img src="/RMS/images/error.png"></span></label>
     </div>
 
     <button type="submit" class="loginSure">登录</button>    
