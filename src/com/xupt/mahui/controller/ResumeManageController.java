@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.xupt.mahui.entity.EditJson;
 import com.xupt.mahui.entity.Message;
 import com.xupt.mahui.entity.Resume;
 import com.xupt.mahui.service.ResumeManageService;
@@ -78,7 +77,7 @@ public class ResumeManageController {
 		return gson.toJson(message);
 	}
 	/**
-	 * 通过电话查询简历的具体信息
+	 * 通过电话查询简历的具体信息(详情)
 	 * @param phonenumber
 	 * @return
 	 */
@@ -100,23 +99,7 @@ public class ResumeManageController {
 		return view;
 	}
 	
-	/**
-	 * 通过电话查询简历的具体信息
-	 * @param phonenumber
-	 * @return 
-	 * 
-	 */
-	@RequestMapping(value="/resumemanage/edit",produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public String edit(@RequestParam String phonenumber){
-		EditJson editJson=new EditJson();
-		editJson.setResumeBasic(ResumeManageService.getResumeBasic(phonenumber));
-		editJson.setEducList(ResumeManageService.getEductionExperiences(phonenumber));
-		editJson.setProList(ResumeManageService.getProjectExperiences(phonenumber));
-		editJson.setWorkList(ResumeManageService.getWorkExperiences(phonenumber));
-		editJson.setEducList(ResumeManageService.getEductionExperiences(phonenumber));
-		return new Gson().toJson(editJson);
-	}
+
 	 /**
 	  * 返回主界面
 	  * 默认查询条件是不限
@@ -134,6 +117,22 @@ public class ResumeManageController {
 		view.addObject("workTime","-1");
 		view.addObject("currentPage","1");
 		view.setViewName("search");
+		return view;
+	}
+	
+	
+	/**
+	 * 编辑简历界面
+	 * @return
+	 */
+	@RequestMapping("/edit")
+	public ModelAndView edit(@RequestParam String phonenumber){
+		ModelAndView view=new ModelAndView();
+		view.addObject("resumeBasic", ResumeManageService.getResumeBasic(phonenumber));
+		view.addObject("projectList", ResumeManageService.getProjectExperiences(phonenumber));
+		view.addObject("workList", ResumeManageService.getWorkExperiences(phonenumber));
+		view.addObject("eductionList", ResumeManageService.getEductionExperiences(phonenumber));
+		view.setViewName("edit");
 		return view;
 	}
 	
