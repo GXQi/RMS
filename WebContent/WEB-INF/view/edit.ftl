@@ -78,6 +78,9 @@
         <div id="content">
         	 <#if (workList?size > 0)>
               <#list workList as work>
+              <#if (work_index > 0)>
+                		<div><hr/><a class="delete" >x</a>
+                	</#if>
             <div class="basic">
                
                 	<table width="700" height="250">
@@ -119,6 +122,9 @@
         <div id="project">
          <#if (projectList?size >0)>
                 <#list projectList as project>
+                <#if (project_index > 0)>
+                		<div><hr/><a class="delete" >x</a>
+                	</#if>
             <div class="basic">
                
                 	<table width="700" height="250">
@@ -160,6 +166,9 @@
         <div id="edu">
         <#if (eductionList?size >0)>
                 	<#list eductionList as eduction>
+                	<#if (eduction_index > 0)>
+                		<div><hr/><a class="delete" >x</a>
+                	</#if>
             <div class="basic">
                 
                 	<table width="700" height="100">
