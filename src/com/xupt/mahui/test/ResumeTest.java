@@ -17,7 +17,7 @@ public class ResumeTest {
 		map.put("workExperienceList", ResumeManageService.getWorkExperiences(phonenumber));
 		map.put("projectExperienceList", ResumeManageService.getProjectExperiences(phonenumber));
 		map.put("eductionExperienceList", ResumeManageService.getEductionExperiences(phonenumber));
-		String html=HtmlGenerator.generate("test.ftl", map);
+		String html=HtmlGenerator.generate("download.ftl", map);
 		File file=new File("b.pdf");
 		PdfGenerator.generate(html, new FileOutputStream(file));
 	}
