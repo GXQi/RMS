@@ -74,6 +74,12 @@ public class ResumeManageService {
 	public static boolean insert(String data){
 		System.out.println(data);
 		JSONObject jsonObject=JSONObject.fromObject(data);
+		
+		String prephone = jsonObject.getString("prephone");
+		String flag = jsonObject.getString("flag");
+		if(flag.equals("1"))
+			ResumeClearService.ClearAllDataFromPhoneNumber(prephone);
+		
 		JSONObject basic=jsonObject.getJSONObject("basic");
 		JSONObject work=jsonObject.getJSONObject("work");
 		JSONObject project=jsonObject.getJSONObject("project");

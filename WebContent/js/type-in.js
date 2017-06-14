@@ -59,7 +59,7 @@
         }
 
         function submit(tag) {
-            var data = {"basic": {}, "work": {}, "project": {}, "edu": {}};
+            var data = {"flag":0,"prephone":{},"basic": {}, "work": {}, "project": {}, "edu": {}};
             var nodes2 = $(".text");
             var nodes3 = $(".text1");
             var nodes4 = $(".text2");
@@ -69,7 +69,8 @@
             const email = document.getElementById("mail").value;
             const kill = document.getElementById("key-kill").value;
             const work = document.getElementById("workExperience").value;
-
+            
+            data.prephone = document.getElementById("phone").value;
             data.basic[0] = name;
             data.basic[1] = phone;
             data.basic[2] = $("input[name='sex']:checked").val();
@@ -92,13 +93,13 @@
             var json = JSON.stringify(data);
             $.ajax({
                 type: "POST",
-                url: "/RMS//resumemanage/insert",
+                url: "/RMS/resumemanage/insert",
                 contentType: "application/json; charset=utf-8",
                 data: json,
                 dataType: "json",
                 success: function (result) {
                     if (result.message === "success") {
-                       window.location.href= "/RMS/main";
+                       window.location.href = "/RMS/main";
                     }
 
                     else if(result.message === "error"){
@@ -141,5 +142,5 @@
         }
 
         function logout() {
-            window.location.href= "/RMS/login"
+            window.location.href = "/RMS/login";
         }
