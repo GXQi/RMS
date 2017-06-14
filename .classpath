@@ -36,5 +36,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/mahui/Downloads/lib/core-renderer.jar"/>
+	<classpathentry kind="lib" path="/Users/mahui/Downloads/lib/iText-2.0.8.jar"/>
+	<classpathentry kind="lib" path="/Users/mahui/Downloads/lib/iTextAsian.jar"/>
+	<classpathentry kind="lib" path="/Users/mahui/Downloads/lib/iTextAsianCmaps.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
