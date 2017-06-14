@@ -45,10 +45,11 @@
             }
 
             var json = JSON.stringify(data);
+            console.log(json);
             
              $.ajax({
                 type: "POST",
-                url: "/RMS/resumemange/inert",
+                url: "/RMS/resumemanage/insert",
                 contentType: "application/json; charset=utf-8",
                 data: json,
                 dataType: "json",
@@ -94,10 +95,10 @@
                 <table width="700" height="150">
                     <tr>
                         <td class="td1">姓名</td>
-                        <td class="td2"><input type="text" required class="text" id="name" value=${resumeBasic.name} /></td>
+                        <td class="td2"><input type="text" required id="name" value=${resumeBasic.name} /></td>
                         <td class="td3"></td>
                         <td class="td4">电话</td>
-                        <td class="td5"><input type="text" required class="text" id="phone" onblur="versify()" value=${resumeBasic.phonenumber} /></td>
+                        <td class="td5"><input type="text" required id="phone" onblur="versify()" value=${resumeBasic.phonenumber} /></td>
                     </tr>
                     <tr>
                         <td class="td1">性别</td>
@@ -115,14 +116,14 @@
                         </#if>
                         <td class="td3"></td>
                         <td class="td4">邮箱</td>
-                        <td class="td5"><input type="text" required class="text" onblur="check()" id="email" value=${resumeBasic.email} /></td>
+                        <td class="td5"><input type="text" required onblur="check()" id="email" value=${resumeBasic.email} /></td>
                     </tr>
                     <tr>
                         <td class="td1">关键技能</td>
-                        <td class="td2"><input type="text" required class="text" id="skill" value=${resumeBasic.skill} /></td>
+                        <td class="td2"><input type="text" required id="skill" value=${resumeBasic.skill} /></td>
                         <td class="td3"></td>
                         <td class="td4">工作年限</td>
-                        <td class="td5"><input type="text" required class="text" id="workTime" value=${resumeBasic.workTime} /></td>
+                        <td class="td5"><input type="text" required id="workTime" value=${resumeBasic.workTime} /></td>
                     </tr>
                 </table>
             </div>
