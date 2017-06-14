@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.xupt.mahui.entity.EditJson;
 import com.xupt.mahui.entity.Message;
 import com.xupt.mahui.entity.Resume;
 import com.xupt.mahui.service.ResumeManageService;
+import com.xupt.mahui.util.SqlConfig;
 
-import net.sf.json.JSONObject;
 
 /**
  * 简历管理相关的Controller
@@ -33,19 +32,27 @@ public class ResumeManageController {
 	}
 	/**
 	 * 查询简历 通过学历和工作年限
-	 * @param json {"degree"："0"，"workTime","0"}
+	 * @param json {"degree"："0"，"workTime":"0","currentPage":"1"}
 	 * 对于degree -1到6分别代表不限，应届毕业生，1年以下，1-3年，3-5年，5-10年，10年以上
 	 * 同理对于对于workTime -1到3分别代表不限，大专以上，本科及以上，硕士及以上，博士及以上
 	 * @return
 	 */
 	@RequestMapping(value="/resumemanage/select",method=RequestMethod.POST ,produces = "application/json; charset=utf-8")
 	public ModelAndView select(@RequestBody String json){
+		String[] s=json.split("&");
+		String degree=s[0].split("=")[1];
+		String workTime=s[1].split("=")[1];
+		int start=Integer.parseInt(s[2].split("=")[1])-1;
 		ModelAndView view=new ModelAndView();
-		JSONObject jsonObject=JSONObject.fromObject(json);
-		List<Resume> list=ResumeManageService.getResume(jsonObject.getString("workTime"), jsonObject.getString("degree"));
+		List<Resume> list=ResumeManageService.getResume(workTime, degree,SqlConfig.pageSize*start,SqlConfig.pageSize);
+		int count=ResumeManageService.getResumeCount(workTime, degree);
 		view.addObject("resumeList", list);
-		view.addObject("total", list.size());
-		view.setViewName("");
+		view.addObject("totalPage", (count+SqlConfig.pageSize-1)/SqlConfig.pageSize);
+		view.addObject("total", count);
+		view.addObject("workTime", workTime);
+		view.addObject("degree", degree);
+		view.addObject("currentPage", Integer.parseInt(s[2].split("=")[1]));
+		view.setViewName("search");
 		return view;
 	}
 	/**
@@ -70,7 +77,7 @@ public class ResumeManageController {
 		return gson.toJson(message);
 	}
 	/**
-	 * 通过电话查询简历的具体信息
+	 * 通过电话查询简历的具体信息(详情)
 	 * @param phonenumber
 	 * @return
 	 */
@@ -92,25 +99,42 @@ public class ResumeManageController {
 		return view;
 	}
 	
-	/**
-	 * 通过电话查询简历的具体信息
-	 * @param phonenumber
-	 * @return 
-	 * 
-	 */
-	@RequestMapping(value="/resumemanage/edit",produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public String edit(@RequestParam String phonenumber){
-		EditJson editJson=new EditJson();
-		editJson.setResumeBasic(ResumeManageService.getResumeBasic(phonenumber));
-		editJson.setEducList(ResumeManageService.getEductionExperiences(phonenumber));
-		editJson.setProList(ResumeManageService.getProjectExperiences(phonenumber));
-		editJson.setWorkList(ResumeManageService.getWorkExperiences(phonenumber));
-		editJson.setEducList(ResumeManageService.getEductionExperiences(phonenumber));
-		return new Gson().toJson(editJson);
+
+	 /**
+	  * 返回主界面
+	  * 默认查询条件是不限
+	  * @return
+	  */
+	@RequestMapping(value="/main")
+	public ModelAndView main(){
+		ModelAndView view=new ModelAndView();
+		List<Resume> list=ResumeManageService.getResume("-1","0",0,SqlConfig.pageSize);
+		int count=ResumeManageService.getResumeCount("-1", "0");
+		view.addObject("resumeList", list);
+		view.addObject("totalPage", (count+SqlConfig.pageSize-1)/SqlConfig.pageSize);
+		view.addObject("total", count);
+		view.addObject("degree","-1");
+		view.addObject("workTime","-1");
+		view.addObject("currentPage","1");
+		view.setViewName("search");
+		return view;
 	}
 	
 	
+	/**
+	 * 编辑简历界面
+	 * @return
+	 */
+	@RequestMapping("/edit")
+	public ModelAndView edit(@RequestParam String phonenumber){
+		ModelAndView view=new ModelAndView();
+		view.addObject("resumeBasic", ResumeManageService.getResumeBasic(phonenumber));
+		view.addObject("projectList", ResumeManageService.getProjectExperiences(phonenumber));
+		view.addObject("workList", ResumeManageService.getWorkExperiences(phonenumber));
+		view.addObject("eductionList", ResumeManageService.getEductionExperiences(phonenumber));
+		view.setViewName("edit");
+		return view;
+	}
 	
 
 	

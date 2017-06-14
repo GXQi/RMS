@@ -2,7 +2,6 @@ package com.xupt.mahui.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 /**
  * 页面映射
  * @author mahui
@@ -10,22 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class PageMapping {
-	/**
-	 * 编辑简历界面
-	 * @return
-	 */
-	@RequestMapping("/edit")
-	public String edit(@RequestParam String phonenumber){
-		return "edit";
-	}
-	/**
-	 * 录入简历界面
-	 * @return
-	 */
-	@RequestMapping("/type-in")
-	public String typeIn(){
-		return "type-in";
-	}
 	
 	/**
 	 * 登录界面
@@ -43,13 +26,13 @@ public class PageMapping {
 	public String register(){
 		return "register";
 	}
-	
 	/**
-	 * 主界面
+	 * 录入界面
 	 * @return
 	 */
-	@RequestMapping("/main")
-	public String main(){
-		return "search";
+	@RequestMapping("/type-in")
+	public String typeIn(){
+		return "type-in";
 	}
+	
 }

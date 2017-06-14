@@ -59,7 +59,7 @@
         }
 
         function submit(tag) {
-            var data = {"basic": {}, "work": {}, "project": {}, "edu": {}};
+            var data = {"prephone":{},"basic": {}, "work": {}, "project": {}, "edu": {}};
             var nodes2 = $(".text");
             var nodes3 = $(".text1");
             var nodes4 = $(".text2");
@@ -69,7 +69,8 @@
             const email = document.getElementById("mail").value;
             const kill = document.getElementById("key-kill").value;
             const work = document.getElementById("workExperience").value;
-
+            
+            data.prephone = document.getElementById("phone").value;
             data.basic[0] = name;
             data.basic[1] = phone;
             data.basic[2] = $("input[name='sex']:checked").val();
