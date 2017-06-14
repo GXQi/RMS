@@ -76,7 +76,9 @@ public class ResumeManageService {
 		JSONObject jsonObject=JSONObject.fromObject(data);
 		
 		String prephone = jsonObject.getString("prephone");
-		ResumeClearService.ClearAllDataFromPhoneNumber(prephone);
+		String flag = jsonObject.getString("flag");
+		if(flag.equals("1"))
+			ResumeClearService.ClearAllDataFromPhoneNumber(prephone);
 		
 		JSONObject basic=jsonObject.getJSONObject("basic");
 		JSONObject work=jsonObject.getJSONObject("work");

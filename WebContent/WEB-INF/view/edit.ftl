@@ -11,7 +11,7 @@
     <title>Title</title>
     <script>
     	function submits(tag){
-    		var data = {"prephone":{},"basic": {}, "work": {}, "project": {}, "edu": {}};
+    		var data = {"flag":1,"prephone":{},"basic": {}, "work": {}, "project": {}, "edu": {}};
     	
     		const prephone = ${resumeBasic.phonenumber};
     		const name = document.getElementById("name").value;
@@ -73,7 +73,7 @@
 <body>
 <div class="header">
     <div class="title">
-        简历管理平台
+       <span><a onclick="toMain()">简历管理平台</a></span>
     </div>
     <div class="title repo">
         简历库

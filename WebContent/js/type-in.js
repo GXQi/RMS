@@ -59,7 +59,7 @@
         }
 
         function submit(tag) {
-            var data = {"prephone":{},"basic": {}, "work": {}, "project": {}, "edu": {}};
+            var data = {"flag":0,"prephone":{},"basic": {}, "work": {}, "project": {}, "edu": {}};
             var nodes2 = $(".text");
             var nodes3 = $(".text1");
             var nodes4 = $(".text2");
