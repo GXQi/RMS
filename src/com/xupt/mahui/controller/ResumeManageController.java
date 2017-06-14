@@ -160,11 +160,34 @@ public class ResumeManageController {
              * ***/
             return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),
                     responseHeaders, HttpStatus.CREATED);
-        }catch (IOException e)
-        {
+        }catch (IOException e){
             e.printStackTrace();
+        }finally{
+        	if(file.exists()){
+        		file.delete();
+        	}
         }
         return null;
     }
+    
+    /**
+	 * 编辑界面
+	 * @param phone
+	 * @return
+	 */
+	@RequestMapping(value="/main")
+	public ModelAndView main(){
+		ModelAndView view=new ModelAndView();
+		List<Resume> list=ResumeManageService.getResume("-1","0",0,SqlConfig.pageSize);
+		int count=ResumeManageService.getResumeCount("-1", "0");
+		view.addObject("resumeList", list);
+		view.addObject("totalPage", (count+SqlConfig.pageSize-1)/SqlConfig.pageSize);
+		view.addObject("total", count);
+		view.addObject("workTime", "-1");
+		view.addObject("degree", "-1");
+		view.addObject("currentPage", "1");
+		view.setViewName("search");
+		return view;
+	}
 	
 }

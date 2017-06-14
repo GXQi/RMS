@@ -26,5 +26,13 @@ public class PageMapping {
 	public String register(){
 		return "register";
 	}
+	/**
+	 * 录入界面
+	 * @return
+	 */
+	@RequestMapping("/type-in")
+	public String typeIn(){
+		return "type-in";
+	}
 	
 }
