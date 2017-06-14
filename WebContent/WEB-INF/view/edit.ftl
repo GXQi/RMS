@@ -49,7 +49,7 @@
             
              $.ajax({
                 type: "POST",
-                url: "/RMS/resumemanage/insert",
+                url: "/RMS/insert",
                 contentType: "application/json; charset=utf-8",
                 data: json,
                 dataType: "json",

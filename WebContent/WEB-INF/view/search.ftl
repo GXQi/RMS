@@ -107,7 +107,7 @@
     function send(){
     	var data={"degree":b,"workTime":a,"currentPage":currentPage};
    		var temp = document.createElement("form");
-  		temp.action = "/RMS/resumemanage/select";
+  		temp.action = "/RMS/select";
   		temp.method = "post";
   		temp.style.display = "none";
   		for (var x in data) {
@@ -186,6 +186,42 @@
     	send();
     	
     }
+    
+    function details(e){
+		var s=e.id.split("+")[1];
+		var data={"phone":s};
+		var temp = document.createElement("form");
+		temp.action = "/RMS/show";
+		temp.method = "post";
+		temp.style.display = "none";
+		for (var x in data) {
+			var opt = document.createElement("textarea");
+			opt.name = x;
+			opt.value = data[x];
+			temp.appendChild(opt);
+		}
+		document.body.appendChild(temp);
+		temp.submit();
+		return temp;
+	}
+	
+	function edit(e){
+		var data={"phone":e.id};
+		var temp = document.createElement("form");
+		temp.action = "/RMS/edit";
+		temp.method = "post";
+		temp.style.display = "none";
+		for (var x in data) {
+			var opt = document.createElement("textarea");
+			opt.name = x;
+			opt.value = data[x];
+			temp.appendChild(opt);
+		}
+		document.body.appendChild(temp);
+		temp.submit();
+		return temp;
+	}
+	
     
     
     

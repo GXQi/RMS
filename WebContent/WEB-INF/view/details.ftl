@@ -9,6 +9,26 @@
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/RMS/js/details.js"></script>
+    <script type="text/javascript">
+    	function post(){
+			//获取电话
+			var phonenumber=$("#phonenumber").text();
+			var data={"phone":phonenumber};
+			var temp = document.createElement("form");
+			temp.action = "/RMS/edit";
+			temp.method = "post";
+			temp.style.display = "none";
+			for (var x in data) {
+				var opt = document.createElement("textarea");
+				opt.name = x;
+				opt.value = data[x];
+				temp.appendChild(opt);
+			}
+			document.body.appendChild(temp);
+			temp.submit();
+			return temp;
+		};
+    </script>
 </head>
 <body>
 <!-- 导航栏 -->
@@ -35,12 +55,13 @@
         </div>
     </nav>
 </div>
-
+<div class="edit"><a onclick="post()">编辑</a>&nbsp;<a onclick="downloadResume()">导出</a></div>
 <!-- 主体部分，即简历查看页面的显示 -->
 <div class="details-look mar-auto">
+	
     <!-- 基本信息 -->
     <div class="info-base">
-        <p class="base-name">${resumeBasic.name}</p><div class="edit"><a onclick="post()">编辑</a></div>
+        <p class="base-name">${resumeBasic.name}</p>
         <ul class="clear-float">
         	<li class="float-l"><img src="/RMS/images/img_sex.png"> ${resumeBasic.sex}</li>
             <li class="float-l"><img src="/RMS/images/img_skill.png"> ${resumeBasic.skill}</li>
@@ -64,7 +85,7 @@
     <div class="info-work clear-float">
         <div class="work-title float-l"><span class="span-style font-size-16">工作经历</span></div>
         <div class="work-content float-l">
-          	<#list  workExperienceList as workExperience>
+          	<#list workExperienceList as workExperience>
           		<ul class="clear-float font-size-16">
                 	<li class="float-l"><img src="/RMS/images/img_name.png"> ${workExperience.company}</li>
                 	<li class="float-r"><img src="/RMS/images/img_workTime.png"> ${workExperience.workTimeStart}至${workExperience.workTimeEnd}</li>

@@ -1,8 +1,19 @@
 package com.xupt.mahui.controller;
 
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+
+import org.apache.commons.io.FileUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +26,8 @@ import com.google.gson.Gson;
 import com.xupt.mahui.entity.Message;
 import com.xupt.mahui.entity.Resume;
 import com.xupt.mahui.service.ResumeManageService;
+import com.xupt.mahui.util.HtmlGenerator;
+import com.xupt.mahui.util.PdfGenerator;
 import com.xupt.mahui.util.SqlConfig;
 
 
@@ -25,7 +38,7 @@ import com.xupt.mahui.util.SqlConfig;
  */
 @Controller
 public class ResumeManageController {
-	@RequestMapping("/resumemanage/search")
+	@RequestMapping("/search")
 	public ModelAndView serch(){
 		ModelAndView view=new ModelAndView();
 		return view;
@@ -37,7 +50,7 @@ public class ResumeManageController {
 	 * 同理对于对于workTime -1到3分别代表不限，大专以上，本科及以上，硕士及以上，博士及以上
 	 * @return
 	 */
-	@RequestMapping(value="/resumemanage/select",method=RequestMethod.POST ,produces = "application/json; charset=utf-8")
+	@RequestMapping(value="/select",method=RequestMethod.POST ,produces = "application/json; charset=utf-8")
 	public ModelAndView select(@RequestBody String json){
 		String[] s=json.split("&");
 		String degree=s[0].split("=")[1];
@@ -60,7 +73,7 @@ public class ResumeManageController {
 	 * @param json {"basic":{},"work":{},"edu":{},"project":{}}
 	 * @return
 	 */
-	@RequestMapping(value="/resumemanage/insert" ,method = RequestMethod.POST)
+	@RequestMapping(value="/insert" ,method = RequestMethod.POST)
 	@ResponseBody
 	public String insert(@RequestBody String json){
 		/**
@@ -78,11 +91,12 @@ public class ResumeManageController {
 	}
 	/**
 	 * 通过电话查询简历的具体信息(详情)
-	 * @param phonenumber
+	 * @param phone
 	 * @return
 	 */
-	@RequestMapping("/resumemanage/show")
-	public ModelAndView show(@RequestParam String phonenumber){
+	@RequestMapping(value="/show",method = RequestMethod.POST)
+	public ModelAndView show(@RequestBody String phone){
+		String phonenumber=phone.split("=")[1];
 		ModelAndView view=new ModelAndView();
 		/**
 		 * 返回resumeBasic 基本对象
@@ -122,11 +136,13 @@ public class ResumeManageController {
 	
 	
 	/**
-	 * 编辑简历界面
+	 * 编辑界面
+	 * @param phone
 	 * @return
 	 */
-	@RequestMapping("/edit")
-	public ModelAndView edit(@RequestParam String phonenumber){
+	@RequestMapping(value="/edit",method = RequestMethod.POST)
+	public ModelAndView edit(@RequestBody String phone){
+		String phonenumber=phone.split("=")[1];
 		ModelAndView view=new ModelAndView();
 		view.addObject("resumeBasic", ResumeManageService.getResumeBasic(phonenumber));
 		view.addObject("projectList", ResumeManageService.getProjectExperiences(phonenumber));
@@ -135,7 +151,42 @@ public class ResumeManageController {
 		view.setViewName("edit");
 		return view;
 	}
-	
-
+	/**
+	 * 简历下载
+	 * @return
+	 * @throws Exception 
+	 * @throws IOException
+	 */
+	/***
+     * 实现文件下载
+	 * @throws Exception 
+     * ***/
+    @RequestMapping("/download")
+    public ResponseEntity<byte[]> download(@RequestParam String phonenumber) throws Exception {
+    	System.out.println("执行le");
+    	String downloadFileName = new String("简历附件".getBytes("UTF-8"),"ISO-8859-1");
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        responseHeaders.setContentDispositionFormData("attachment", downloadFileName);
+        Map<String,Object> map=new HashMap<String, Object>();
+		map.put("resumeBasic", ResumeManageService.getResumeBasic(phonenumber));
+		map.put("workExperienceList", ResumeManageService.getWorkExperiences(phonenumber));
+		map.put("projectExperienceList", ResumeManageService.getProjectExperiences(phonenumber));
+		map.put("eductionExperienceList", ResumeManageService.getEductionExperiences(phonenumber));
+		String html=HtmlGenerator.generate("download.ftl", map);
+		File file=new File("简历附件.pdf");
+		PdfGenerator.generate(html, new FileOutputStream(file));
+        try{
+            /**
+             * arg1:需要响应到客户端的数据 arg2:设置本次请求的响应头 arg3:响应到客户端的状态码
+             * ***/
+            return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),
+                    responseHeaders, HttpStatus.CREATED);
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
 	
 }
