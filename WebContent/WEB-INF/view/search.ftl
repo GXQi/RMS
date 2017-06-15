@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="/RMS/css/base.css">
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/RMS/js/select.js"></script>
     <style>
    .selected{
     color:#ffffff;

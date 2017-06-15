@@ -68,6 +68,26 @@
                 }
             });
     	}
+    	function upload(){
+    		var formData=new FormData($('#uploadForm')[0]); 
+    		const name=document.getElementById("name").value;
+    		formData.append("name",name);
+    		$.ajax({
+    			url: '/RMS/upload',
+    			type: 'POST',
+    			cache: false,
+    			data: formData,
+    			processData: false,
+    			contentType: false
+				}).done(function(res) {
+					if(res=="true"){
+						alert("上传成功");
+					}else{
+						alert("上传失败");
+					}
+				}).fail(function(res) {});
+    	}
+    
     </script>
 </head>
 <body>
@@ -83,9 +103,11 @@
     </nav>
 </div>
 <div class="content">
-    <div class="putin">
-        录入新简历
-    </div>
+   		<form id="uploadForm" enctype="multipart/form-data" class="username" >
+    		<input id="file" type="file" name="file" class="title"/>
+    		<br>
+    		<button onclick="upload()" type="button">上传简历附件</button>
+		</form>
     <hr/>
     <div>
         <div class="label">
