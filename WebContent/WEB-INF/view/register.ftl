@@ -8,7 +8,7 @@
     <script type="text/javascript" src="/RMS/js/login.js"></script>
     <title>sign</title>
 </head>
-<body class="signBody">
+<body onload="creatCode()">
 <div class="loginTiele">简历管理平台</div>
 <br>
 <#if warnEmployee?exists>
@@ -22,17 +22,23 @@
          <label id="registerNumberwarn" class="loginwarn"><span class="warn"><img src="/RMS/images/error.png"></span></label>
     </div>   
     
-       <div class="form-group">
-        <div class="col-sm-2">
+      <div class="form-group">
+        <div class="col-sm-4">
             <input type="text" class="form-control" id="registerFont" placeholder="验证码"
                    onblur="checkRegisterFont()">
         </div>
-        <div >
-            <span class="registerfont">获取验证码</span>
-            <label id="registerFonewarn" class="loginwarn"><span class="warn"><img src="/RMS/images/error.png"></span></label>
-        </div>
+        <!--<span class="registerfont">获取验证码</span>-->
+        <label id="registerFonewarn" class="loginwarn"><span class="warn"><img src="/RMS/images/error.png"></span></label>
     </div>
-     
+
+    <div>
+        <!--<div class="col-sm-4">-->
+        <span class="code" id="checkCode" onclick="creatCode()" style="margin-left:60px"></span>
+
+        <!--</div>-->
+        <a href="#" onclick="creatCode()" class="changeFont" style="margin-left:30px">看不清换一张</a>
+    </div>
+      
     <div class="form-group ">
         <div class="col-sm-4">
             <input type="text" class="form-control" id="registerName" name="nickName" placeholder="昵称"
