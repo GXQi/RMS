@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import com.xupt.mahui.dao.ResumeDao;
 import com.xupt.mahui.entity.EductionExperience;
 import com.xupt.mahui.entity.ProjectExperience;
@@ -28,10 +27,12 @@ public class ResumeManageService {
 	 * @return 基本信息
 	 */
 	public static ResumeBasic getResumeBasic(String phonenumber){
-		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
-		SqlSession session=sessionFactory.openSession();
+		SqlSession session=SqlSessionFactoryUtil.getSqlSession();
 		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
-		return resumeDao.selectResume(phonenumber);	
+		ResumeBasic list=resumeDao.selectResume(phonenumber);	
+		session.commit();
+		session.close();
+		return list;
 	}
 	/**
 	 * 通过phonenumber查询工作经历
@@ -39,10 +40,12 @@ public class ResumeManageService {
 	 * @return 工作经历集合
 	 */
 	public static List<WorkExperience> getWorkExperiences(String phonenumber){
-		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
-		SqlSession session=sessionFactory.openSession();
+		SqlSession session=SqlSessionFactoryUtil.getSqlSession();
 		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
-		return resumeDao.selectWorkExperience(phonenumber);
+		List<WorkExperience> list=resumeDao.selectWorkExperience(phonenumber);
+		session.commit();
+		session.close();
+		return list;
 	}
 	/**
 	 * 通过phonenumber查询项目经历
@@ -50,10 +53,12 @@ public class ResumeManageService {
 	 * @return 项目经历集合
 	 */
 	public static List<ProjectExperience> getProjectExperiences(String phonenumber){
-		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
-		SqlSession session=sessionFactory.openSession();
+		SqlSession session=SqlSessionFactoryUtil.getSqlSession();
 		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
-		return resumeDao.selectProjectExperience(phonenumber);
+		List<ProjectExperience> list=resumeDao.selectProjectExperience(phonenumber);
+		session.commit();
+		session.close();
+		return list;
 	}
 	/**
 	 * 通过phonenumber查询教育经历经历
@@ -61,10 +66,12 @@ public class ResumeManageService {
 	 * @return 教育经历集合
 	 */
 	public static List<EductionExperience> getEductionExperiences(String phonenumber){
-		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
-		SqlSession session=sessionFactory.openSession();
+		SqlSession session=SqlSessionFactoryUtil.getSqlSession();
 		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
-		return resumeDao.selectEductionExperience(phonenumber);
+		List<EductionExperience> list= resumeDao.selectEductionExperience(phonenumber);
+		session.commit();	
+		session.close();
+		return list;
 	}
 	/**
 	 * 向数据库添加简历信息
@@ -79,18 +86,16 @@ public class ResumeManageService {
 		JSONObject edu=jsonObject.getJSONObject("edu");
 		String prephone = jsonObject.getString("prephone");
 		String flag = jsonObject.getString("flag");
-		//String path=null;
-		if(flag.equals("1")){
-			//说明改变电话号码了
-			//path=ResumeManageService.getResumePath(prephone);
-			ResumeClearService.ClearAllDataFromPhoneNumber(prephone);
-		}
+		String path=null;
+		String phoenumber=null;
+		System.out.println(data);
 		/**
 		 * 解析建立基本信息并封装成对象
 		 */
 		ResumeBasic resumeBasic=new ResumeBasic();
 		resumeBasic.setName(basic.getString("0"));
-		resumeBasic.setPhonenumber(basic.getString("1"));
+		phoenumber=basic.getString("1");
+		resumeBasic.setPhonenumber(phoenumber);
 		resumeBasic.setSex(basic.getString("2"));
 		resumeBasic.setEmail(basic.getString("3"));
 		resumeBasic.setSkill(basic.getString("4"));
@@ -142,20 +147,20 @@ public class ResumeManageService {
 			eductionExperience.setPhonenumber(resumeBasic.getPhonenumber());
 			eduList.add(eductionExperience);
 		}
+		if(flag.equals("1")){
+			//说明改变电话号码了
+			path=ResumeManageService.getResumePath(prephone);
+			if(path!=null)
+				ResumeManageService.deleteResumePath(prephone);
+			ResumeClearService.ClearAllDataFromPhoneNumber(prephone);
+		}
 		/**
 		 * 将数据添加到数据库
 		 */
+		SqlSession session=SqlSessionFactoryUtil.getSqlSession();
 		try {
-			SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
-			SqlSession session=sessionFactory.openSession();
 			ResumeDao resumeDao=session.getMapper(ResumeDao.class);
 			resumeDao.insertResume(resumeBasic);
-//			if(flag.equals("1")){
-//				if(path!=null){
-//					ResumeManageService.deleteResumePath(prephone);
-//					ResumeManageService.insertResumePath(basic.getString("1"), path);	
-//				}
-//			}
 			for(int i=0;i<workList.size();i++){
 				resumeDao.insertWorkExperience(workList.get(i));
 			}
@@ -166,10 +171,18 @@ public class ResumeManageService {
 				resumeDao.insertEductionExperience(eduList.get(i));
 			}
 			session.commit();
+			if(flag.equals("1")){
+				if(path!=null){
+					ResumeManageService.insertResumePath(phoenumber, path);	
+				}
+			}
+			
 			return true;
 		}catch(Exception e){
 			System.out.println("插入的数据出异常啦");
 			System.out.println("异常信息是"+e.getMessage());
+		}finally{
+			session.close();
 		}
 		return false;
 	}
@@ -187,8 +200,7 @@ public class ResumeManageService {
 		 * 2.在满足条件中的人获得满足学历要求的人
 		 * 3.封装数据
 		 */
-		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
-		SqlSession session=sessionFactory.openSession();
+		SqlSession session=SqlSessionFactoryUtil.getSqlSession();
 		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
 		List<ResumeBasic> list=new ArrayList<>();
 		switch(Integer.parseInt(workTime)){
@@ -236,7 +248,8 @@ public class ResumeManageService {
 			resume.setDegree(getHighDegree(degrees));
 			resumeList.add(resume);
 		}
-		
+		session.commit();
+		session.close();
 		return resumeList;	
 	}
 	
@@ -290,8 +303,7 @@ public class ResumeManageService {
 	 * @return
 	 */
 	public static int getResumeCount(String workTime,String degree){
-		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
-		SqlSession session=sessionFactory.openSession();
+		SqlSession session=SqlSessionFactoryUtil.getSqlSession();
 		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
 		int count=0;
 		switch(Integer.parseInt(workTime)){
@@ -324,6 +336,8 @@ public class ResumeManageService {
 			count=resumeDao.selectResumeBasicByWorkTimeAndDegreeCount(10,Integer.MAX_VALUE,Integer.parseInt(degree));
 			break;
 		}
+		session.commit();	
+		session.close();
 		return count;
 	}
 	
@@ -335,8 +349,7 @@ public class ResumeManageService {
 	 * @return
 	 */
 	public List<Resume> getResumeBySkill(String skill,int start,int pageSize){
-		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
-		SqlSession session=sessionFactory.openSession();
+		SqlSession session=SqlSessionFactoryUtil.getSqlSession();
 		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
 		List<ResumeBasic> list=resumeDao.selectResumeBySkill("%"+skill+"%",start,pageSize);
 		List<Resume> resumeList=new ArrayList<>();
@@ -354,6 +367,8 @@ public class ResumeManageService {
 			resume.setDegree(getHighDegree(degrees));
 			resumeList.add(resume);
 		}
+		session.commit();	
+		session.close();
 		return resumeList;
 	}
 	/**
@@ -362,10 +377,12 @@ public class ResumeManageService {
 	 * @return
 	 */
 	public int getResumeCountBySkill(String skill){
-		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
-		SqlSession session=sessionFactory.openSession();
+		SqlSession session=SqlSessionFactoryUtil.getSqlSession();
 		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
-		return resumeDao.selectResumeCountBySkill(skill);
+		int count=resumeDao.selectResumeCountBySkill(skill);
+		session.commit();	
+		session.close();
+		return count;
 	}
 	/**
 	 * 将简历的路径保存在数据库中
@@ -374,16 +391,18 @@ public class ResumeManageService {
 	 * @return
 	 */
 	public static boolean insertResumePath(String phonenumber,String path){
+		SqlSession session=SqlSessionFactoryUtil.getSqlSession();
 		try{
-			SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
-			SqlSession session=sessionFactory.openSession();
 			ResumeDao resumeDao=session.getMapper(ResumeDao.class);
 			resumeDao.insertResumePath(phonenumber, path);
 			session.commit();
+			
 			return true;
 		}catch(Exception e){
 			System.out.println("插入的数据出异常啦");
 			System.out.println("异常信息是"+e.getMessage());
+		}finally{
+			session.close();
 		}
 		return false;
 	}
@@ -393,10 +412,12 @@ public class ResumeManageService {
 	 * @return
 	 */
 	public static String getResumePath(String phonenumber){
-		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
-		SqlSession session=sessionFactory.openSession();
+		SqlSession session=SqlSessionFactoryUtil.getSqlSession();
 		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
-		return resumeDao.selectResumePath(phonenumber);
+		String path=resumeDao.selectResumePath(phonenumber);
+		session.commit();
+		session.close();
+		return path;
 	}
 	
 	/**
@@ -405,9 +426,10 @@ public class ResumeManageService {
 	 * @return
 	 */
 	public static void deleteResumePath(String phonenumber){
-		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
-		SqlSession session=sessionFactory.openSession();
+		SqlSession session=SqlSessionFactoryUtil.getSqlSession();
 		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
 		resumeDao.deleteResumePath(phonenumber);
+		session.commit();
+		session.close();
 	}
 }

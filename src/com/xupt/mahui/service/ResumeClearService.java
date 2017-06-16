@@ -25,6 +25,7 @@ public class ResumeClearService {
 		resumeDao.deleteWorkExperience(phone);
 		resumeDao.deleteResume(phone);
 		session.commit();
+		session.close();
 		
 	}
 }

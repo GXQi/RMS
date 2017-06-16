@@ -1,18 +1,18 @@
 package com.xupt.mahui.test;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
 import com.xupt.mahui.dao.ResumeDao;
 import com.xupt.mahui.util.SqlSessionFactoryUtil;
 
 public class ResumeTest {
 	public static void main(String[] args) throws Exception{
-		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
-		SqlSession session=sessionFactory.openSession();
-		ResumeDao employeeDao=session.getMapper(ResumeDao.class);
-		employeeDao.deleteResumePath("15789023456");
-		session.commit();
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		ResumeDao resumeDao = session.getMapper(ResumeDao.class);
+		String phone="15829035667";
+		resumeDao.deleteEductionExperience(phone);
+		resumeDao.deleteProjectExperience(phone);
+		resumeDao.deleteWorkExperience(phone);
+		resumeDao.deleteResume(phone);
 		System.out.println("删除成功");
 	
 	}
