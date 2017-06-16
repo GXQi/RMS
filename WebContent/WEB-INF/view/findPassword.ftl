@@ -14,8 +14,11 @@
 <div class="loginTiele">简历管理平台</div>
 <div class="findPasswordTiele">找回密码</div>
 <div id="warning"><span id="warn">提示</span></div>
+<#if warnInforLank?exists>
+   <div class="loginwarn">信息填写不完整</div>
+</#if>
 
-<form class="form-horizontal" role="form">
+<form class="form-horizontal" role="form" method="POST" action="/RMS/login/findPassword">
  <div class="form-group ">
         <div class="col-sm-4">
             <input type="text" class="form-control" id="phoneNumber" placeholder="手机号" name="phoneNumber"
@@ -25,7 +28,7 @@
     </div>
     <div class="form-group">
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="registerFont" placeholder="验证码"
+            <input type="text" class="form-control" id="registerFont" placeholder="验证码" name="findFont"
                    onblur="checkRegisterFont()">
         </div>
         <!--<span class="registerfont">获取验证码</span>-->

@@ -13,7 +13,8 @@ public class FreemarkerConfiguration {
      */  
     static{  
         config = new Configuration();  
-        config.setClassForTemplateLoading(FreemarkerConfiguration.class, "template");  
+        config.setClassForTemplateLoading(FreemarkerConfiguration.class, "template"); 
+      
       
     }  
       

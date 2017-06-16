@@ -26,5 +26,6 @@ public class ResumeClearService {
 		resumeDao.deleteResume(phone);
 		session.commit();
 		session.close();
+		
 	}
 }

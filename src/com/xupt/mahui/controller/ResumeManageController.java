@@ -5,9 +5,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.http.HttpHeaders;
@@ -20,12 +23,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.xupt.mahui.entity.Message;
 import com.xupt.mahui.entity.Resume;
 import com.xupt.mahui.service.ResumeManageService;
+import com.xupt.mahui.util.Config;
 import com.xupt.mahui.util.HtmlGenerator;
 import com.xupt.mahui.util.PdfGenerator;
 import com.xupt.mahui.util.SqlConfig;
@@ -122,6 +129,7 @@ public class ResumeManageController {
 	public ModelAndView edit(@RequestBody String phone){
 		String phonenumber=phone.split("=")[1];
 		ModelAndView view=new ModelAndView();
+		view.addObject("path", ResumeManageService.getResumePath(phonenumber));
 		view.addObject("resumeBasic", ResumeManageService.getResumeBasic(phonenumber));
 		view.addObject("projectList", ResumeManageService.getProjectExperiences(phonenumber));
 		view.addObject("workList", ResumeManageService.getWorkExperiences(phonenumber));
@@ -141,7 +149,7 @@ public class ResumeManageController {
      * ***/
     @RequestMapping("/download")
     public ResponseEntity<byte[]> download(@RequestParam String phonenumber) throws Exception {
-    	System.out.println("执行le");
+    	
     	String downloadFileName = new String("简历附件".getBytes("UTF-8"),"ISO-8859-1");
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_OCTET_STREAM);
@@ -187,6 +195,66 @@ public class ResumeManageController {
 		view.addObject("degree", "-1");
 		view.addObject("currentPage", "1");
 		view.setViewName("search");
+		return view;
+	}
+	/**
+	 * 上传简历
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
+	@RequestMapping("/upload")
+	@ResponseBody
+	public String upload2(HttpServletRequest request,HttpServletResponse response) {
+		String phonenumber=request.getParameter("phonenumber");
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+		if(multipartResolver.isMultipart(request)){
+			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;
+			Iterator<String> iter = multiRequest.getFileNames();
+			while(iter.hasNext()){
+				MultipartFile file = multiRequest.getFile(iter.next());
+				if(file != null){
+					String myFileName = file.getOriginalFilename();
+					if(myFileName.trim() !=""){
+						String path = Config.resumePath+myFileName;
+						File localFile = new File(path);
+						try {
+							file.transferTo(localFile);
+							if(localFile.exists()){
+								//将路径保存到数据库
+								ResumeManageService.insertResumePath(phonenumber, myFileName);
+							}
+							return "true";
+						} catch (IllegalStateException e) {
+							e.printStackTrace();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+			
+		}
+		return "false";
+	}
+	/**
+	 * 删除建立附件
+	 * @param json
+	 * @return
+	 */
+	@RequestMapping(value="/deleteFile",method=RequestMethod.POST)
+	public  ModelAndView deleteResume(@RequestBody String json){
+		String phonenumber=json.split("=")[1];
+		ResumeManageService.deleteResumeFile(phonenumber);
+		ModelAndView view=new ModelAndView();
+		view.addObject("path", ResumeManageService.getResumePath(phonenumber));
+		view.addObject("resumeBasic", ResumeManageService.getResumeBasic(phonenumber));
+		view.addObject("projectList", ResumeManageService.getProjectExperiences(phonenumber));
+		view.addObject("workList", ResumeManageService.getWorkExperiences(phonenumber));
+		view.addObject("eductionList", ResumeManageService.getEductionExperiences(phonenumber));
+		view.setViewName("edit");
 		return view;
 	}
 	

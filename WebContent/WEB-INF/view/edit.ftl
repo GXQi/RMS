@@ -68,6 +68,43 @@
                 }
             });
     	}
+    	function upload(){
+    		var formData=new FormData($('#uploadForm')[0]); 
+    		const phonenumber=document.getElementById("phone").value;
+    		formData.append("phonenumber",phonenumber);
+    		$.ajax({
+    			url: '/RMS/upload',
+    			type: 'POST',
+    			cache: false,
+    			data: formData,
+    			processData: false,
+    			contentType: false
+				}).done(function(res) {
+					if(res=="true"){
+						alert("上传成功");
+					}else{
+						alert("上传失败");
+					}
+				}).fail(function(res) {});
+    	}
+    	function deleteFile(){
+    		const phonenumber=document.getElementById("phone").value;
+    		var data={"phonenumber":phonenumber};
+   			var temp = document.createElement("form");
+  			temp.action = "/RMS/deleteFile";
+  			temp.method = "post";
+  			temp.style.display = "none";
+  			for (var x in data) {
+   				var opt = document.createElement("textarea");
+    			opt.name = x;
+    			opt.value = data[x];
+    			temp.appendChild(opt);
+  			}
+  			document.body.appendChild(temp);
+  			temp.submit();
+  			return temp;
+    	}
+    
     </script>
 </head>
 <body>
@@ -83,9 +120,16 @@
     </nav>
 </div>
 <div class="content">
-    <div class="putin">
-        录入新简历
-    </div>
+   		<#if (path ??)>
+   			${path}<img src="/RMS/images/img_delete.png" onclick="deleteFile()" />
+   			<#else>
+   			<form id="uploadForm" enctype="multipart/form-data" class="username" >
+    		<input id="file" type="file" name="file" class="title"/>
+    		<br>
+    		<button onclick="upload()" type="button">上传简历附件</button>
+			</form>
+   		</#if>
+   		
     <hr/>
     <div>
         <div class="label">

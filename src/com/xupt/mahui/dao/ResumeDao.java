@@ -132,5 +132,25 @@ public interface ResumeDao {
 	 */
 	public int selectResumeCountBySkill(String skill) ;
 	
+	/**
+	 * 通过电话号码查询简历保存路径
+	 * @param phonenumber
+	 * @return
+	 */
+	public String selectResumePath(String phonenumber);
+	
+	/**
+	 * 通过电话号码添加简历路径
+	 * @param phonenumber
+	 * @return
+	 */
+	public void insertResumePath(String phonenumber,String path);
+	
+	/**
+	 * 通过电话号码删除简历路径
+	 * @param phonenumber
+	 * @return
+	 */
+	public void deleteResumePath(String phonenumber);
 	
 }

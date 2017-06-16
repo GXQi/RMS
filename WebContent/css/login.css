@@ -1,3 +1,10 @@
+
+.code{
+    background-image: url("/RMS/images/font.png");
+    /*width: 200px;*/
+    /*height: 200px;*/
+}
+
 .loginwarn{
     color: red;
     font-weight: 200;
