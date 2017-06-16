@@ -129,6 +129,7 @@ public class ResumeManageController {
 	public ModelAndView edit(@RequestBody String phone){
 		String phonenumber=phone.split("=")[1];
 		ModelAndView view=new ModelAndView();
+		view.addObject("path", ResumeManageService.getResumePath(phonenumber));
 		view.addObject("resumeBasic", ResumeManageService.getResumeBasic(phonenumber));
 		view.addObject("projectList", ResumeManageService.getProjectExperiences(phonenumber));
 		view.addObject("workList", ResumeManageService.getWorkExperiences(phonenumber));
@@ -207,7 +208,7 @@ public class ResumeManageController {
 	@RequestMapping("/upload")
 	@ResponseBody
 	public String upload2(HttpServletRequest request,HttpServletResponse response) {
-		String name=request.getParameter("name");
+		String phonenumber=request.getParameter("phonenumber");
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
 		if(multipartResolver.isMultipart(request)){
 			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;
@@ -217,10 +218,14 @@ public class ResumeManageController {
 				if(file != null){
 					String myFileName = file.getOriginalFilename();
 					if(myFileName.trim() !=""){
-						String path = Config.resumePath +name+"--" +myFileName;
+						String path = Config.resumePath+myFileName;
 						File localFile = new File(path);
 						try {
 							file.transferTo(localFile);
+							if(localFile.exists()){
+								//将路径保存到数据库
+								ResumeManageService.insertResumePath(phonenumber, myFileName);
+							}
 							return "true";
 						} catch (IllegalStateException e) {
 							e.printStackTrace();

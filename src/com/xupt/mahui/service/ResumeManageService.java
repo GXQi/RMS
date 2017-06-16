@@ -72,18 +72,16 @@ public class ResumeManageService {
 	 * @return 是否添加成功
 	 */
 	public static boolean insert(String data){
-		System.out.println(data);
 		JSONObject jsonObject=JSONObject.fromObject(data);
-		
-		String prephone = jsonObject.getString("prephone");
-		String flag = jsonObject.getString("flag");
-		if(flag.equals("1"))
-			ResumeClearService.ClearAllDataFromPhoneNumber(prephone);
-		
 		JSONObject basic=jsonObject.getJSONObject("basic");
 		JSONObject work=jsonObject.getJSONObject("work");
 		JSONObject project=jsonObject.getJSONObject("project");
 		JSONObject edu=jsonObject.getJSONObject("edu");
+		String prephone = jsonObject.getString("prephone");
+		String flag = jsonObject.getString("flag");
+		if(flag.equals("1")){
+			ResumeClearService.ClearAllDataFromPhoneNumber(prephone);
+		}
 		/**
 		 * 解析建立基本信息并封装成对象
 		 */
@@ -359,5 +357,48 @@ public class ResumeManageService {
 		SqlSession session=sessionFactory.openSession();
 		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
 		return resumeDao.selectResumeCountBySkill(skill);
+	}
+	/**
+	 * 将简历的路径保存在数据库中
+	 * @param phonenumber
+	 * @param path
+	 * @return
+	 */
+	public static boolean insertResumePath(String phonenumber,String path){
+		try{
+			SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
+			SqlSession session=sessionFactory.openSession();
+			ResumeDao resumeDao=session.getMapper(ResumeDao.class);
+			resumeDao.insertResumePath(phonenumber, path);
+			session.commit();
+			return true;
+		}catch(Exception e){
+			System.out.println("插入的数据出异常啦");
+			System.out.println("异常信息是"+e.getMessage());
+		}
+		return false;
+	}
+	/**
+	 * 查询简历的路径
+	 * @param phonenumber
+	 * @return
+	 */
+	public static String getResumePath(String phonenumber){
+		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
+		SqlSession session=sessionFactory.openSession();
+		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
+		return resumeDao.selectResumePath(phonenumber);
+	}
+	
+	/**
+	 * 查询简历的路径
+	 * @param phonenumber
+	 * @return
+	 */
+	public static void deleteResumePath(String phonenumber){
+		SqlSessionFactory sessionFactory=SqlSessionFactoryUtil.getSqlSessionFactory();
+		SqlSession session=sessionFactory.openSession();
+		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
+		resumeDao.deleteResumePath(phonenumber);
 	}
 }

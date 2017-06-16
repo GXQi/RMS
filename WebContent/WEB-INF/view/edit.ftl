@@ -70,8 +70,8 @@
     	}
     	function upload(){
     		var formData=new FormData($('#uploadForm')[0]); 
-    		const name=document.getElementById("name").value;
-    		formData.append("name",name);
+    		const phonenumber=document.getElementById("phone").value;
+    		formData.append("phonenumber",phonenumber);
     		$.ajax({
     			url: '/RMS/upload',
     			type: 'POST',
@@ -103,11 +103,16 @@
     </nav>
 </div>
 <div class="content">
-   		<form id="uploadForm" enctype="multipart/form-data" class="username" >
+   		<#if (path ??)>
+   			${path}
+   			<#else>
+   			<form id="uploadForm" enctype="multipart/form-data" class="username" >
     		<input id="file" type="file" name="file" class="title"/>
     		<br>
     		<button onclick="upload()" type="button">上传简历附件</button>
-		</form>
+			</form>
+   		</#if>
+   		
     <hr/>
     <div>
         <div class="label">
