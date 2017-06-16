@@ -207,8 +207,9 @@ public class ResumeManageController {
 	 */
 	@RequestMapping("/upload")
 	@ResponseBody
-	public String upload2(HttpServletRequest request,HttpServletResponse response) {
+	public String upload(HttpServletRequest request,HttpServletResponse response) {
 		String phonenumber=request.getParameter("phonenumber");
+		ResumeManageService.deleteResumePath(phonenumber);
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
 		if(multipartResolver.isMultipart(request)){
 			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;
@@ -226,7 +227,7 @@ public class ResumeManageController {
 								//将路径保存到数据库
 								ResumeManageService.insertResumePath(phonenumber, myFileName);
 							}
-							return "true";
+							return myFileName;
 						} catch (IllegalStateException e) {
 							e.printStackTrace();
 						} catch (IOException e) {
@@ -245,17 +246,11 @@ public class ResumeManageController {
 	 * @return
 	 */
 	@RequestMapping(value="/deleteFile",method=RequestMethod.POST)
-	public  ModelAndView deleteResume(@RequestBody String json){
+	@ResponseBody
+	public  String deleteResume(@RequestBody String json){
 		String phonenumber=json.split("=")[1];
 		ResumeManageService.deleteResumeFile(phonenumber);
-		ModelAndView view=new ModelAndView();
-		view.addObject("path", ResumeManageService.getResumePath(phonenumber));
-		view.addObject("resumeBasic", ResumeManageService.getResumeBasic(phonenumber));
-		view.addObject("projectList", ResumeManageService.getProjectExperiences(phonenumber));
-		view.addObject("workList", ResumeManageService.getWorkExperiences(phonenumber));
-		view.addObject("eductionList", ResumeManageService.getEductionExperiences(phonenumber));
-		view.setViewName("edit");
-		return view;
+		return "true";
 	}
 	
 }

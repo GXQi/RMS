@@ -27,7 +27,7 @@
     height: 30px;
 }
 
-/*分类选择*/
+/*鍒嗙被閫夋嫨*/
 .select{
     padding:5px 10px;
     width:60%;
@@ -108,4 +108,32 @@
 .no-resume{
     width: 900px;
     text-align: center;
+}
+
+#table{
+	border-top: 1px solid #CCC;s
+}
+
+.table-list{
+    width: 940px;
+    text-align: center;
+    border: 1px solid #CCC;
+}
+
+.table-list tr{
+    height: 40px;
+}
+
+.page-num{
+	width: 40px;
+}
+
+#paging a{
+	text-decoration: underline;
+	margin: 0 5px;
+}
+
+#paging a:hover{
+	text-decoration: none;
+	color: #9D9D9D;
 }

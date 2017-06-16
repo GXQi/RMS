@@ -9,6 +9,13 @@
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/RMS/js/details.js"></script>
+    <style>
+    	.export {
+    		float:right;
+    		margin-right:5%;
+    		margin-top:2%;
+    	}
+    </style>
     <script type="text/javascript">
     	function post(){
 			//获取电话
@@ -55,7 +62,7 @@
         </div>
     </nav>
 </div>
-<div class="edit"><a onclick="post()">编辑</a>&nbsp;<a onclick="downloadResume()">导出</a></div>
+<div class="export"><a onclick="post()">编辑</a>&nbsp;<a onclick="downloadResume()">导出</a></div>
 <!-- 主体部分，即简历查看页面的显示 -->
 <div class="details-look mar-auto">
 	
@@ -64,11 +71,9 @@
         <p class="base-name">${resumeBasic.name}</p>
         <ul class="clear-float">
         	<li class="float-l"><img src="/RMS/images/img_sex.png"> ${resumeBasic.sex}</li>
-            <li class="float-l"><img src="/RMS/images/img_skill.png"> ${resumeBasic.skill}</li>
-           
+            <li class="float-l"><img src="/RMS/images/img_skill.png"> ${resumeBasic.skill}</li>  
         </ul>
         <ul class="clear-float">
-           
          	<li class="float-l"><img src="/RMS/images/img_phonenumber.png"> <span id="phonenumber">${resumeBasic.phonenumber}</span></li>
             <li class="float-l"><img src="/RMS/images/img_workTime.png"> ${resumeBasic.workTime}年</li>
         
