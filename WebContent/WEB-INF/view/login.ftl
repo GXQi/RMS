@@ -36,7 +36,7 @@
     <button type="submit" class="loginSure">登录</button>    
     
 </form>
-<span class="loginFind"><a href="/RMS/login/findPassword">找回密码</a></span>
+<span class="loginFind"><a href="/RMS/findPassword">找回密码</a></span>
 
 <div class="loginAsk">还没有帐号？<span class="loginSign"><a href="/RMS/register">注册</a></span></div>
 

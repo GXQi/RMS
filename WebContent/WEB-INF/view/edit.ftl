@@ -9,6 +9,20 @@
     <script type="text/javascript" src="/RMS/js/edit.js"></script>
     <script type="text/javascript" src="/RMS/js/type-in.js"></script>
     <title>Title</title>
+    <style>
+    .position {
+	margin-left : 35%;
+	}
+	.up_load{
+	float:right;
+	margin-top:-3%;
+	}
+	
+	#select {
+		margin-left:35%;
+	}
+
+    </style>
     <script>
     	function submits(tag){
     		var data = {"flag":1,"prephone":{},"basic": {}, "work": {}, "project": {}, "edu": {}};
@@ -44,9 +58,7 @@
                 data.edu[i] = nodes4[i].value;
             }
 
-            var json = JSON.stringify(data);
-            console.log(json);
-            
+            var json = JSON.stringify(data); 
              $.ajax({
                 type: "POST",
                 url: "/RMS/insert",
@@ -68,6 +80,24 @@
                 }
             });
     	}
+    	
+    	function edit(){
+    		const prephone = ${resumeBasic.phonenumber};
+			var data={"phone":prephone};
+			var temp = document.createElement("form");
+			temp.action = "/RMS/edit";
+			temp.method = "post";
+			temp.style.display = "none";
+			for (var x in data) {
+				var opt = document.createElement("textarea");
+				opt.name = x;
+				opt.value = data[x];
+				temp.appendChild(opt);
+			}
+			document.body.appendChild(temp);
+			temp.submit();
+			return temp;
+		}
     	function upload(){
     		var formData=new FormData($('#uploadForm')[0]); 
     		const phonenumber=document.getElementById("phone").value;
@@ -80,31 +110,34 @@
     			processData: false,
     			contentType: false
 				}).done(function(res) {
-					if(res=="true"){
-						alert("上传成功");
-					}else{
+					if(res=="false"){
 						alert("上传失败");
+						
+					}else{
+						hide();
+						edit();
 					}
 				}).fail(function(res) {});
     	}
     	function deleteFile(){
-    		const phonenumber=document.getElementById("phone").value;
-    		var data={"phonenumber":phonenumber};
-   			var temp = document.createElement("form");
-  			temp.action = "/RMS/deleteFile";
-  			temp.method = "post";
-  			temp.style.display = "none";
-  			for (var x in data) {
-   				var opt = document.createElement("textarea");
-    			opt.name = x;
-    			opt.value = data[x];
-    			temp.appendChild(opt);
-  			}
-  			document.body.appendChild(temp);
-  			temp.submit();
-  			return temp;
+  			const phonenumber=document.getElementById("phone").value;
+  			var data={"phonenumber":phonenumber};
+  			 $.ajax({
+                type: "POST",
+                url: "/RMS/deleteFile",
+                contentType: "application/json; charset=utf-8",
+                data: data,
+                dataType: "json",
+                success: function (result) {
+                    edit();
+                }
+            });
     	}
-    
+    	function display(tag){
+        	var tip = document.getElementById(tag);
+            tip.style.display = 'block';
+   		}
+   
     </script>
 </head>
 <body>
@@ -116,20 +149,17 @@
         简历库
     </div>
     <nav class="username">
-        UserName | <a onclick = "logout()">Log Out</a>
+        UserName | <a onclick = "logout()">退出</a>
     </nav>
 </div>
 <div class="content">
-   		<#if (path ??)>
-   			${path}<img src="/RMS/images/img_delete.png" onclick="deleteFile()" />
+		<#if (path ??)>
+   			<span class="up_load"><img src="/RMS/images/img_link.png"/>${path}<img src="/RMS/images/img_delete.png" onclick="deleteFile()" /></span>
    			<#else>
-   			<form id="uploadForm" enctype="multipart/form-data" class="username" >
-    		<input id="file" type="file" name="file" class="title"/>
-    		<br>
-    		<button onclick="upload()" type="button">上传简历附件</button>
-			</form>
+   			<span class="up_load"><img src="/RMS/images/img_link.png"/><a onclick="display('tip')">上传附件简历</a></span>
+   			
    		</#if>
-   		
+
     <hr/>
     <div>
         <div class="label">
@@ -289,7 +319,12 @@
             </div>
              </#list>
              </#if>
+             
         </div>
+        <div>
+        
+        
+       
     </div>
     <div class="footer">
         <button class="btn btn-default" onclick="submits('light2')">确定</button>
@@ -300,6 +335,16 @@
             <button class="btn btn-default" id="close">关闭</button>
             <button class="btn btn-default" id="myBtn">确定</button>
         </div>
+    </div>
+    
+     <div class="white_content" id="tip">
+        <div class="con">
+           <form id="uploadForm" enctype="multipart/form-data" class="position">
+    		<input id="file" type="file" name="file" style="height:30px;background-color:white;font-size:small"/>
+			</form>
+			<div id="select"><button class="btn btn-default" onclick="hide()">取消</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="upload()" type="button" class="btn btn-default">保存</button></div>
+        </div>
+       
     </div>
 
     <div id="light1" class="white_content" >
@@ -315,5 +360,11 @@
             </div>
         </div>
 </div>
+<script>
+	function hide(){
+           var tip = document.getElementById('tip');
+           tip.style.display = 'none';
+	}
+</script>
 </body>
 </html>

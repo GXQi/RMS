@@ -9,117 +9,124 @@
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
     <style>
-   .selected{
-    color:#ffffff;
-    background-color:/*#f60*/#CCC;
-}
-
-.selected1{
-    color:#ffffff;
-    background-color:/*#f60*/#CCC;
-}
+   		.selected{
+    		color:#ffffff;
+    		background-color:/*#f60*/#CCC;
+		}
+		
+		.selected1{
+    		color:#ffffff;
+    		background-color:/*#f60*/#CCC;
+		}
     </style>
     <script>
-    var a = ${workTime};
-    var b = ${degree};
-    var total=${total};
-	var totalPage=${totalPage};
-    var currentPage=${currentPage};
-    function a0() {
-        a = -1;
-        currentPage=1;
-        send();
-    }
-    function a1() {
-        a = 0;
-        currentPage=1;
-        send();
-    }
-    function a2() {
-        a = 1;
-        currentPage=1;
-        send();
-    }
-    function a3() {
-        a = 2;
-      	currentPage=1;     
-        send();
-    }
-    function a4() {
-        a = 3;
-        currentPage=1; 
-        send();
-    }
-    function a5() {
-        a = 4;
-        currentPage=1; 
-        send();
-    }
-    function a6() {
-        a = 5;
-        currentPage=1; 
-        send();
-    }
-    function b0() {
-        b = -1;
-        send();
-    }
-    function b1() {
-        b = 0;
-        currentPage=1; 
-        send();
-    }
-    function b2() {
-        b = 1;
-        currentPage=1; 
-        send();
-    }
-    function b3() {
-        b = 2;
-        currentPage=1; 
-        send();
-    }
-    function b4() {
-        b = 3;
-        currentPage=1; 
-        send();
-    }
-	function paging(event){
-		var id=event.id;
-		if(id=="first"){
-			currentPage=1;
-		}else if(id=="pre"){
-			if(currentPage>1){
-				currentPage-=1;
-			}
-		}else if(id=="next"){
-			if(currentPage<totalPage){
-				currentPage+=1;
+    	var a = ${workTime};
+    	var b = ${degree};
+    	var total=${total};
+		var totalPage=${totalPage};
+    	var currentPage=${currentPage};
+   		function a0() {
+        	a = -1;
+        	currentPage=1;
+        	send();
+    	}
+    	function a1() {
+        	a = 0;
+        	currentPage=1;
+        	send();
+    	}
+    	function a2() {
+       		a = 1;
+        	currentPage=1;
+        	send();
+    	}
+    	function a3() {
+        	a = 2;
+      		currentPage=1;     
+        	send();
+    	}
+    	function a4() {
+       		a = 3;
+        	currentPage=1; 
+        	send();
+    	}
+    	function a5() {
+       	 	a = 4;
+        	currentPage=1; 
+        	send();
+    	}
+    	function a6() {
+        	a = 5;
+       	 	currentPage=1; 
+       	 	send();
+    	}
+    	function b0() {
+        	b = -1;
+        	send();
+    	}
+    	function b1() {
+        	b = 0;
+        	currentPage=1; 
+        	send();
+    	}
+    	function b2() {
+        	b = 1;
+        	currentPage=1; 
+        	send();
+    	}
+    	function b3() {
+        	b = 2;
+        	currentPage=1; 
+        	send();
+    	}
+    	function b4() {
+        	b = 3;
+       	 	currentPage=1; 
+        	send();
+    	}
+		function paging(event){
+			var id=event.id;
+			if(id=="first"){
+				currentPage=1;
+			}else if(id=="pre"){
+				if(currentPage>1){
+					currentPage-=1;
+				}
+			}else if(id=="next"){
+				if(currentPage<totalPage){
+					currentPage+=1;
+				}else{
+					currentPage=totalPage;
+				}
+			}else if(id.substring(0,8)=="page-num"){
+				currentPage=parseInt(id.substring(8, 9));
 			}else{
 				currentPage=totalPage;
 			}
-		}else{
-			currentPage=totalPage;
+			send();
 		}
-		send();
-	}
-    function send(){
-    	var data={"degree":b,"workTime":a,"currentPage":currentPage};
-   		var temp = document.createElement("form");
-  		temp.action = "/RMS/select";
-  		temp.method = "post";
-  		temp.style.display = "none";
-  		for (var x in data) {
-   			var opt = document.createElement("textarea");
-    		opt.name = x;
-    		opt.value = data[x];
-    		temp.appendChild(opt);
-  		}
-  		document.body.appendChild(temp);
-  		temp.submit();
-  		return temp;
-    }
+    	function send(){
+    		var data={"degree":b,"workTime":a,"currentPage":currentPage};
+   			var temp = document.createElement("form");
+  			temp.action = "/RMS/select";
+  			temp.method = "post";
+  			temp.style.display = "none";
+  			for (var x in data) {
+   				var opt = document.createElement("textarea");
+    			opt.name = x;
+    			opt.value = data[x];
+    			temp.appendChild(opt);
+  			}
+  			document.body.appendChild(temp);
+  			temp.submit();
+  			return temp;
+   	 	}
     $(document).ready(function(){
+    	for(var i = 1; i <= totalPage; i++){
+			(function(arg){
+				$("#next").before("<a id='page-num" + i + "' onclick='paging(this)'>" + i + "</a>");
+			})(i);
+		}
     	$("#select1 dd").click(function () {
 			$(this).addClass("selected1").siblings().removeClass("selected1");
 		});
@@ -340,10 +347,15 @@
     
 </div>
 <div id="paging">
+	
+	
 	<#if (resumeList?size > 0)>
 		<center>
-			<a id="first" onclick="paging(this)">首页</a><a id="pre" onclick="paging(this)">上一页</a><a id="next" onclick="paging(this)">下一页</a><a onclick="paging(this)" id="end">末页</a>
-			<input type="text" id="find" placeholder="页码" />
+			<a id="first" onclick="paging(this)">首页</a>
+			<a id="pre" onclick="paging(this)"><<</a>
+			<a id="next" onclick="paging(this)">>></a>
+			<a onclick="paging(this)" id="end">末页</a>
+			<input type="text" id="find" placeholder="页码" class="page-num" />
 			<a onclick="skip()">跳转</a>
 		</center>
 	</#if>
