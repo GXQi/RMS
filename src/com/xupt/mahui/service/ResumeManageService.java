@@ -73,13 +73,27 @@ public class ResumeManageService {
 	 */
 	public static boolean insert(String data){
 		JSONObject jsonObject=JSONObject.fromObject(data);
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 453291fa3b1ff78cee2304f54d00cb9aaefb490d
 		JSONObject basic=jsonObject.getJSONObject("basic");
 		JSONObject work=jsonObject.getJSONObject("work");
 		JSONObject project=jsonObject.getJSONObject("project");
 		JSONObject edu=jsonObject.getJSONObject("edu");
+<<<<<<< HEAD
 		String prephone = jsonObject.getString("prephone");
 		String flag = jsonObject.getString("flag");
 		if(flag.equals("1")){
+=======
+		
+		String prephone = jsonObject.getString("prephone");
+		String flag = jsonObject.getString("flag");
+		//String path=null;
+		if(flag.equals("1")){
+			//说明改变电话号码了
+			//path=ResumeManageService.getResumePath(prephone);
+>>>>>>> 453291fa3b1ff78cee2304f54d00cb9aaefb490d
 			ResumeClearService.ClearAllDataFromPhoneNumber(prephone);
 		}
 		/**
@@ -147,6 +161,12 @@ public class ResumeManageService {
 			SqlSession session=sessionFactory.openSession();
 			ResumeDao resumeDao=session.getMapper(ResumeDao.class);
 			resumeDao.insertResume(resumeBasic);
+//			if(flag.equals("1")){
+//				if(path!=null){
+//					ResumeManageService.deleteResumePath(prephone);
+//					ResumeManageService.insertResumePath(basic.getString("1"), path);	
+//				}
+//			}
 			for(int i=0;i<workList.size();i++){
 				resumeDao.insertWorkExperience(workList.get(i));
 			}
