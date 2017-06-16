@@ -125,5 +125,20 @@
 	 <select id="selectResumeCountBySkill" resultType="int"> 
 	 	select count(*) from resume where skill like #{0}
 	 </select>
+	 
+	 <!-- 通过电话号码查询简历保存路径 -->
+	 <select id="selectResumePath" resultType="String"> 
+	 	select path from resumepath where phonenumber = #{0}
+	 </select>
+	 
+	 <!-- 通过电话号码添加简历路径 -->
+	 <insert id="insertResumePath"> 
+	 	insert into resumepath (phonenumber,path) values(#{0},#{1});
+	 </insert>
+	 
+	 <!-- 通过电话号码删除简历路径 -->
+	 <delete id="deleteResumePath" parameterType="String"> 
+	 	delete from resumepath where phonenumber=#{phonenumber};
+	 </delete>
 	
 </mapper>
