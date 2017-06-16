@@ -22,7 +22,7 @@
          <label id="registerNumberwarn" class="loginwarn"><span class="warn"><img src="/RMS/images/error.png"></span></label>
     </div>   
     
-      <div class="form-group">
+    <div class="form-group">
         <div class="col-sm-4">
             <input type="text" class="form-control" id="registerFont" placeholder="验证码"
                    onblur="checkRegisterFont()">
