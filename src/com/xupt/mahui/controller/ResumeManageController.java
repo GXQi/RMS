@@ -239,5 +239,23 @@ public class ResumeManageController {
 		}
 		return "false";
 	}
+	/**
+	 * 删除建立附件
+	 * @param json
+	 * @return
+	 */
+	@RequestMapping(value="/deleteFile",method=RequestMethod.POST)
+	public  ModelAndView deleteResume(@RequestBody String json){
+		String phonenumber=json.split("=")[1];
+		ResumeManageService.deleteResumeFile(phonenumber);
+		ModelAndView view=new ModelAndView();
+		view.addObject("path", ResumeManageService.getResumePath(phonenumber));
+		view.addObject("resumeBasic", ResumeManageService.getResumeBasic(phonenumber));
+		view.addObject("projectList", ResumeManageService.getProjectExperiences(phonenumber));
+		view.addObject("workList", ResumeManageService.getWorkExperiences(phonenumber));
+		view.addObject("eductionList", ResumeManageService.getEductionExperiences(phonenumber));
+		view.setViewName("edit");
+		return view;
+	}
 	
 }

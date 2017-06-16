@@ -1,5 +1,6 @@
 package com.xupt.mahui.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -10,6 +11,7 @@ import com.xupt.mahui.entity.ProjectExperience;
 import com.xupt.mahui.entity.Resume;
 import com.xupt.mahui.entity.ResumeBasic;
 import com.xupt.mahui.entity.WorkExperience;
+import com.xupt.mahui.util.Config;
 import com.xupt.mahui.util.SqlSessionFactoryUtil;
 
 import net.sf.json.JSONObject;
@@ -431,5 +433,17 @@ public class ResumeManageService {
 		resumeDao.deleteResumePath(phonenumber);
 		session.commit();
 		session.close();
+	}
+	/**
+	 * 删除简历附件
+	 * @param phonenumber
+	 */
+	public static void deleteResumeFile(String phonenumber){
+		String path=getResumePath(phonenumber);
+		deleteResumePath(phonenumber);
+		File file=new File(Config.resumePath+path);
+		if(file.exists()){
+			file.delete();
+		}
 	}
 }

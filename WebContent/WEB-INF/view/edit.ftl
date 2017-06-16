@@ -87,6 +87,23 @@
 					}
 				}).fail(function(res) {});
     	}
+    	function deleteFile(){
+    		const phonenumber=document.getElementById("phone").value;
+    		var data={"phonenumber":phonenumber};
+   			var temp = document.createElement("form");
+  			temp.action = "/RMS/deleteFile";
+  			temp.method = "post";
+  			temp.style.display = "none";
+  			for (var x in data) {
+   				var opt = document.createElement("textarea");
+    			opt.name = x;
+    			opt.value = data[x];
+    			temp.appendChild(opt);
+  			}
+  			document.body.appendChild(temp);
+  			temp.submit();
+  			return temp;
+    	}
     
     </script>
 </head>
@@ -104,7 +121,7 @@
 </div>
 <div class="content">
    		<#if (path ??)>
-   			${path}
+   			${path}<img src="/RMS/images/img_delete.png" onclick="deleteFile()" />
    			<#else>
    			<form id="uploadForm" enctype="multipart/form-data" class="username" >
     		<input id="file" type="file" name="file" class="title"/>
