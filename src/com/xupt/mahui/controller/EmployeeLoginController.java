@@ -2,11 +2,14 @@ package com.xupt.mahui.controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.xupt.mahui.entity.Employee;
@@ -22,21 +25,54 @@ import com.xupt.mahui.util.SqlConfig;
  */
 @Controller
 public class EmployeeLoginController {
-	@RequestMapping("/login/register") //点击“注册”进入注册视图
-	public String goToRegister(){
-		return "register";
-	}
-	
-	@RequestMapping("/login/findPassword")//点击“找回密码”进入找回密码视图
+	@RequestMapping("/findPassword")//点击“找回密码”进入找回密码视图
 	public String goToFindPassword() {
 		return "findPassword";
 	}
 	
+	//重设密码,url
+	@RequestMapping("/login/resetPassword") 
+	public ModelAndView resetPassword(@RequestParam("phone") String phone, 
+			@RequestParam("newPassword") String password, 
+			@RequestParam("rePassword") String rePassword) {
+		ModelAndView mav = new ModelAndView();
+		if(phone.equals("") || phone == null 
+				|| password.equals("") || password == null
+				|| rePassword.equals("") || rePassword == null) {
+			mav.addObject("warnInforLank", "true");
+			mav.setViewName("resetPassword");
+			return mav;//重设密码失败
+		}
+		EmployeeManageService.resetPassword(phone, password);
+		mav.setViewName("login");
+		return mav;
+	}
+	
+	//找回密码url
+	@RequestMapping("/login/findPass")
+	public ModelAndView findPassword(@RequestParam("phoneNumber") String phone, 
+			@RequestParam("findFont") String font) {
+		System.out.println(phone + " " + font);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("findPassword");
+		if(phone.equals("") || phone == null
+				|| font.equals("") || font == null) {
+			mav.addObject("warnInforLank", "true");			
+			return mav;//找回密码失败
+		}
+		if(EmployeeManageService.isEmployeeExist(phone) == false) { //用户不存在，提示前端
+			mav.addObject("warnNoEmployee", "true");
+			return mav;//找回密码失败
+		}
+		mav.setViewName("resetPassword");
+		mav.addObject("remphone", phone);
+		return mav;
+	}
 	
 	@RequestMapping("/login/submitLogin")//点击“登录”进行登录处理
-	public ModelAndView submitLogin(@ModelAttribute("Employee")Employee employee, HttpServletRequest request){
+	public ModelAndView submitLogin(@ModelAttribute("Employee")Employee employee, HttpServletRequest request,
+			HttpServletResponse response){
 		ModelAndView mav = new ModelAndView();
-		System.out.println(employee.getPhoneNumber() + "  " + employee.getPassWord());
 		if (EmployeeManageService.canAnEmployeeLogin(employee) == true) {//判断是否为合法用户 
 			System.out.println("********");
 			/*添加拦截器时，松开以下注释*/
@@ -52,13 +88,12 @@ public class EmployeeLoginController {
 			mav.addObject("degree", "-1");
 			mav.addObject("currentPage", "1");
 			mav.setViewName("search");
+			Cookie cookie = new Cookie("nick", EmployeeManageService.getNickName(employee.getPhoneNumber()));
+			response.addCookie(cookie);
 			return mav;//登陆成功，返回查询视图
-			//return "search";
 		}			
 		mav.addObject("warnEmployee", "noExist");
 		mav.setViewName("login");
 		return mav;//登录失败，返回原视图
-		//return "login";
 	}
-	
 }

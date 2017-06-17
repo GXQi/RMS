@@ -6,6 +6,57 @@ import com.xupt.mahui.entity.Employee;
 import com.xupt.mahui.util.SqlSessionFactoryUtil;
 
 public class EmployeeManageService {
+	/*获取昵称*/
+	public static String getNickName(String phone) {
+		String nick = "";
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		EmployeeDao employeeDao = session.getMapper(EmployeeDao.class);
+		Employee employeeTemp = null;  
+		employeeTemp = employeeDao.isLogin(phone);
+		nick = employeeTemp.getNickName();
+		session.close();
+		return nick;
+	}
+	/*检测用户是否存在*/
+	public static boolean isEmployeeExist(String phone) {
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		EmployeeDao employeeDao = session.getMapper(EmployeeDao.class);
+		Employee employeeTemp = null;  
+		employeeTemp = employeeDao.isLogin(phone);
+		if (employeeTemp != null
+				&& employeeTemp.getPhoneNumber().equals(phone)) {
+			// 用户已注册过了
+			session.close();
+			return true;
+		}
+		session.close();
+		return false; //用户不存在
+	}
+	
+	/*重设密码*/
+	public static void resetPassword(String phone, String password) {
+		SqlSession session = SqlSessionFactoryUtil.getSqlSession();
+		EmployeeDao employeeDao = session.getMapper(EmployeeDao.class);
+		
+		Employee employee = new Employee();
+		employee.setPassWord(password);
+		employee.setPhoneNumber(phone);
+		employeeDao.ResteAnEmployeePassword(employee);
+		session.commit();
+		session.close();
+	}
+	
+	/*判断用户注册信息完整性*/
+	public static boolean isRegisterParamRight(Employee employee, String regFont, String registerPasswordAgain) {
+		if(employee.getNickName().equals("") || employee.getNickName() == null
+				|| employee.getPassWord().equals("") || employee.getPassWord() == null
+				|| employee.getPhoneNumber().equals("") || employee.getPhoneNumber() == null
+				|| employee.getPassWord().equals("") || employee.getPassWord() == null
+				|| regFont.equals("") || regFont == null
+				|| registerPasswordAgain.equals("") || registerPasswordAgain == null)
+			return false;
+		return true;
+	}
 	/*注册一个用户*/
 	public static boolean registerAnEmployee(Employee employee) {
 		Employee employeeTemp = null;
