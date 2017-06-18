@@ -88,8 +88,8 @@ public class EmployeeLoginController {
 			mav.addObject("degree", "-1");
 			mav.addObject("currentPage", "1");
 			mav.setViewName("search");
-			Cookie cookie = new Cookie("nick", EmployeeManageService.getNickName(employee.getPhoneNumber()));
-			response.addCookie(cookie);
+			//Cookie cookie = new Cookie("nick", EmployeeManageService.getNickName(employee.getPhoneNumber()));
+			//response.addCookie(cookie);
 			return mav;//登陆成功，返回查询视图
 		}			
 		mav.addObject("warnEmployee", "noExist");

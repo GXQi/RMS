@@ -265,7 +265,7 @@
     <div class="search-input mar-auto">
         <form>
             <input type="text" name="search" placeholder="关键技能" />
-            <button type="submit" value="">搜索</button>
+            <button  value="">搜索</button>
         </form>
     </div>
     <hr/>

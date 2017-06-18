@@ -18,7 +18,7 @@
    <div class="loginwarn">信息填写不完整</div>
 </#if>
 
-<form class="form-horizontal" role="form" method="POST" action="/RMS/login/findPassword">
+<form class="form-horizontal" role="form" method="POST" action="/RMS/login/findPass">
  <div class="form-group ">
         <div class="col-sm-4">
             <input type="text" class="form-control" id="phoneNumber" placeholder="手机号" name="phoneNumber"

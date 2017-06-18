@@ -26,10 +26,8 @@
             <input type="password" class="form-control" id="confirmPassword" placeholder="确认密码" onblur="checkFirmPassword()" name="rePassword">
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-sm-4">
-            <input  name="rePassword">
-        </div>
+    <div>
+    	<div name="phoneNumber" class="resernumber">#{remphone}</div>
     </div>
     <input type="submit" value="完成">
 </form>
