@@ -110,11 +110,11 @@
     			processData: false,
     			contentType: false
 				}).done(function(res) {
+					hide();
 					if(res=="false"){
 						alert("上传失败");
 						
 					}else{
-						hide();
 						edit();
 					}
 				}).fail(function(res) {});

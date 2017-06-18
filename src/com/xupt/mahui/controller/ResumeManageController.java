@@ -227,7 +227,7 @@ public class ResumeManageController {
 								//将路径保存到数据库
 								ResumeManageService.insertResumePath(phonenumber, myFileName);
 							}
-							return myFileName;
+							return "true";
 						} catch (IllegalStateException e) {
 							e.printStackTrace();
 						} catch (IOException e) {

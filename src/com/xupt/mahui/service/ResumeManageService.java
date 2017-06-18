@@ -71,6 +71,10 @@ public class ResumeManageService {
 		SqlSession session=SqlSessionFactoryUtil.getSqlSession();
 		ResumeDao resumeDao=session.getMapper(ResumeDao.class);
 		List<EductionExperience> list= resumeDao.selectEductionExperience(phonenumber);
+		for(int i=0;i<list.size();i++){
+			String degree=list.get(i).getDegree();
+			list.get(i).setDegree(changeDegree(degree));
+		}
 		session.commit();	
 		session.close();
 		return list;
