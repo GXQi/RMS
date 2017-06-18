@@ -15,15 +15,20 @@
 <div class="loginTiele">简历管理平台</div>
 <div class="findPasswordTiele">密码重置</div>
 <div id="warning"><span id="warn">提示</span></div>
-<form class="form-horizontal" role="form">
+<form class="form-horizontal" role="form" method="POST" action="/RMS/login/resetPassword">
     <div class="form-group ">
         <div class="col-sm-4">
-            <input type="password" class="form-control" id="newpassword" placeholder="新密码" onblur="checkNewPassword()">
+            <input type="password" class="form-control" id="newpassword" placeholder="新密码" onblur="checkNewPassword()" name="newPassword">
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-4">
-            <input type="password" class="form-control" id="confirmPassword" placeholder="确认密码" onblur="checkFirmPassword()">
+            <input type="password" class="form-control" id="confirmPassword" placeholder="确认密码" onblur="checkFirmPassword()" name="rePassword">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-4">
+            <input  name="rePassword">
         </div>
     </div>
     <input type="submit" value="完成">

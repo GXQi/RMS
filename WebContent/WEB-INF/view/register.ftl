@@ -14,6 +14,9 @@
 <#if warnEmployee?exists>
    <div class="loginwarn">帐号已存在</div>
 </#if>
+<#if warnInforLank?exists>
+   <div class="loginwarn">信息填写不完整</div>
+</#if>
 <form class="form-horizontal" role="form" method="POST" action="/RMS/submitUser">
     <div class="form-group ">
         <div class="col-sm-4">
@@ -22,20 +25,20 @@
          <label id="registerNumberwarn" class="loginwarn"><span class="warn"><img src="/RMS/images/error.png"></span></label>
     </div>   
     
-      <div class="form-group">
+    <div class="form-group">
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="registerFont" placeholder="验证码"
+            <input type="text" class="form-control" id="registerFont" name="registerFont" placeholder="验证码"
                    onblur="checkRegisterFont()">
         </div>
-        <!--<span class="registerfont">获取验证码</span>-->
+  
         <label id="registerFonewarn" class="loginwarn"><span class="warn"><img src="/RMS/images/error.png"></span></label>
     </div>
 
     <div>
-        <!--<div class="col-sm-4">-->
-        <span class="code" id="checkCode" onclick="creatCode()" style="margin-left:60px"></span>
+ 
+        <span class="code" id="checkCode" onclick="creatCode()"style="margin-left:60px; border-style: solid;border-width: 2px;font-size: 20px;"></span>
 
-        <!--</div>-->
+
         <a href="#" onclick="creatCode()" class="changeFont" style="margin-left:30px">看不清换一张</a>
     </div>
       
@@ -56,7 +59,7 @@
     </div>
     <div class="form-group ">
         <div class="col-sm-4">
-            <input type="password" class="form-control" id="registerPasswordAgain" placeholder="确认密码"
+            <input type="password" class="form-control" id="registerPasswordAgain" placeholder="确认密码" name="againPassword"
                    onblur="checkRegisterPasswordAgain()">
         </div>
         <label id="registerpassAgainwarn" class="loginwarn"><span class="warn"><img src="/RMS/images/error.png"></span></label>
