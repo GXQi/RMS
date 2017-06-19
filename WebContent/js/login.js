@@ -1,6 +1,5 @@
 function check(){
-
-return false;
+	 false;
 }
 
 var code;

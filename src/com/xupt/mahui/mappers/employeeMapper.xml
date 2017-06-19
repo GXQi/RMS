@@ -13,6 +13,6 @@
 	
 	<!-- 修改用户密码 -->
 	<update id="ResteAnEmployeePassword" parameterType="com.xupt.mahui.entity.Employee">
-		update employee password=#{employee.passWord} where phonenumber=#{employee.phoneNumber};
+		update employee set password=#{employee.passWord} where phonenumber=#{employee.phoneNumber};
 	</update>
 </mapper>

@@ -35,6 +35,7 @@ public class EmployeeLoginController {
 	public ModelAndView resetPassword(@RequestParam("phone") String phone, 
 			@RequestParam("newPassword") String password, 
 			@RequestParam("rePassword") String rePassword) {
+		System.out.println(phone + " " + password + " " + rePassword);
 		ModelAndView mav = new ModelAndView();
 		if(phone.equals("") || phone == null 
 				|| password.equals("") || password == null
@@ -52,7 +53,6 @@ public class EmployeeLoginController {
 	@RequestMapping("/login/findPass")
 	public ModelAndView findPassword(@RequestParam("phoneNumber") String phone, 
 			@RequestParam("findFont") String font) {
-		System.out.println(phone + " " + font);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("findPassword");
 		if(phone.equals("") || phone == null
@@ -66,6 +66,7 @@ public class EmployeeLoginController {
 		}
 		mav.setViewName("resetPassword");
 		mav.addObject("remphone", phone);
+		System.out.println(phone + " ***** " + font);
 		return mav;
 	}
 	
