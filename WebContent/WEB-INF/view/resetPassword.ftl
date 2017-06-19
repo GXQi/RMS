@@ -26,10 +26,10 @@
             <input type="password" class="form-control" id="confirmPassword" placeholder="确认密码" onblur="checkFirmPassword()" name="rePassword">
         </div>
     </div>
-    <div>
-    	<div name="phoneNumber" class="resernumber">#{remphone}</div>
+  	<div>
+    	<input type="hidden" name="phone" value=${remphone}>
     </div>
-    <input type="submit" value="完成">
+    <button type="submit" class="loginSure">完成</button>  
 </form>
 
 </body>
