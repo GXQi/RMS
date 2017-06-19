@@ -25,6 +25,7 @@ import com.xupt.mahui.util.SqlConfig;
  */
 @Controller
 public class EmployeeLoginController {
+	
 	@RequestMapping("/findPassword")//点击“找回密码”进入找回密码视图
 	public String goToFindPassword() {
 		return "findPassword";
@@ -40,12 +41,14 @@ public class EmployeeLoginController {
 		if(phone.equals("") || phone == null 
 				|| password.equals("") || password == null
 				|| rePassword.equals("") || rePassword == null) {
+			System.out.println("没写密码");
 			mav.addObject("warnInforLank", "true");
+			mav.addObject("remphone", phone);
 			mav.setViewName("resetPassword");
 			return mav;//重设密码失败
 		}
 		EmployeeManageService.resetPassword(phone, password);
-		mav.setViewName("login");
+		mav.setViewName("resetSuccess");
 		return mav;
 	}
 	
