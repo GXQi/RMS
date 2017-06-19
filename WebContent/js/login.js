@@ -1,3 +1,8 @@
+function check(){
+
+return false;
+}
+
 var code;
 function creatCode() {
     code = '';

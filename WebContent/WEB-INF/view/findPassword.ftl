@@ -24,7 +24,7 @@
             <input type="text" class="form-control" id="phoneNumber" placeholder="手机号" name="phoneNumber"
                    onBlur="checkPhone()">
         </div>
-        <label id="loginNamewarn"><span class="warn"><img src="../images/error.png"></span></label>
+        <label id="loginNamewarn"><span class="warn"><img src="/RMS/images/error.png"></span></label>
     </div>
     <div class="form-group">
         <div class="col-sm-4">
