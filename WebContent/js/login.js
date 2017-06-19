@@ -19,17 +19,17 @@ function checkRegisterFont() {
     if (Font.length <= 0) {
         document.getElementById('registerFonewarn').innerHTML = '请输入验证码';
         document.getElementById('registerFont').focus();
-        document.getElementsByName('Isregister').value=false;
+        document.getElementsById('Isregister').value=false;
     }
     else if (Font.toUpperCase() != code.toUpperCase()) {
         document.getElementById('registerFonewarn').innerHTML = '验证码错误';
         document.getElementById('registerFont').focus();
-        document.getElementsByName('Isregister').value=false;
+        document.getElementsById('Isregister').value=false;
         creatCode();
     }
     else {
         document.getElementById('registerFonewarn').innerHTML = '';
-        document.getElementsByName('Isregister').value=true;
+        document.getElementsById('Isregister').value=true;
         
     }
 }
@@ -84,10 +84,10 @@ function checkPhone() {
      if (!reg.test(Phone)) {
          document.getElementById('registerNumberwarn').innerHTML = '请先输入您的正确手机号！';
          document.getElementById('registerPhone').focus();
-         document.getElementsByName('Isregister').value=false;
+         document.getElementsById('Isregister').value=false;
      }else {
          document.getElementById('registerNumberwarn').innerHTML = '';
-         document.getElementsByName('Isregister').value=true;
+         document.getElementsById('Isregister').value=true;
      }
      
      
@@ -98,10 +98,10 @@ function checkPhone() {
      if (name.length < 6 || name.length > 21) {
          document.getElementById('registerNamewarn').innerHTML = '请输入6～20位的昵称';
          document.getElementById('registerName').focus();
-         document.getElementsByName('Isregister').value=false;
+         document.getElementsById('Isregister').value=false;
      }else {
          document.getElementById('registerNamewarn').innerHTML = '';
-         document.getElementsByName('Isregister').value=true;
+         document.getElementsById('Isregister').value=true;
      }
  }
 
@@ -110,10 +110,10 @@ function checkPhone() {
 	    if (password.length < 6 || password.length > 21) {
 	        document.getElementById('registerpasswarn').innerHTML = '请输入6～20位的密码';
 	        document.getElementById('registerpasswarn').focus();
-	        document.getElementsByName('Isregister').value=false;
+	        document.getElementsById('Isregister').value=false;
 	    }else {
 	        document.getElementById('registerpasswarn').innerHTML = '';
-	        document.getElementsByName('Isregister').value=true;
+	        document.getElementsById('Isregister').value=true;
 	    }
  }
 
@@ -124,14 +124,14 @@ function checkPhone() {
 	    if (passwordAgain.length < 6 || passwordAgain.length > 21) {
 	        document.getElementById('registerpassAgainwarn').innerHTML = '请再次输入6～20位的密码';
 	        document.getElementById('registerPasswordAgain').focus();
-	        document.getElementsByName('Isregister').value=false;
+	        document.getElementsById('Isregister').value=false;
 	    } else if (passwordAgain != password) {
 	        document.getElementById('registerpassAgainwarn').innerHTML = '两次密码不一致';
 	        document.getElementById('registerPassword').focus();
-	        document.getElementsByName('Isregister').value=false;
+	        document.getElementsById('Isregister').value=false;
 	    }else {
 	        document.getElementById('registerpassAgainwarn').innerHTML = '';
-	        document.getElementsByName('Isregister').value=true;
+	        document.getElementsById('Isregister').value=true;
 	    }
  }
  
