@@ -10,7 +10,7 @@
     <title>resetPassword</title>
 </head>
 <body>
-<div class="findPasswordReturn">返回登录页</div>
+<div class="findPasswordReturn"><a href="/RMS/login">返回登录页</a></div>
 <div class="loginTiele">简历管理平台</div>
 <div class="findPasswordTiele">密码重置</div>
 <div id="warning"><span id="warn">提示</span></div>
@@ -22,11 +22,13 @@
         <div class="col-sm-4">
             <input type="password" class="form-control" id="newpassword" placeholder="新密码" onblur="checkNewPassword()" name="newPassword">
         </div>
+        <label id="registerNumberwarn" class="loginwarn"><span class="warn"><img src="/RMS/images/error.png"></span></label>
     </div>
     <div class="form-group">
         <div class="col-sm-4">
             <input type="password" class="form-control" id="confirmPassword" placeholder="确认密码" onblur="checkFirmPassword()" name="rePassword">
         </div>
+        <label id="registerNumberwarn" class="loginwarn"><span class="warn"><img src="/RMS/images/error.png"></span></label>
     </div>
   	<div>
     	<input type="hidden" name="phone" value=${remphone}>
