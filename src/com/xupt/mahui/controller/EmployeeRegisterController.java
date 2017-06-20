@@ -27,10 +27,13 @@ public class EmployeeRegisterController {
 
 	@RequestMapping("/submitUser") //点击“注册”，进行注册操作
 	public ModelAndView dealRegister(Employee employee, @RequestParam("registerFont") String regFont,
-			@RequestParam("againPassword") String regPasswordAgain) {
-		/*检测验证码是否正确*/
+			@RequestParam("againPassword") String regPasswordAgain, 
+			@RequestParam("Isregister") int Isregister) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("register");
+		if(Isregister == 1){
+			return mav;//前台检测到错误，无需再进行任何操作；
+		}
 		if(EmployeeManageService.isRegisterParamRight(employee, regFont, regPasswordAgain) == false) {
 			mav.addObject("warnInforLank", "true");
 			return mav;//注册失败，说明用户已存在

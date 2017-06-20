@@ -25,6 +25,10 @@ import com.xupt.mahui.util.SqlConfig;
  */
 @Controller
 public class EmployeeLoginController {
+	@RequestMapping("/gobackLogin")
+	public String goBackLogin() {
+		return "login";
+	}
 	
 	@RequestMapping("/findPassword")//点击“找回密码”进入找回密码视图
 	public String goToFindPassword() {
@@ -35,13 +39,13 @@ public class EmployeeLoginController {
 	@RequestMapping("/login/resetPassword") 
 	public ModelAndView resetPassword(@RequestParam("phone") String phone, 
 			@RequestParam("newPassword") String password, 
-			@RequestParam("rePassword") String rePassword) {
+			@RequestParam("rePassword") String rePassword,
+			@RequestParam("IsResetPassword") int IsResetPassword) {
 		System.out.println(phone + " " + password + " " + rePassword);
 		ModelAndView mav = new ModelAndView();
-		if(phone.equals("") || phone == null 
+		if(IsResetPassword == 1 
 				|| password.equals("") || password == null
 				|| rePassword.equals("") || rePassword == null) {
-			System.out.println("没写密码");
 			mav.addObject("warnInforLank", "true");
 			mav.addObject("remphone", phone);
 			mav.setViewName("resetPassword");
@@ -55,9 +59,12 @@ public class EmployeeLoginController {
 	//找回密码url
 	@RequestMapping("/login/findPass")
 	public ModelAndView findPassword(@RequestParam("phoneNumber") String phone, 
-			@RequestParam("findFont") String font) {
+			@RequestParam("findFont") String font,
+			@RequestParam("IsFindPassword") int IsFindPassword) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("findPassword");
+		if(IsFindPassword == 1)
+			return mav;
 		if(phone.equals("") || phone == null
 				|| font.equals("") || font == null) {
 			mav.addObject("warnInforLank", "true");			
