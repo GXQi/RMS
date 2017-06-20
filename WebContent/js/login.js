@@ -20,17 +20,19 @@ function checkRegisterFont() {
         document.getElementById('registerFonewarn').innerHTML = '请输入验证码';
         document.getElementById('registerFont').focus();
         document.getElementsById('Isregister').value=1;
+        document.getElementsById('IsFindPassword').value=1;
     }
     else if (Font.toUpperCase() != code.toUpperCase()) {
         document.getElementById('registerFonewarn').innerHTML = '验证码错误';
         document.getElementById('registerFont').focus();
         document.getElementsById('Isregister').value=1;
+        document.getElementsById('IsFindPassword').value=1;
         creatCode();
     }
     else {
         document.getElementById('registerFonewarn').innerHTML = '';
         document.getElementsById('Isregister').value=0;
-        
+        document.getElementsById('IsFindPassword').value=0;
     }
 }
 
@@ -62,9 +64,11 @@ function checkPhone() {
     if (!reg.test(loginPhone)) {
         document.getElementById('loginNamewarn').innerHTML = '请先输入您的正确手机号！';
         document.getElementById('phoneNumber').focus();
+        document.getElementsById('IsFindPassword').value=1;
+        
     } else {
         document.getElementById('loginNamewarn').innerHTML = '';
-
+        document.getElementsById('IsFindPassword').value=0;
     }  
 }
 
@@ -139,7 +143,8 @@ function checkPhone() {
      var newpassword = document.getElementById('newpassword').value;
      if (newpassword === '') {
          document.getElementById('warning').innerHTML = '请输入密码！';
-         document.getElementById('newpassword').focus()
+         document.getElementById('newpassword').focus();
+         document.getElementsById('IsResetPassword').value=1;
      }
  }
 
@@ -148,9 +153,11 @@ function checkPhone() {
      var confirmPassword = document.getElementById('confirmPassword').value;
      if (confirmPassword === '') {
          document.getElementById('warning').innerHTML = '请输入确认密码！';
-         document.getElementById('confirmPassword').focus()
+         document.getElementById('confirmPassword').focus();
+         document.getElementsById('IsResetPassword').value=1;
      } else if (newpassword != confirmPassword) {
          document.getElementById('warning').innerHTML = '两次输入不同！';
-         document.getElementById('newpassword').focus()
+         document.getElementById('newpassword').focus();
+         document.getElementsById('IsResetPassword').value=1;
      }
  }

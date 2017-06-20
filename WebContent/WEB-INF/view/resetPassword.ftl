@@ -17,7 +17,7 @@
 <#if warnInforLank?exists>
    <div class="loginwarn">信息填写不完整</div>
 </#if>
-<form class="form-horizontal" role="form" method="POST" action="/RMS/login/resetPassword">
+<form class="form-horizontal" role="form" method="GET" action="/RMS/login/gobackLogin">
     <div class="form-group ">
         <div class="col-sm-4">
             <input type="password" class="form-control" id="newpassword" placeholder="新密码" onblur="checkNewPassword()" name="newPassword">
@@ -29,6 +29,9 @@
             <input type="password" class="form-control" id="confirmPassword" placeholder="确认密码" onblur="checkFirmPassword()" name="rePassword">
         </div>
         <label id="registerNumberwarn" class="loginwarn"><span class="warn"><img src="/RMS/images/error.png"></span></label>
+    </div>
+    <div>
+    	<input type="hidden" name="IsResetPassword" id="IsResetPassword" value=1>
     </div>
   	<div>
     	<input type="hidden" name="phone" value=${remphone}>

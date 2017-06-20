@@ -17,6 +17,9 @@
 <#if warnInforLank?exists>
    <div class="loginwarn">信息填写不完整</div>
 </#if>
+<#if warnNoEmployee?exists>
+   <div class="loginwarn">手机号不存在</div>
+</#if>
 
 <form class="form-horizontal" role="form" method="POST" action="/RMS/login/findPass">
  <div class="form-group ">
@@ -42,7 +45,9 @@
         <!--</div>-->
         <a href="#" onclick="creatCode()" class="changeFont" style="margin-left:30px">看不清换一张</a>
     </div>
-      
+      <div>
+    	<input type="hidden" name="IsFindPassword" id="IsFindPassword" value=1>
+    </div>
       <button type="submit" class="findSure">下一步</button>
 </form>
 </body>
