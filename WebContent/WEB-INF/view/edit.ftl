@@ -10,6 +10,12 @@
     <script type="text/javascript" src="/RMS/js/type-in.js"></script>
     <title>Title</title>
     <style>
+    body{
+		background-image:url("/RMS/images/background.jpg");  
+		background-repeat: no-repeat; 
+		background-attachment:fixed; 
+		background-size: cover; 
+	}
     .position {
 	margin-left : 35%;
 	}
@@ -20,6 +26,11 @@
 	
 	#select {
 		margin-left:35%;
+	}
+	
+	.the_title{
+		font-size:150%;
+		font-weight:900;
 	}
 
     </style>
@@ -163,7 +174,7 @@
     <hr/>
     <div>
         <div class="label">
-            基本信息
+            <span class="the_title"><img src="/RMS/images/basic_info.png" width="30" height="30"/>&nbsp;&nbsp;基本信息</span>
         </div>
             <div class="basic">
                 <table width="700" height="150">
@@ -205,7 +216,7 @@
     <hr/>
     <div>
         <div class="label">
-            工作经历
+             <span class="the_title"><img src="/RMS/images/work_experience.png" width="30" height="30"/>&nbsp;&nbsp;工作经历</span>
             <div><span><img src="/RMS/images/add.png" width="20px" height="20px" onclick="appendWork()"></span>添加更多工作经历
             </div>
         </div>
@@ -246,7 +257,7 @@
     <hr/>
     <div>
         <div class="label">
-            项目经验
+            <span class="the_title"><img src="/RMS/images/pro_experience.png" width="30" height="30"/>&nbsp;&nbsp;项目经验</span>
             <div><span><img src="/RMS/images/add.png" width="20px" height="20px" onclick="appendProject()"></span>添加更多项目经验
             </div>
         </div>
@@ -287,7 +298,7 @@
     <hr/>
     <div>
         <div class="label">
-            教育经历
+            <span class="the_title"><img src="/RMS/images/edu_experience.png" width="30" height="30"/>&nbsp;&nbsp;教育经历</span>
             <div><span><img src="./images/add.png" width="20px" height="20px" onclick="appendEdu()"></span>添加更多教育经历
             </div>
         </div>
@@ -327,13 +338,13 @@
        
     </div>
     <div class="footer">
-        <button class="btn btn-default" onclick="submits('light2')">确定</button>
+        <button class="btn btn-primary" onclick="submits('light2')">确定</button>
     </div>
     <div id="light" class="white_content">
         <div class="con">
             确定要删除这一模块？
-            <button class="btn btn-default" id="close">关闭</button>
-            <button class="btn btn-default" id="myBtn">确定</button>
+            <button class="btn btn-default" id="close" style="height=20px;width=100px;">关闭</button>
+            <button class="btn btn-primary" id="myBtn">确定</button>
         </div>
     </div>
     

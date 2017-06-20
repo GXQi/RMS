@@ -10,11 +10,22 @@
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/RMS/js/details.js"></script>
     <style>
+    body{
+		background-image:url("/RMS/images/background.jpg");  
+		background-repeat: no-repeat; 
+		background-attachment:fixed; 
+		background-size: cover; 
+	}
     	.export {
     		float:right;
     		margin-right:5%;
     		margin-top:2%;
     	}
+    	.the_title{
+		font-size:150%;
+		font-weight:900;
+	}
+    	
     </style>
     <script type="text/javascript">
     	function post(){
@@ -43,7 +54,7 @@
     <nav class="navbar navbar-inverse nav-size mar-auto" class="" role="navigation">
         <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">简历管理平台</a>
+            <a class="navbar-brand" href="/RMS/main">简历管理平台</a>
         </div>
         <div>
             <p class="navbar-text navbar-left">简历库</p>
@@ -88,7 +99,9 @@
     <hr/>
     <!-- 工作经历 -->
     <div class="info-work clear-float">
-        <div class="work-title float-l"><span class="span-style font-size-16">工作经历</span></div>
+        <div class="work-title float-l"><span class="the_title"><img src="/RMS/images/work_experience.png" width="30" height="30"/>&nbsp;&nbsp;工作经历</span>
+	</div>
+	<br/>
         <div class="work-content float-l">
           	<#list workExperienceList as workExperience>
           		<ul class="clear-float font-size-16">
@@ -105,7 +118,9 @@
     <hr/>
     <!-- 项目经验 -->
     <div class="info-project clear-float">
-        <div class="project-title float-l"><span class="span-style">项目经验</span></div>
+        <div class="project-title float-l"><span class="the_title"><img src="/RMS/images/pro_experience.png" width="30" height="30"/>&nbsp;&nbsp;项目经验</span>
+</div>
+<br/>
         <div class="project-content float-l">
             <#list  projectExperienceList as projectExperience>
           		<ul class="clear-float font-size-16">
@@ -122,7 +137,9 @@
     <hr/>
     <!-- 教育经历 -->
     <div class="info-education clear-float">
-        <div class="education-title float-l"><span class="span-style">教育经历</span></div>
+        <div class="education-title float-l"><span class="the_title"><img src="/RMS/images/edu_experience.png" width="30" height="30"/>&nbsp;&nbsp;教育经历</span>
+</div>
+<br/>
         <div class="education-content float-l">
             <#list  eductionExperienceList as eductionExperience>
           		<ul class="clear-float font-size-16">

@@ -12,6 +12,11 @@
     margin: 0;
 }
 
+.the_title{
+		font-size:150%;
+		font-weight:900;
+	}
+
 a{
     color: #4C9ED9;
 }
@@ -147,7 +152,9 @@ hr{
     <!-- 工作经历 -->
     <div class="info-work clear-float">
     	<br/>
-        <div class="work-title float-l"><span class="span-style font-size-16">工作经历</span></div>
+        <div class="work-title float-l"><span class="the_title"><img src="images/work_experience.png" width="30" height="30"/>工作经历</span>
+</div>
+<br/>
         <div class="work-content float-l">
           	<#list  workExperienceList as workExperience>
           		<ul class="clear-float font-size-16">
@@ -167,7 +174,9 @@ hr{
     <!-- 项目经验 -->
     <div class="info-project clear-float">
     	<br/>
-        <div class="project-title float-l"><span class="span-style">项目经验</span></div>
+        <div class="project-title float-l"><span class="the_title"><img src="images/pro_experience.png" width="30" height="30"/>项目经验</span>
+</div>
+<br/>
         <div class="project-content float-l">
             <#list  projectExperienceList as projectExperience>
           		<ul class="clear-float font-size-16">
@@ -187,7 +196,9 @@ hr{
     <!-- 教育经历 -->
     <div class="info-education clear-float">
     	<br/>
-        <div class="education-title float-l"><span class="span-style">教育经历</span></div>
+        <div class="education-title float-l"><span class="the_title"><img src="images/edu_experience.png" width="30" height="30"/>教育经历</span>
+</div>
+<br/>
         <div class="education-content float-l">
             <#list  eductionExperienceList as eductionExperience>
           		<ul class="clear-float font-size-16">

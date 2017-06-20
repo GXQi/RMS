@@ -9,6 +9,12 @@
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
     <style>
+    body{
+		background-image:url("/RMS/images/background.jpg");  
+		background-repeat: no-repeat; 
+		background-attachment:fixed; 
+		background-size: cover; 
+	}
    		.selected{
     		color:#ffffff;
     		background-color:/*#f60*/#CCC;
@@ -18,6 +24,7 @@
     		color:#ffffff;
     		background-color:/*#f60*/#CCC;
 		}
+		
     </style>
     <script>
     	var a = ${workTime};
