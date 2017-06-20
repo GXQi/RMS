@@ -161,8 +161,10 @@ hr{
                 	<li class="float-l"><img src="images/img_name.png"/> ${workExperience.company}</li>
                 	<li class="float-r"><img src="images/img_workTime.png"/> ${workExperience.workTimeStart}至${workExperience.workTimeEnd}</li>
             	</ul>
-            	<span class="span-style"><img src="images/img_position.png"/> ${workExperience.position}</span>
+            	<br/>
+            	<span><img src="images/img_position.png"/> ${workExperience.position}</span>
             	<p>
+            	<br/>
                 	<img src="images/img_content.png"/> ${workExperience.workContent}
             	</p>
             	<br/>
@@ -183,8 +185,10 @@ hr{
                 	<li class="float-l"><img src="images/img_name.png"/> ${projectExperience.projectName}</li>
                 	<li class="float-r"><img src="images/img_workTime.png"/> ${projectExperience.projectTimeStart}至${projectExperience.projectTimeEnd}</li>
             	</ul>
-            	<span class="span-style"><img src="images/img_role.png"/> ${projectExperience.projectRole}</span>
+            	<br/>
+            	<span><img src="images/img_role.png"/> ${projectExperience.projectRole}</span>
             	<p>
+            	<br/>
                 	<img src="images/img_content.png"/> ${projectExperience.workContent}
             	</p>
             	<br/>
@@ -205,8 +209,10 @@ hr{
                 	<li class="float-l"><img src="images/img_school.png"/> ${eductionExperience.school}</li>
                 	<li class="float-r"><img src="images/img_workTime.png"/> ${eductionExperience.graduationTime}</li>
             	</ul>
-            	<span class="span-style"><img src="images/img_major.png"/> ${eductionExperience.major}</span>
+            	<br/>
+            	<span ><img src="images/img_major.png"/> ${eductionExperience.major}</span>
             	<p>
+            	<br/>
                 	<img src="images/img_degree.png"/> ${eductionExperience.degree}
             	</p>
             	<br/>

@@ -1,1 +1,1 @@
-本项目采用springmVC和myBatis实现建立管理系统
+本项目采用springMVC和mybatis实现简历管理系统

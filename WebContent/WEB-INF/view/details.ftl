@@ -108,8 +108,10 @@
                 	<li class="float-l"><img src="/RMS/images/img_name.png"> ${workExperience.company}</li>
                 	<li class="float-r"><img src="/RMS/images/img_workTime.png"> ${workExperience.workTimeStart}至${workExperience.workTimeEnd}</li>
             	</ul>
-            	<span class="span-style"><img src="/RMS/images/img_position.png"> ${workExperience.position}</span>
+            	<br/>
+            	<span ><img src="/RMS/images/img_position.png"> ${workExperience.position}</span>
             	<p>
+            	<br/>
                 	<img src="/RMS/images/img_content.png"> ${workExperience.workContent}
             	</p>
           	</#list>
@@ -127,8 +129,10 @@
                 	<li class="float-l"><img src="/RMS/images/img_name.png"> ${projectExperience.projectName}</li>
                 	<li class="float-r"><img src="/RMS/images/img_workTime.png"> ${projectExperience.projectTimeStart}至${projectExperience.projectTimeEnd}</li>
             	</ul>
-            	<span class="span-style"><img src="/RMS/images/img_role.png"> ${projectExperience.projectRole}</span>
+            	<br/>
+            	<span><img src="/RMS/images/img_role.png"> ${projectExperience.projectRole}</span>
             	<p>
+            	<br/>
                 	<img src="/RMS/images/img_content.png"> ${projectExperience.workContent}
             	</p>
           	</#list>
@@ -141,13 +145,16 @@
 </div>
 <br/>
         <div class="education-content float-l">
+        
             <#list  eductionExperienceList as eductionExperience>
           		<ul class="clear-float font-size-16">
                 	<li class="float-l"><img src="/RMS/images/img_school.png"> ${eductionExperience.school}</li>
                 	<li class="float-r"><img src="/RMS/images/img_workTime.png"> ${eductionExperience.graduationTime}</li>
             	</ul>
-            	<span class="span-style"><img src="/RMS/images/img_major.png"> ${eductionExperience.major}</span>
+            	<br/>
+            	<span ><img src="/RMS/images/img_major.png"> ${eductionExperience.major}</span>
             	<p>
+            		<br/>
                 	<img src="/RMS/images/img_degree.png"> ${eductionExperience.degree}
             	</p>
           	</#list>
