@@ -64,7 +64,9 @@
         </div>
         <label id="registerpassAgainwarn" class="loginwarn"><span class="warn"><img src="/RMS/images/error.png"></span></label>
     </div>
-
+	<div>
+    	<input type="hidden" name="Isregister" id="Isregister" value=1>
+    </div>
   <button type="submit" class="loginSure">注册</button>
 
 </form>

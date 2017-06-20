@@ -25,6 +25,11 @@ import com.xupt.mahui.util.SqlConfig;
  */
 @Controller
 public class EmployeeLoginController {
+	@RequestMapping("/gobackLogin")
+	public String goBackLogin() {
+		return "login";
+	}
+	
 	@RequestMapping("/findPassword")//点击“找回密码”进入找回密码视图
 	public String goToFindPassword() {
 		return "findPassword";
@@ -34,27 +39,32 @@ public class EmployeeLoginController {
 	@RequestMapping("/login/resetPassword") 
 	public ModelAndView resetPassword(@RequestParam("phone") String phone, 
 			@RequestParam("newPassword") String password, 
-			@RequestParam("rePassword") String rePassword) {
+			@RequestParam("rePassword") String rePassword,
+			@RequestParam("IsResetPassword") int IsResetPassword) {
+		System.out.println(phone + " " + password + " " + rePassword);
 		ModelAndView mav = new ModelAndView();
-		if(phone.equals("") || phone == null 
+		if(IsResetPassword == 1 
 				|| password.equals("") || password == null
 				|| rePassword.equals("") || rePassword == null) {
 			mav.addObject("warnInforLank", "true");
+			mav.addObject("remphone", phone);
 			mav.setViewName("resetPassword");
 			return mav;//重设密码失败
 		}
 		EmployeeManageService.resetPassword(phone, password);
-		mav.setViewName("login");
+		mav.setViewName("resetSuccess");
 		return mav;
 	}
 	
 	//找回密码url
 	@RequestMapping("/login/findPass")
 	public ModelAndView findPassword(@RequestParam("phoneNumber") String phone, 
-			@RequestParam("findFont") String font) {
-		System.out.println(phone + " " + font);
+			@RequestParam("findFont") String font,
+			@RequestParam("IsFindPassword") int IsFindPassword) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("findPassword");
+		if(IsFindPassword == 1)
+			return mav;
 		if(phone.equals("") || phone == null
 				|| font.equals("") || font == null) {
 			mav.addObject("warnInforLank", "true");			
@@ -66,6 +76,7 @@ public class EmployeeLoginController {
 		}
 		mav.setViewName("resetPassword");
 		mav.addObject("remphone", phone);
+		System.out.println(phone + " ***** " + font);
 		return mav;
 	}
 	
