@@ -23,7 +23,7 @@ function checkRegisterFont() {
         document.getElementById('Isregister').value=1;
     }
     else if (Font.toUpperCase() != code.toUpperCase()) {
-        document.getElementById('registerFonewarn').innerHTML = '验证码错误,到这了';
+        document.getElementById('registerFonewarn').innerHTML = '验证码错误';
         document.getElementById('registerFont').focus();
         document.getElementById('Isregister').value=1;
         creatCode();
