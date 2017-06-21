@@ -25,7 +25,7 @@ import com.xupt.mahui.util.SqlConfig;
  */
 @Controller
 public class EmployeeLoginController {
-	@RequestMapping("/gobackLogin")
+	@RequestMapping("login/gobackLogin")
 	public String goBackLogin() {
 		return "login";
 	}
@@ -59,9 +59,10 @@ public class EmployeeLoginController {
 	//找回密码url
 	@RequestMapping("/login/findPass")
 	public ModelAndView findPassword(@RequestParam("phoneNumber") String phone, 
-			@RequestParam("findFont") String font,
+			@RequestParam("registerFont") String font,
 			@RequestParam("IsFindPassword") int IsFindPassword) {
 		ModelAndView mav = new ModelAndView();
+		System.out.println("找回密码：" + IsFindPassword);
 		mav.setViewName("findPassword");
 		if(IsFindPassword == 1)
 			return mav;

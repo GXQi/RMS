@@ -14,25 +14,23 @@ function creatCode() {
         checkCode.innerHTML = code;
     }
 }
+
 function checkRegisterFont() {
     var Font = document.getElementById('registerFont').value;
     if (Font.length <= 0) {
         document.getElementById('registerFonewarn').innerHTML = '请输入验证码';
         document.getElementById('registerFont').focus();
-        document.getElementsById('Isregister').value=1;
-        document.getElementsById('IsFindPassword').value=1;
+        document.getElementById('Isregister').value=1;
     }
     else if (Font.toUpperCase() != code.toUpperCase()) {
-        document.getElementById('registerFonewarn').innerHTML = '验证码错误';
+        document.getElementById('registerFonewarn').innerHTML = '验证码错误,到这了';
         document.getElementById('registerFont').focus();
-        document.getElementsById('Isregister').value=1;
-        document.getElementsById('IsFindPassword').value=1;
+        document.getElementById('Isregister').value=1;
         creatCode();
     }
     else {
         document.getElementById('registerFonewarn').innerHTML = '';
-        document.getElementsById('Isregister').value=0;
-        document.getElementsById('IsFindPassword').value=0;
+        document.getElementById('Isregister').value=0;
     }
 }
 
@@ -64,11 +62,10 @@ function checkPhone() {
     if (!reg.test(loginPhone)) {
         document.getElementById('loginNamewarn').innerHTML = '请先输入您的正确手机号！';
         document.getElementById('phoneNumber').focus();
-        document.getElementsById('IsFindPassword').value=1;
+        document.getElementById('Isregister').value=1;
         
     } else {
         document.getElementById('loginNamewarn').innerHTML = '';
-        document.getElementsById('IsFindPassword').value=0;
     }  
 }
 
@@ -88,10 +85,10 @@ function checkPhone() {
      if (!reg.test(Phone)) {
          document.getElementById('registerNumberwarn').innerHTML = '请先输入您的正确手机号！';
          document.getElementById('registerPhone').focus();
-         document.getElementsById('Isregister').value=1;
+         document.getElementById('Isregister').value=1;
      }else {
          document.getElementById('registerNumberwarn').innerHTML = '';
-         document.getElementsById('Isregister').value=0;
+         document.getElementById('Isregister').value=0;
      }
      
      
@@ -102,10 +99,10 @@ function checkPhone() {
      if (name.length < 6 || name.length > 21) {
          document.getElementById('registerNamewarn').innerHTML = '请输入6～20位的昵称';
          document.getElementById('registerName').focus();
-         document.getElementsById('Isregister').value=1;
+         document.getElementById('Isregister').value=1;
      }else {
          document.getElementById('registerNamewarn').innerHTML = '';
-         document.getElementsById('Isregister').value=0;
+         document.getElementById('Isregister').value=0;
      }
  }
 
@@ -114,10 +111,10 @@ function checkPhone() {
 	    if (password.length < 6 || password.length > 21) {
 	        document.getElementById('registerpasswarn').innerHTML = '请输入6～20位的密码';
 	        document.getElementById('registerpasswarn').focus();
-	        document.getElementsById('Isregister').value=1;
+	        document.getElementById('Isregister').value=1;
 	    }else {
 	        document.getElementById('registerpasswarn').innerHTML = '';
-	        document.getElementsById('Isregister').value=0;
+	        document.getElementById('Isregister').value=0;
 	    }
  }
 
@@ -128,14 +125,14 @@ function checkPhone() {
 	    if (passwordAgain.length < 6 || passwordAgain.length > 21) {
 	        document.getElementById('registerpassAgainwarn').innerHTML = '请再次输入6～20位的密码';
 	        document.getElementById('registerPasswordAgain').focus();
-	        document.getElementsById('Isregister').value=1;
+	        document.getElementById('Isregister').value=1;
 	    } else if (passwordAgain != password) {
 	        document.getElementById('registerpassAgainwarn').innerHTML = '两次密码不一致';
 	        document.getElementById('registerPassword').focus();
-	        document.getElementsById('Isregister').value=1;
+	        document.getElementById('Isregister').value=1;
 	    }else {
 	        document.getElementById('registerpassAgainwarn').innerHTML = '';
-	        document.getElementsById('Isregister').value=0;
+	        document.getElementById('Isregister').value=0;
 	    }
  }
  
@@ -144,7 +141,7 @@ function checkPhone() {
      if (newpassword === '') {
          document.getElementById('warning').innerHTML = '请输入密码！';
          document.getElementById('newpassword').focus();
-         document.getElementsById('IsResetPassword').value=1;
+         document.getElementById('Isregister').value=1;
      }
  }
 
@@ -154,10 +151,10 @@ function checkPhone() {
      if (confirmPassword === '') {
          document.getElementById('warning').innerHTML = '请输入确认密码！';
          document.getElementById('confirmPassword').focus();
-         document.getElementsById('IsResetPassword').value=1;
+         document.getElementById('Isregister').value=1;
      } else if (newpassword != confirmPassword) {
          document.getElementById('warning').innerHTML = '两次输入不同！';
          document.getElementById('newpassword').focus();
-         document.getElementsById('IsResetPassword').value=1;
+         document.getElementById('Isregister').value=1;
      }
  }

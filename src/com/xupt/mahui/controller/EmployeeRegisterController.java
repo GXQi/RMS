@@ -29,6 +29,7 @@ public class EmployeeRegisterController {
 	public ModelAndView dealRegister(Employee employee, @RequestParam("registerFont") String regFont,
 			@RequestParam("againPassword") String regPasswordAgain, 
 			@RequestParam("Isregister") int Isregister) {
+		System.out.println("注册：" + Isregister);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("register");
 		if(Isregister == 1){

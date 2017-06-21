@@ -43,7 +43,7 @@
         <a href="#" onclick="creatCode()" class="changeFont" style="margin-left:30px">看不清换一张</a>
     </div>
       <div>
-    	<input type="hidden" name="IsFindPassword" id="IsFindPassword" value=1>
+    	<input type="hidden" name="IsFindPassword" id="Isregister" value=0>
     </div>
       <button type="submit" class="findSure">下一步</button>
 </form>
