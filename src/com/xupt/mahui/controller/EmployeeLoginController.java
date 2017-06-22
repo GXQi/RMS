@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -90,9 +91,9 @@ public class EmployeeLoginController {
 		if (EmployeeManageService.canAnEmployeeLogin(employee) == true) {//判断是否为合法用户 
 			System.out.println("********");
 			/*添加拦截器时，松开以下注释*/
-			//HttpSession session = request.getSession();//获取http会话
-			//session.setMaxInactiveInterval(60<<7);//默认会话时间为2小时8分钟
-			//session.setAttribute("login", true);//激活会话
+			HttpSession session = request.getSession();//获取http会话
+			session.setMaxInactiveInterval(60<<7);//默认会话时间为2小时8分钟
+			session.setAttribute("login", true);//激活会话
 			List<Resume> list=ResumeManageService.getResume("-1","0",0,SqlConfig.pageSize);
 			int count=ResumeManageService.getResumeCount("-1", "0");
 			mav.addObject("resumeList", list);

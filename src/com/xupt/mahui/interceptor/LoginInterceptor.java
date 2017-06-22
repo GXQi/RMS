@@ -37,7 +37,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 		if (login == null || !login) {
 			System.out.println(request.getRequestURI());
 			System.out.println(request.getContextPath() + "这是拦截器");
-			request.getRequestDispatcher("./login.re").forward(request, response);;
+			request.getRequestDispatcher("./login").forward(request, response);;
 	        //response.sendRedirect("");
 	        return false;
 	    }
