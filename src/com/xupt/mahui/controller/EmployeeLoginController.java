@@ -1,5 +1,7 @@
 package com.xupt.mahui.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -83,7 +85,7 @@ public class EmployeeLoginController {
 	
 	@RequestMapping("/login/submitLogin")//点击“登录”进行登录处理
 	public ModelAndView submitLogin(@ModelAttribute("Employee")Employee employee, HttpServletRequest request,
-			HttpServletResponse response){
+			HttpServletResponse response) throws UnsupportedEncodingException{
 		ModelAndView mav = new ModelAndView();
 		if (EmployeeManageService.canAnEmployeeLogin(employee) == true) {//判断是否为合法用户 
 			System.out.println("********");
@@ -100,8 +102,8 @@ public class EmployeeLoginController {
 			mav.addObject("degree", "-1");
 			mav.addObject("currentPage", "1");
 			mav.setViewName("search");
-			//Cookie cookie = new Cookie("nick", EmployeeManageService.getNickName(employee.getPhoneNumber()));
-			//response.addCookie(cookie);
+			Cookie cookie = new Cookie("nick", URLEncoder.encode(EmployeeManageService.getNickName(employee.getPhoneNumber()), "utf-8"));
+			response.addCookie(cookie);
 			return mav;//登陆成功，返回查询视图
 		}			
 		mav.addObject("warnEmployee", "noExist");
