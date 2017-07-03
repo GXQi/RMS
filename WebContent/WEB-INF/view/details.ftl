@@ -7,8 +7,10 @@
     <link rel="stylesheet" type="text/css" href="/RMS/css/details.css">
     <link rel="stylesheet" type="text/css" href="/RMS/css/base.css">
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="/RMS/js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/RMS/js/details.js"></script>
+  
     <style>
     body{
 		background-image:url("/RMS/images/background.jpg");  
@@ -46,6 +48,12 @@
 			temp.submit();
 			return temp;
 		};
+		 $(document).ready(function(){
+    		var cookie=document.cookie;
+    		var name=decodeURI(cookie.split("=")[1]);
+    		$("#username").text(name);
+    		document.getElementById("username").innerHTML+="<b class='caret'></b> ";
+    	});
     </script>
 </head>
 <body>
@@ -61,7 +69,7 @@
             <!--向右对齐-->
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="username">
                         UserName <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">

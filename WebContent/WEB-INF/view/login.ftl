@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link href="/RMS/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/RMS/css/login.css" rel="stylesheet" type="text/css">
-
+	<script type="text/javascript" src="/RMS/js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/RMS/js/login.js"></script>
     <title>login</title>
@@ -19,7 +19,7 @@
         <div class="loginSubmit">帐号或密码错误</div>
     </#if>
 </div>
-<form class="form-horizontal" role="form" method="POST" action="/RMS/login/submitLogin" style="position: absolute;top: 35%;width: 700px">
+<form class="form-horizontal" role="form" method="POST" action="/RMS/first" style="position: absolute;top: 35%;width: 700px">
      <div class="form-group ">
         <div class="col-sm-4">
             <input type="text" class="form-control" id="phoneNumber" placeholder="手机号" name="phoneNumber"

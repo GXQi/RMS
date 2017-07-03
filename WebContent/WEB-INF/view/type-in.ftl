@@ -7,6 +7,7 @@
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/RMS/js/type-in.js"></script>
+    <script type="text/javascript" src="/RMS/js/jquery-3.2.1.js"></script>
     <title>Title</title>
     <style>
     body{
@@ -20,18 +21,39 @@
 		font-weight:900;
 	}
     </style>
+    <script>
+    	 $(document).ready(function(){
+    		var cookie=document.cookie;
+    		var name=decodeURI(cookie.split("=")[1]);
+    		$("#username").text(name);
+    		document.getElementById("username").innerHTML+="<b class='caret'></b> ";
+    	});
+    </script>
 </head>
 <body>
-<div class="header">
-    <div class="title">
-        <a onclick="toMain()">简历管理平台</a>
-    </div>
-    <div class="title repo">
-        简历库
-    </div>
-    <div class="username">
-        UserName | <a onclick="logout()">Log Out</a>
-    </div>
+<!-- 导航栏 -->
+<div class="search-nav">
+    <nav class="navbar navbar-inverse nav-size mar-auto" class="" role="navigation">
+        <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">简历管理平台</a>
+        </div>
+        <div>
+            <p class="navbar-text navbar-left">简历库</p>
+            <!--向右对齐-->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="username">
+                        Username<b class="caret"></b> 
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">登出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
 </div>
 <div class="content">
     <div class="putin">

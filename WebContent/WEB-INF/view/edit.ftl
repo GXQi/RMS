@@ -6,8 +6,13 @@
     <link href="/RMS/css/nav-style.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="/RMS/js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="/RMS/js/edit.js"></script>
     <script type="text/javascript" src="/RMS/js/type-in.js"></script>
+    <link rel="stylesheet" type="text/css" href="/RMS/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/RMS/css/details.css">
+    <link rel="stylesheet" type="text/css" href="/RMS/css/base.css">
+    <script type="text/javascript" src="/RMS/js/details.js"></script>
     <title>Title</title>
     <style>
     body{
@@ -148,19 +153,39 @@
         	var tip = document.getElementById(tag);
             tip.style.display = 'block';
    		}
+   		 $(document).ready(function(){
+   		 	var cookie=document.cookie;
+    		var name=decodeURI(cookie.split("=")[1]);
+    		$("#username").text(name);
+    		document.getElementById("username").innerHTML+="<b class='caret'></b> ";
+   		 });
+   		
    
     </script>
 </head>
 <body>
-<div class="header">
-    <div class="title">
-       <span><a onclick="toMain()">简历管理平台</a></span>
-    </div>
-    <div class="title repo">
-        简历库
-    </div>
-    <nav class="username">
-        UserName | <a onclick = "logout()">退出</a>
+<!-- 导航栏 -->
+<div class="details-nav">
+    <nav class="navbar navbar-inverse nav-size mar-auto" class="" role="navigation">
+        <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/RMS/main">简历管理平台</a>
+        </div>
+        <div>
+            <p class="navbar-text navbar-left">简历库</p>
+            <!--向右对齐-->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="username">
+                        UserName <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">登出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        </div>
     </nav>
 </div>
 <div class="content">

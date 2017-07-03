@@ -6,6 +6,7 @@
     <link href="/RMS/css/login.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="/RMS/js/jquery-3.2.1.js"></script>
     <title>signSuccess</title>
 </head>
 <body style="background-color: #e2e6ff">
