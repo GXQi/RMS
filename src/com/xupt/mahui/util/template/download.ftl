@@ -132,19 +132,19 @@ hr{
     <div class="info-base">
         <p class="base-name">${resumeBasic.name}</p>
         <ul class="clear-float">
-        	<li class="float-l"><img src="images/img_sex.png" /> ${resumeBasic.sex}</li>
-            <li class="float-l"><img src="images/img_skill.png"/> ${resumeBasic.skill}</li>
+        	<li class="float-l"><img src="img_sex.png" /> ${resumeBasic.sex}</li>
+            <li class="float-l"><img src="img_skill.png"/> ${resumeBasic.skill}</li>
            
         </ul>
         <ul class="clear-float">
            
-         	<li class="float-l"><img src="images/img_phonenumber.png"/> <span id="phonenumber">${resumeBasic.phonenumber}</span></li>
-            <li class="float-l"><img src="images/img_workTime.png"/> ${resumeBasic.workTime}年</li>
+         	<li class="float-l"><img src="img_phonenumber.png"/> <span id="phonenumber">${resumeBasic.phonenumber}</span></li>
+            <li class="float-l"><img src="img_workTime.png"/> ${resumeBasic.workTime}年</li>
         
         </ul>
         <ul class="clear-float">
             
-            <li class="float-l"><img src="images/img_email.png"/> ${resumeBasic.email}</li> 
+            <li class="float-l"><img src="img_email.png"/> ${resumeBasic.email}</li> 
         </ul>
     </div>
     <br/>
@@ -152,20 +152,20 @@ hr{
     <!-- 工作经历 -->
     <div class="info-work clear-float">
     	<br/>
-        <div class="work-title float-l"><span class="the_title"><img src="images/work_experience.png" width="30" height="30"/>工作经历</span>
+        <div class="work-title float-l"><span class="the_title"><img src="work_experience.png" width="30" height="30"/>工作经历</span>
 </div>
 <br/>
         <div class="work-content float-l">
           	<#list  workExperienceList as workExperience>
           		<ul class="clear-float font-size-16">
-                	<li class="float-l"><img src="images/img_name.png"/> ${workExperience.company}</li>
-                	<li class="float-r"><img src="images/img_workTime.png"/> ${workExperience.workTimeStart}至${workExperience.workTimeEnd}</li>
+                	<li class="float-l"><img src="img_name.png"/> ${workExperience.company}</li>
+                	<li class="float-r"><img src="img_workTime.png"/> ${workExperience.workTimeStart}至${workExperience.workTimeEnd}</li>
             	</ul>
             	<br/>
-            	<span><img src="images/img_position.png"/> ${workExperience.position}</span>
+            	<span><img src="img_position.png"/> ${workExperience.position}</span>
             	<p>
             	<br/>
-                	<img src="images/img_content.png"/> ${workExperience.workContent}
+                	<img src="img_content.png"/> ${workExperience.workContent}
             	</p>
             	<br/>
           	</#list>
@@ -176,20 +176,20 @@ hr{
     <!-- 项目经验 -->
     <div class="info-project clear-float">
     	<br/>
-        <div class="project-title float-l"><span class="the_title"><img src="images/pro_experience.png" width="30" height="30"/>项目经验</span>
+        <div class="project-title float-l"><span class="the_title"><img src="pro_experience.png" width="30" height="30"/>项目经验</span>
 </div>
 <br/>
         <div class="project-content float-l">
             <#list  projectExperienceList as projectExperience>
           		<ul class="clear-float font-size-16">
-                	<li class="float-l"><img src="images/img_name.png"/> ${projectExperience.projectName}</li>
-                	<li class="float-r"><img src="images/img_workTime.png"/> ${projectExperience.projectTimeStart}至${projectExperience.projectTimeEnd}</li>
+                	<li class="float-l"><img src="img_name.png"/> ${projectExperience.projectName}</li>
+                	<li class="float-r"><img src="img_workTime.png"/> ${projectExperience.projectTimeStart}至${projectExperience.projectTimeEnd}</li>
             	</ul>
             	<br/>
-            	<span><img src="images/img_role.png"/> ${projectExperience.projectRole}</span>
+            	<span><img src="img_role.png"/> ${projectExperience.projectRole}</span>
             	<p>
             	<br/>
-                	<img src="images/img_content.png"/> ${projectExperience.workContent}
+                	<img src="img_content.png"/> ${projectExperience.workContent}
             	</p>
             	<br/>
           	</#list>
@@ -200,20 +200,20 @@ hr{
     <!-- 教育经历 -->
     <div class="info-education clear-float">
     	<br/>
-        <div class="education-title float-l"><span class="the_title"><img src="images/edu_experience.png" width="30" height="30"/>教育经历</span>
+        <div class="education-title float-l"><span class="the_title"><img src="edu_experience.png" width="30" height="30"/>教育经历</span>
 </div>
 <br/>
         <div class="education-content float-l">
             <#list  eductionExperienceList as eductionExperience>
           		<ul class="clear-float font-size-16">
-                	<li class="float-l"><img src="images/img_school.png"/> ${eductionExperience.school}</li>
-                	<li class="float-r"><img src="images/img_workTime.png"/> ${eductionExperience.graduationTime}</li>
+                	<li class="float-l"><img src="img_school.png"/> ${eductionExperience.school}</li>
+                	<li class="float-r"><img src="img_workTime.png"/> ${eductionExperience.graduationTime}</li>
             	</ul>
             	<br/>
-            	<span ><img src="images/img_major.png"/> ${eductionExperience.major}</span>
+            	<span ><img src="img_major.png"/> ${eductionExperience.major}</span>
             	<p>
             	<br/>
-                	<img src="images/img_degree.png"/> ${eductionExperience.degree}
+                	<img src="img_degree.png"/> ${eductionExperience.degree}
             	</p>
             	<br/>
           	</#list>

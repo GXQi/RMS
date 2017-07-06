@@ -32,20 +32,24 @@
     
     <div class="form-group">
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="registerFont" name="registerFont" placeholder="验证码"
-                   onblur="checkRegisterFont()">
+            <table>
+            	<tr>
+            		<td width="70%">
+            			<input type="text" class="form-control" id="registerFont" name="registerFont" placeholder="验证码" onblur="checkRegisterFont()">
+            		</td>
+            		<td>
+            			 <span class="code" id="checkCode" onclick="creatCode()"style="margin-left:5px; border-style: solid;border-width: 2px;font-size: 20px;"></span>
+            		</td>
+            	</tr>
+            	
+            </table>
+           
+        
         </div>
-  
-        <label id="registerFonewarn" class="loginwarn"><span class="warn"><img src="/RMS/images/error.png"></span></label>
+        <label id="registerNumberwarn" class="loginwarn"><span class="warn"><img src="/RMS/images/error.png"></span></label>
+        
     </div>
-
-    <div>
- 
-        <span class="code" id="checkCode" onclick="creatCode()"style="margin-left:60px; border-style: solid;border-width: 2px;font-size: 20px;"></span>
-
-
-        <a href="#" onclick="creatCode()" class="changeFont" style="margin-left:30px">看不清换一张</a>
-    </div>
+    
       
     <div class="form-group ">
         <div class="col-sm-4">

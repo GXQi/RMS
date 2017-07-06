@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <link href="/RMS/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/RMS/css/nav-style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/RMS/css/search.css">
+    <link rel="stylesheet" type="text/css" href="/RMS/css/base.css">
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/RMS/js/type-in.js"></script>
@@ -36,18 +38,18 @@
     <nav class="navbar navbar-inverse nav-size mar-auto" class="" role="navigation">
         <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">简历管理平台</a>
+            <a class="navbar-brand" href="/RMS/main">简历管理平台</a>
         </div>
         <div>
             <p class="navbar-text navbar-left">简历库</p>
             <!--向右对齐-->
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="username">
+                    <a class="dropdown-toggle" data-toggle="dropdown" id="username">
                         Username<b class="caret"></b> 
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">登出</a></li>
+                        <li><a >登出</a></li>
                     </ul>
                 </li>
             </ul>

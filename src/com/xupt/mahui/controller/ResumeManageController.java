@@ -160,7 +160,10 @@ public class ResumeManageController {
 		map.put("projectExperienceList", ResumeManageService.getProjectExperiences(phonenumber));
 		map.put("eductionExperienceList", ResumeManageService.getEductionExperiences(phonenumber));
 		String html=HtmlGenerator.generate("download.ftl", map);
-		File file=new File("简历附件.pdf");
+		File file=new File(Config.resumePath+"简历附件.pdf");
+		if(!file.exists()){
+			file.createNewFile();
+		}
 		PdfGenerator.generate(html, new FileOutputStream(file));
         try{
             /**

@@ -5,14 +5,12 @@
     <link href="/RMS/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/RMS/css/nav-style.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/RMS/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/RMS/css/search.css">
+    <link rel="stylesheet" type="text/css" href="/RMS/css/base.css">
     <script type="text/javascript" src="/RMS/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/RMS/js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="/RMS/js/edit.js"></script>
     <script type="text/javascript" src="/RMS/js/type-in.js"></script>
-    <link rel="stylesheet" type="text/css" href="/RMS/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/RMS/css/details.css">
-    <link rel="stylesheet" type="text/css" href="/RMS/css/base.css">
-    <script type="text/javascript" src="/RMS/js/details.js"></script>
     <title>Title</title>
     <style>
     body{
@@ -165,22 +163,22 @@
 </head>
 <body>
 <!-- 导航栏 -->
-<div class="details-nav">
+<div class="search-nav">
     <nav class="navbar navbar-inverse nav-size mar-auto" class="" role="navigation">
         <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/RMS/main">简历管理平台</a>
+           <span> <a class="navbar-brand" href="/RMS/main">简历管理平台</a></span>
         </div>
         <div>
             <p class="navbar-text navbar-left">简历库</p>
             <!--向右对齐-->
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="username">
+                    <a  class="dropdown-toggle" data-toggle="dropdown" id="username">
                         UserName <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">登出</a></li>
+                        <li><a href="/RMS/login">登出</a></li>
                     </ul>
                 </li>
             </ul>
