@@ -273,13 +273,7 @@
 </div>
 
 <div class="search-content mar-auto">
-    <!-- 搜索框 -->
-    <div class="search-input mar-auto">
-        <form>
-            <input type="text" name="search" placeholder="关键技能" />
-            <button  value="">搜索</button>
-        </form>
-    </div>
+    
     <hr/>
     <!-- 分类选择 -->
     <div class="search-select">
