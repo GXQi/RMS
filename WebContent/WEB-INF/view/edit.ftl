@@ -84,12 +84,7 @@
                        window.location.href = "/RMS/main";
                     }
                     else if(result.message === "error"){
-                        var light = document.getElementById(tag);
-                        light.style.display = 'block';
-                        document.getElementById("close2").addEventListener("click", function () {
-                            var light = document.getElementById('light');
-                            light.style.display = 'none';
-                        });
+                        alert("提交失败");
                     }
                 }
             });

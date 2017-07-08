@@ -85,110 +85,120 @@ public class ResumeManageService {
 	 * @return 是否添加成功
 	 */
 	public static boolean insert(String data){
-		JSONObject jsonObject=JSONObject.fromObject(data);
-		JSONObject basic=jsonObject.getJSONObject("basic");
-		JSONObject work=jsonObject.getJSONObject("work");
-		JSONObject project=jsonObject.getJSONObject("project");
-		JSONObject edu=jsonObject.getJSONObject("edu");
-		String prephone = jsonObject.getString("prephone");
-		String flag = jsonObject.getString("flag");
-		String path=null;
-		String phoenumber=null;
-		System.out.println(data);
-		/**
-		 * 解析建立基本信息并封装成对象
-		 */
-		ResumeBasic resumeBasic=new ResumeBasic();
-		resumeBasic.setName(basic.getString("0"));
-		phoenumber=basic.getString("1");
-		resumeBasic.setPhonenumber(phoenumber);
-		resumeBasic.setSex(basic.getString("2"));
-		resumeBasic.setEmail(basic.getString("3"));
-		resumeBasic.setSkill(basic.getString("4"));
-		resumeBasic.setWorkTime(basic.getString("5"));
-		/**
-		 * 解析工作经历并封装成list对象
-		 */
-		@SuppressWarnings("unchecked")
-		Iterator<String> workKey=work.keys();
-		List<WorkExperience> workList=new ArrayList<>();
-		while(workKey.hasNext()){
-			WorkExperience workExperience=new WorkExperience();
-			workExperience.setCompany(work.getString(workKey.next()));
-			workExperience.setPosition(work.getString(workKey.next()));
-			workExperience.setWorkTimeStart(work.getString(workKey.next()));
-			workExperience.setWorkTimeEnd(work.getString(workKey.next()));
-			workExperience.setWorkContent(work.getString(workKey.next()));
-			workExperience.setPhonenumber(resumeBasic.getPhonenumber());
-			workList.add(workExperience);
-		}
-		/**
-		 * 解析项目经历并封装成项目经历
-		 */
-		@SuppressWarnings("unchecked")
-		Iterator<String> projectKey=project.keys();
-		List<ProjectExperience> projectList=new ArrayList<>();
-		while(projectKey.hasNext()){
-			ProjectExperience projectExperience=new ProjectExperience();
-			projectExperience.setProjectName(project.getString(projectKey.next()));
-			projectExperience.setProjectRole(project.getString(projectKey.next()));
-			projectExperience.setProjectTimeStart(project.getString(projectKey.next()));
-			projectExperience.setProjectTimeEnd(project.getString(projectKey.next()));
-			projectExperience.setWorkContent(project.getString(projectKey.next()));
-			projectExperience.setPhonenumber(resumeBasic.getPhonenumber());
-			projectList.add(projectExperience);
-		}
-		/**
-		 * 解析教育经历并封装成list对象
-		 */
-		@SuppressWarnings("unchecked")
-		Iterator<String> eduKey=edu.keys();
-		List<EductionExperience> eduList=new ArrayList<>();
-		while(eduKey.hasNext()){
-			EductionExperience eductionExperience=new EductionExperience();
-			eductionExperience.setSchool(edu.getString(eduKey.next()));
-			eductionExperience.setMajor(edu.getString(eduKey.next()));
-			eductionExperience.setDegree(""+changeDegreeToNumber(edu.getString(eduKey.next())));
-			eductionExperience.setGraduationTime(edu.getString(eduKey.next()));
-			eductionExperience.setPhonenumber(resumeBasic.getPhonenumber());
-			eduList.add(eductionExperience);
-		}
-		if(flag.equals("1")){
-			//说明改变电话号码了
-			path=ResumeManageService.getResumePath(prephone);
-			if(path!=null)
-				ResumeManageService.deleteResumePath(prephone);
-			ResumeClearService.ClearAllDataFromPhoneNumber(prephone);
-		}
-		/**
-		 * 将数据添加到数据库
-		 */
-		SqlSession session=SqlSessionFactoryUtil.getSqlSession();
-		try {
-			ResumeDao resumeDao=session.getMapper(ResumeDao.class);
-			resumeDao.insertResume(resumeBasic);
-			for(int i=0;i<workList.size();i++){
-				resumeDao.insertWorkExperience(workList.get(i));
+		try{
+			JSONObject jsonObject=JSONObject.fromObject(data);
+			JSONObject basic=jsonObject.getJSONObject("basic");
+			JSONObject work=jsonObject.getJSONObject("work");
+			JSONObject project=jsonObject.getJSONObject("project");
+			JSONObject edu=jsonObject.getJSONObject("edu");
+			String prephone = jsonObject.getString("prephone");
+			String flag = jsonObject.getString("flag");
+			String path=null;
+			String phoenumber=null;
+			System.out.println(data);
+			/**
+			 * 解析建立基本信息并封装成对象
+			 */
+			ResumeBasic resumeBasic=new ResumeBasic();
+			resumeBasic.setName(basic.getString("0"));
+			phoenumber=basic.getString("1");
+			resumeBasic.setPhonenumber(phoenumber);
+			resumeBasic.setSex(basic.getString("2"));
+			resumeBasic.setEmail(basic.getString("3"));
+			resumeBasic.setSkill(basic.getString("4"));
+			resumeBasic.setWorkTime(basic.getString("5"));
+			/**
+			 * 解析工作经历并封装成list对象
+			 */
+			@SuppressWarnings("unchecked")
+			Iterator<String> workKey=work.keys();
+			List<WorkExperience> workList=new ArrayList<>();
+			while(workKey.hasNext()){
+				WorkExperience workExperience=new WorkExperience();
+				workExperience.setCompany(work.getString(workKey.next()));
+				workExperience.setPosition(work.getString(workKey.next()));
+				workExperience.setWorkTimeStart(work.getString(workKey.next()));
+				workExperience.setWorkTimeEnd(work.getString(workKey.next()));
+				workExperience.setWorkContent(work.getString(workKey.next()));
+				workExperience.setPhonenumber(resumeBasic.getPhonenumber());
+				workList.add(workExperience);
 			}
-			for(int i=0;i<projectList.size();i++){
-				resumeDao.insertProjectExperience(projectList.get(i));
+			/**
+			 * 解析项目经历并封装成项目经历
+			 */
+			@SuppressWarnings("unchecked")
+			Iterator<String> projectKey=project.keys();
+			List<ProjectExperience> projectList=new ArrayList<>();
+			while(projectKey.hasNext()){
+				ProjectExperience projectExperience=new ProjectExperience();
+				projectExperience.setProjectName(project.getString(projectKey.next()));
+				projectExperience.setProjectRole(project.getString(projectKey.next()));
+				projectExperience.setProjectTimeStart(project.getString(projectKey.next()));
+				projectExperience.setProjectTimeEnd(project.getString(projectKey.next()));
+				projectExperience.setWorkContent(project.getString(projectKey.next()));
+				projectExperience.setPhonenumber(resumeBasic.getPhonenumber());
+				projectList.add(projectExperience);
 			}
-			for(int i=0;i<eduList.size();i++){
-				resumeDao.insertEductionExperience(eduList.get(i));
-			}
-			session.commit();
-			if(flag.equals("1")){
-				if(path!=null){
-					ResumeManageService.insertResumePath(phoenumber, path);	
+			/**
+			 * 解析教育经历并封装成list对象
+			 */
+			@SuppressWarnings("unchecked")
+			Iterator<String> eduKey=edu.keys();
+			List<EductionExperience> eduList=new ArrayList<>();
+			while(eduKey.hasNext()){
+				EductionExperience eductionExperience=new EductionExperience();
+				eductionExperience.setSchool(edu.getString(eduKey.next()));
+				eductionExperience.setMajor(edu.getString(eduKey.next()));
+				int degree=changeDegreeToNumber(edu.getString(eduKey.next()));
+				if(degree==-1){
+					return false;
 				}
+				eductionExperience.setDegree(""+degree);
+				eductionExperience.setGraduationTime(edu.getString(eduKey.next()));
+				eductionExperience.setPhonenumber(resumeBasic.getPhonenumber());
+				eduList.add(eductionExperience);
 			}
-			
-			return true;
+			if(flag.equals("1")){
+				//说明改变电话号码了
+				path=ResumeManageService.getResumePath(prephone);
+				if(path!=null)
+					ResumeManageService.deleteResumePath(prephone);
+				ResumeClearService.ClearAllDataFromPhoneNumber(prephone);
+			}
+			/**
+			 * 将数据添加到数据库
+			 */
+			SqlSession session=SqlSessionFactoryUtil.getSqlSession();
+			try {
+				ResumeDao resumeDao=session.getMapper(ResumeDao.class);
+				resumeDao.insertResume(resumeBasic);
+				for(int i=0;i<workList.size();i++){
+					resumeDao.insertWorkExperience(workList.get(i));
+				}
+				for(int i=0;i<projectList.size();i++){
+					resumeDao.insertProjectExperience(projectList.get(i));
+				}
+				for(int i=0;i<eduList.size();i++){
+					resumeDao.insertEductionExperience(eduList.get(i));
+				}
+				session.commit();
+				if(flag.equals("1")){
+					if(path!=null){
+						ResumeManageService.insertResumePath(phoenumber, path);	
+					}
+				}
+				
+				return true;
+			}catch(Exception e){
+				System.out.println("插入的数据出异常啦");
+				System.out.println("异常信息是"+e.getMessage());
+			}finally{
+				session.close();
+			}
 		}catch(Exception e){
-			System.out.println("插入的数据出异常啦");
-			System.out.println("异常信息是"+e.getMessage());
+			
 		}finally{
-			session.close();
+			
 		}
 		return false;
 	}
@@ -281,7 +291,7 @@ public class ResumeManageService {
 			if(string.equals(degrees[i]))
 				return  i;
 		}
-		return 0;
+		return -1;
 	}
 	/**
 	 * 获得最高学位
